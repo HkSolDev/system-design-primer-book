@@ -26,6 +26,7 @@ This **Interactive Reading Edition** transforms the primer into a unified, high-
 * 🔍 **Instant Full-Text Search:** Client-side search indexing across all 24 chapters, video metadata, and article summaries.
 * 🖍️ **Local Highlighting:** Select any passage to drop a persistent highlight saved automatically in your browser.
 * 🌓 **Dark & Light Mode:** Tailored typography (Source Serif 4, IBM Plex Sans, IBM Plex Mono) with smooth contrast.
+* 🧰 **Internet Hidden Toolbox (`toolbox.html`):** An interactive, searchable directory of 46 high-yield web tools, academic research engines (Unpaywall, Elicit, Consensus, Connected Papers), developer terminal tools (Phind, Regex101, ExplainShell, Carbon), privacy shields (VirusTotal, Privnote, Temp-Mail), and cognitive focus audio (Radio Garden, Music For Programming) &mdash; complete with practical use cases, pro tips, instant search, and one-click browser bookmark export.
 
 ---
 

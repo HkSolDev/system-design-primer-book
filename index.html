@@ -650,6 +650,52 @@
     color: #FFFFFF;
     border-color: transparent;
   }
+  .toolbox-entry-wrap {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .toolbox-entry-card {
+    display: block;
+    background: var(--spine-tint);
+    border: 1px solid var(--spine-soft);
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .toolbox-entry-card:hover {
+    background: var(--spine-soft);
+    border-color: var(--spine);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+  .tb-entry-badge {
+    display: inline-block;
+    font-size: 9.5px;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 700;
+    color: var(--spine);
+    background: rgba(43, 76, 111, 0.12);
+    border-radius: 4px;
+    padding: 1px 6px;
+    margin-bottom: 5px;
+    letter-spacing: 0.06em;
+  }
+  .tb-entry-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .tb-entry-desc {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin: 3px 0 0;
+    line-height: 1.35;
+  }
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
@@ -673,6 +719,17 @@
         <input id="search" type="text" placeholder="Search the book…" autocomplete="off">
       </div>
       <div class="search-results" id="searchResults"></div>
+    </div>
+
+    <div class="toolbox-entry-wrap">
+      <a href="toolbox.html" class="toolbox-entry-card" title="Open Internet Hidden Toolbox">
+        <span class="tb-entry-badge">NEW RESOURCE</span>
+        <div class="tb-entry-title">
+          <span>🧰 Internet Hidden Toolbox</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <p class="tb-entry-desc">46 curated web tools for research, dev, design &amp; focus &rarr;</p>
+      </a>
     </div>
 
     <nav class="toc" id="toc" aria-label="Table of contents"></nav>
@@ -715,6 +772,7 @@
     <div class="mobile-bar">
       <button id="menuBtn" aria-label="Open contents">☰</button>
       <span>The System Design Primer</span>
+      <a href="toolbox.html" style="font-size: 12px; font-weight: 600; color: var(--spine); margin-left: auto; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--spine-tint); border: 1px solid var(--spine-soft);">🧰 Toolbox ↗</a>
     </div>
     <div class="progress"><i id="progressBar"></i></div>
     <div class="page" id="page"></div>
@@ -1859,6 +1917,20 @@ CHAPTERS.forEach((ch, i) => {
   `;
   pageEl.appendChild(sec);
 });
+
+// Append Internet Hidden Toolbox to Table of Contents
+const toolboxGroupLabel = document.createElement("div");
+toolboxGroupLabel.className = "group-label";
+toolboxGroupLabel.textContent = "Bonus · Tooling";
+tocEl.appendChild(toolboxGroupLabel);
+
+const tbTocA = document.createElement("a");
+tbTocA.href = "toolbox.html";
+tbTocA.innerHTML = `<span class="num">🧰</span>Internet Hidden Toolbox ↗`;
+tbTocA.style.fontWeight = "600";
+tbTocA.style.color = "var(--spine)";
+tocEl.appendChild(tbTocA);
+
 
 /* ---------------- Inline Video Playback ---------------- */
 pageEl.addEventListener('click', (e) => {
