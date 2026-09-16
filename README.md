@@ -15,7 +15,7 @@ The **System Design Primer** (originally compiled by **Donne Martin** and hundre
 
 This **Interactive Reading Edition** transforms the primer into a unified, high-yield study hub:
 
-* 🎥 **24 In-Page Playable Video Lectures:** High-yield video lessons from top educators (ByteByteGo, Hussein Nasser, Martin Kleppmann, David J. Malan / Harvard, Gil Tene, AWS re:Invent, Tushar Roy, Gaurav Sen) embedded with a click-to-play facade so you can watch directly without leaving the book.
+* 🎥 **26 In-Page Playable Video Lectures:** High-yield video lessons from top educators (ByteByteGo, Hussein Nasser, Arpit Bhayani, Martin Kleppmann, David J. Malan / Harvard, Gil Tene, AWS re:Invent, Tushar Roy, Gaurav Sen) embedded with a click-to-play facade so you can watch directly without leaving the book.
 * 📖 **Seminal Engineering Deep Dives:** Handpicked articles and whitepapers from Netflix, Uber, Cloudflare, Figma, Stripe (Rate Limiting & Idempotency Keys by Brandur Leach), and landmark computer science papers (ACM, USENIX NSDI).
 * 🏗️ **5 Complete Interview Case Studies (Part V):**
   1. *URL Shortener (TinyURL / Pastebin)* — Base62 encoding, Key Generation Service (KGS), 301 vs 302, Redis caching.

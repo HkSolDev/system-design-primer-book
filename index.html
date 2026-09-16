@@ -1422,6 +1422,51 @@ def set_user(user_id, values):
       <b>What is Idempotency?</b> An API operation is <strong>idempotent</strong> if executing it multiple times produces the exact same server state and side-effects as executing it once: <code>f(f(x)) = f(x)</code>. In standard HTTP, <code>GET</code>, <code>PUT</code>, and <code>DELETE</code> are idempotent by specification; <code>POST</code> and <code>PATCH</code> are not.
     </div>
 
+    <h4>Video Masterclasses: From Core Concepts to Advanced Architecture (Easy &rarr; Advanced)</h4>
+    <p>Watch these two curated, high-yield engineering lectures that directly complement Brandur Leach's Stripe architecture &mdash; spanning foundational network failure intuition to end-to-end payment gateway implementation:</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:18px; margin:20px 0 28px;">
+      <!-- Part 1: Core Fundamentals & Network Failure Intuition (Hussein Nasser) -->
+      <div class="video-card" style="margin:0;">
+        <div class="video-embed-wrap" data-video-id="4OuaONkZw1I" title="Click to play inline">
+          <img class="video-thumb" src="https://img.youtube.com/vi/4OuaONkZw1I/hqdefault.jpg" alt="Why Idempotency is very critical in Backend Applications" loading="lazy" onerror="this.src='https://img.youtube.com/vi/4OuaONkZw1I/0.jpg'">
+          <button class="video-play-btn" aria-label="Play video inline">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="video-duration">8:58 · Easy / Core</span>
+        </div>
+        <div class="video-meta">
+          <span class="channel">Hussein Nasser</span>
+          <h4>Part 1: Why Idempotency is Critical in Backend Applications</h4>
+          <p>An intuitive, visual breakdown of the network "order problem": how connection timeouts cause client retries, why duplicate mutations crash distributed state, and how request tracking restores sanity.</p>
+          <div class="video-links">
+            <span class="play-now-hint">▶ Click thumbnail to play inline</span>
+            <a class="ext-link" href="https://www.youtube.com/watch?v=4OuaONkZw1I" target="_blank" rel="noopener">Open in YouTube ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 2: Full Production Architecture (Arpit Bhayani) -->
+      <div class="video-card" style="margin:0;">
+        <div class="video-embed-wrap" data-video-id="m6DtqSb1BDM" title="Click to play inline">
+          <img class="video-thumb" src="https://img.youtube.com/vi/m6DtqSb1BDM/hqdefault.jpg" alt="Build a robust Payments service using Idempotency Keys" loading="lazy" onerror="this.src='https://img.youtube.com/vi/m6DtqSb1BDM/0.jpg'">
+          <button class="video-play-btn" aria-label="Play video inline">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <span class="video-duration">16:35 · Advanced / Full</span>
+        </div>
+        <div class="video-meta">
+          <span class="channel">Arpit Bhayani</span>
+          <h4>Part 2: Build a Robust Payments Service with Idempotency Keys</h4>
+          <p>The complete engineering blueprint matching the Stripe pattern: request deduplication pipelines, database schema design, atomic phase transactions, cached replay, and failure recovery points.</p>
+          <div class="video-links">
+            <span class="play-now-hint">▶ Click thumbnail to play inline</span>
+            <a class="ext-link" href="https://www.youtube.com/watch?v=m6DtqSb1BDM" target="_blank" rel="noopener">Open in YouTube ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h4>The <code>Idempotency-Key</code> HTTP Header Mechanism</h4>
     <p>To make non-idempotent operations safely retryable, modern API platforms (pioneered by Stripe and standardized across the tech industry) introduce the <code>Idempotency-Key</code> HTTP request header:</p>
     <ul>
