@@ -1374,7 +1374,7 @@ def set_user(user_id, values):
     title: "Communication",
     dek: "HTTP, TCP, UDP, RPC, and REST \u2014 the protocols underneath every API decision.",
     video: {"id": "yWzKJPw_VzM", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "What is RPC? gRPC Introduction & REST Comparison", "duration": "8:30", "desc": "Remote Procedure Calls, Protocol Buffers binary serialization, HTTP/2 multiplexing, and when to pick gRPC over REST."},
-    articles: [{"source": "Book (Online)", "title": "High Performance Browser Networking (Ilya Grigorik)", "url": "https://hpbn.co/", "desc": "The definitive book on TCP handshakes, TLS overhead, HTTP/2 multiplexing, and WebSocket framing.", "readTime": "Full Online Book"}, {"source": "Cloudflare", "title": "The Road to HTTP/3 and QUIC Protocol", "url": "https://blog.cloudflare.com/http-3-vs-http-2/", "desc": "Why TCP head-of-line blocking prompted UDP-based QUIC, zero-RTT connection resumption, and connection migration.", "readTime": "11 min read"}, {"source": "Uber Engineering", "title": "Moving from REST to gRPC at Scale across 2000+ Microservices", "url": "https://www.uber.com/blog/service-mesh/", "desc": "How Uber reduced CPU consumption and payload size by standardizing internal inter-service calls on gRPC.", "readTime": "12 min read"}],
+    articles: [{"source": "Book (Online)", "title": "High Performance Browser Networking (Ilya Grigorik)", "url": "https://hpbn.co/", "desc": "The definitive book on TCP handshakes, TLS overhead, HTTP/2 multiplexing, and WebSocket framing.", "readTime": "Full Online Book"}, {"source": "Cloudflare", "title": "The Road to HTTP/3 and QUIC Protocol", "url": "https://blog.cloudflare.com/http-3-vs-http-2/", "desc": "Why TCP head-of-line blocking prompted UDP-based QUIC, zero-RTT connection resumption, and connection migration.", "readTime": "11 min read"}, {"source": "Brandur Leach (Stripe Architecture)", "title": "Implementing Stripe-like Idempotency Keys in Postgres", "url": "https://brandur.org/idempotency-keys", "desc": "The canonical blueprint for fault-tolerant APIs: atomic phases in PostgreSQL, recovery points, foreign state mutations, and idempotency key caching.", "readTime": "22 min read"}, {"source": "Uber Engineering", "title": "Moving from REST to gRPC at Scale across 2000+ Microservices", "url": "https://www.uber.com/blog/service-mesh/", "desc": "How Uber reduced CPU consumption and payload size by standardizing internal inter-service calls on gRPC.", "readTime": "12 min read"}],
     html: `
     <figure class="fig"><img src="${IMG['5KeocQs']}" alt="OSI seven-layer model diagram"><figcaption>Source: <a href="http://www.escotal.com/osilayer.html" target="_blank" rel="noopener">OSI 7 layer model</a></figcaption></figure>
     <h3>HTTP</h3>
@@ -1414,6 +1414,66 @@ def set_user(user_id, values):
       <tr><td>Update an item</td><td>POST /modifyItem {...}</td><td>PUT /items/456 {...}</td></tr>
       <tr><td>Delete an item</td><td>POST /removeItem {"itemid":"456"}</td><td>DELETE /items/456</td></tr>
     </table></div>
+
+    <h3>API Idempotency &amp; Idempotency Keys (The Stripe Architecture)</h3>
+    <p>In distributed network communication, operations will inevitably fail or time out. A client sending a mutating request (such as <code>POST /v1/charges</code> or <code>POST /orders</code>) faces the classic distributed systems dilemma: if the network connection drops before receiving an HTTP <code>200 OK</code> response, did the server process the charge or not? If the client retries blindly, the customer risks being double-billed.</p>
+
+    <div class="callout">
+      <b>What is Idempotency?</b> An API operation is <strong>idempotent</strong> if executing it multiple times produces the exact same server state and side-effects as executing it once: <code>f(f(x)) = f(x)</code>. In standard HTTP, <code>GET</code>, <code>PUT</code>, and <code>DELETE</code> are idempotent by specification; <code>POST</code> and <code>PATCH</code> are not.
+    </div>
+
+    <h4>The <code>Idempotency-Key</code> HTTP Header Mechanism</h4>
+    <p>To make non-idempotent operations safely retryable, modern API platforms (pioneered by Stripe and standardized across the tech industry) introduce the <code>Idempotency-Key</code> HTTP request header:</p>
+    <ul>
+      <li><strong>Client-Side Key Generation:</strong> Before sending a mutating request, the client generates a unique UUID (v4) and transmits it in the request header: <code>Idempotency-Key: 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d</code>.</li>
+      <li><strong>Deterministic Retries:</strong> If the client encounters a socket timeout, network disconnection, or 5xx gateway failure, it safely retries the exact same operation with the <em>identical</em> idempotency key and request payload.</li>
+      <li><strong>Short-Circuit Response Replay:</strong> If the server has already executed the request, it short-circuits the pipeline and immediately returns the cached HTTP response status and body with an <code>Idempotent-Replay: true</code> response header, preventing any duplicate mutation.</li>
+    </ul>
+
+    <h4>PostgreSQL Schema &amp; Storage (Brandur Leach's Pattern)</h4>
+    <p>Because external in-memory locks (like Redis) can lose state or partition from the database, production-grade idempotency keys are managed directly within an ACID-compliant relational database (such as PostgreSQL) with strict constraints:</p>
+    <pre><code>CREATE TABLE idempotency_keys (
+    id              BIGSERIAL PRIMARY KEY,
+    user_id         BIGINT NOT NULL,
+    idempotency_key VARCHAR(100) NOT NULL,
+    request_method  VARCHAR(10) NOT NULL,
+    request_path    TEXT NOT NULL,
+    request_params  JSONB NOT NULL,
+    response_code   INT NULL,
+    response_body   JSONB NULL,
+    recovery_point  VARCHAR(50) NOT NULL,
+    locked_at       TIMESTAMPTZ DEFAULT NOW(),
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT uk_user_idempotency UNIQUE (user_id, idempotency_key)
+);</code></pre>
+
+    <h4>The Three Atomic Phases &amp; Foreign State Mutations</h4>
+    <p>Former Stripe infrastructure engineer Brandur Leach codified the essential architectural separation between <strong>local state mutations</strong> (which can be rolled back cleanly with an SQL transaction) and <strong>foreign state mutations</strong> (such as calling Stripe, credit card processors, sending an email, or emitting a Kafka event, which <em>cannot</em> be rolled back with SQL):</p>
+    <ul>
+      <li><strong>Phase 1 — Key Reservation &amp; Conflict Checks (Atomic Phase 1):</strong> In a database transaction, insert or lock the idempotency record with <code>recovery_point = 'started'</code>:
+        <ul>
+          <li><em>Completed Replay:</em> If the key already exists and <code>recovery_point = 'finished'</code>, verify incoming parameters match <code>request_params</code>. If identical, return the stored <code>response_code</code> and <code>response_body</code> immediately.</li>
+          <li><em>Parameter Mismatch:</em> If incoming parameters differ from the original request, reject immediately with <code>400 Bad Request</code> ("Idempotency key reused with mismatched parameters").</li>
+          <li><em>Concurrent In-Flight Request:</em> If <code>locked_at</code> is active and not expired, return <code>409 Conflict</code> (or queue client briefly) to prevent race conditions.</li>
+        </ul>
+      </li>
+      <li><strong>Phase 2 — Foreign State Mutation:</strong> Execute the external mutation (e.g. charging card network rails), passing downstream a deterministic idempotency key to guarantee end-to-end safety.</li>
+      <li><strong>Phase 3 — Atomic Commit &amp; Response Caching (Atomic Phase 2):</strong> In a single database transaction, commit all local domain state (order record, customer ledger, audit entry) AND update the idempotency record:
+        <code>UPDATE idempotency_keys SET response_code = 200, response_body = '...', recovery_point = 'finished', locked_at = NULL WHERE id = ...;</code>
+      </li>
+    </ul>
+
+    <h4>Key Expiration &amp; The Background Reaper</h4>
+    <p>Idempotency keys should have a finite Time-to-Live (TTL) &mdash; typically 24 to 72 hours. An asynchronous background worker process ("The Reaper") periodically deletes expired keys in batches to maintain compact B-Tree index size and sub-millisecond query performance.</p>
+
+    <div class="disadv">
+      <h4>System Design Interview Cheat Sheet: Idempotency Keys</h4>
+      <ul>
+        <li><strong>When to proactively introduce:</strong> Any question involving payments, billing, order placement, ticket booking, or message queue consumption (At-Least-Once delivery).</li>
+        <li><strong>Why not Redis?</strong> An in-memory cache lacks ACID guarantees across database writes; if Redis saves the key but Postgres crashes before committing the order, the request can never be safely completed. Storing the key in PostgreSQL ensures atomic commit alongside the domain data.</li>
+        <li><strong>Handling Concurrency:</strong> Use <code>locked_at</code> timestamps or row-level locking (<code>SELECT ... FOR UPDATE</code>) with automated timeouts (e.g. 120s) so crashed workers do not lock keys indefinitely.</li>
+      </ul>
+    </div>
   `
   },
   {

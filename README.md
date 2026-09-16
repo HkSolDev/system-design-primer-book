@@ -16,7 +16,7 @@ The **System Design Primer** (originally compiled by **Donne Martin** and hundre
 This **Interactive Reading Edition** transforms the primer into a unified, high-yield study hub:
 
 * 🎥 **24 In-Page Playable Video Lectures:** High-yield video lessons from top educators (ByteByteGo, Hussein Nasser, Martin Kleppmann, David J. Malan / Harvard, Gil Tene, AWS re:Invent, Tushar Roy, Gaurav Sen) embedded with a click-to-play facade so you can watch directly without leaving the book.
-* 📖 **Seminal Engineering Deep Dives:** Handpicked articles and whitepapers from Netflix, Uber, Cloudflare, Figma, Stripe, and landmark computer science papers (ACM, USENIX NSDI).
+* 📖 **Seminal Engineering Deep Dives:** Handpicked articles and whitepapers from Netflix, Uber, Cloudflare, Figma, Stripe (Rate Limiting & Idempotency Keys by Brandur Leach), and landmark computer science papers (ACM, USENIX NSDI).
 * 🏗️ **5 Complete Interview Case Studies (Part V):**
   1. *URL Shortener (TinyURL / Pastebin)* — Base62 encoding, Key Generation Service (KGS), 301 vs 302, Redis caching.
   2. *Twitter Timeline & News Feed* — Fan-out on write vs read, celebrity hotspot handling, Redis timeline caches, Lucene search.
@@ -26,7 +26,7 @@ This **Interactive Reading Edition** transforms the primer into a unified, high-
 * 🔍 **Instant Full-Text Search:** Client-side search indexing across all 24 chapters, video metadata, and article summaries.
 * 🖍️ **Local Highlighting:** Select any passage to drop a persistent highlight saved automatically in your browser.
 * 🌓 **Dark & Light Mode:** Tailored typography (Source Serif 4, IBM Plex Sans, IBM Plex Mono) with smooth contrast.
-* 🧰 **Internet Hidden Toolbox (`toolbox.html`):** An interactive, searchable directory of 46 high-yield web tools, academic research engines (Unpaywall, Elicit, Consensus, Connected Papers), developer terminal tools (Phind, Regex101, ExplainShell, Carbon), privacy shields (VirusTotal, Privnote, Temp-Mail), and cognitive focus audio (Radio Garden, Music For Programming) &mdash; complete with practical use cases, pro tips, instant search, and one-click browser bookmark export.
+* 🧰 **Internet Hidden Toolbox (`toolbox.html`):** An interactive, searchable directory of 47 high-yield web tools, academic research engines (Unpaywall, Elicit, Consensus, Connected Papers), developer terminal tools (Phind, Regex101, ExplainShell, Carbon), privacy shields (VirusTotal, Privnote, Temp-Mail), and cognitive focus audio (Radio Garden, Music For Programming) &mdash; complete with practical use cases, pro tips, instant search, and one-click browser bookmark export.
 
 ---
 

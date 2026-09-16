@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Internet Hidden Toolbox — A curated directory of 46 high-yield web tools, academic research search engines, terminal utilities, privacy shields, and focus audio. With practical use cases and navigation guides.">
+  <meta name="description" content="Internet Hidden Toolbox — A curated directory of 47 high-yield web tools, academic research search engines, terminal utilities, privacy shields, and focus audio. With practical use cases and navigation guides.">
   <meta property="og:title" content="Internet Hidden Toolbox · Curated Tools for Developers & Researchers">
-  <meta property="og:description" content="Discover 46 handpicked web tools for research, coding, design, privacy, and productivity with practical use cases and navigation guides.">
+  <meta property="og:description" content="Discover 47 handpicked web tools for research, coding, design, privacy, and productivity with practical use cases and navigation guides.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@HKsoldev">
@@ -1025,14 +1025,14 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-eyebrow">
-        <span>⚡ 46 Hand-Curated Internet Gems</span>
+        <span>⚡ 47 Hand-Curated Internet Gems</span>
       </div>
       <h2>The Internet Hidden Toolbox</h2>
       <p>A categorized, interactive directory of essential web tools, open-access academic engines, terminal workbenches, privacy shields, and cognitive focus streams. Complete with practical use cases and navigation guides.</p>
 
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num" id="totalToolsCount">46</span>
+          <span class="stat-num" id="totalToolsCount">47</span>
           <span class="stat-label">Curated Tools</span>
         </div>
         <div class="stat-item">
@@ -1094,7 +1094,7 @@
   <main class="content-container">
     <div class="results-meta">
       <div class="results-count">
-        Showing <b id="visibleCount">46</b> of <span id="totalCount">46</span> tools
+        Showing <b id="visibleCount">47</b> of <span id="totalCount">47</span> tools
       </div>
       <div class="results-hint">
         Click <b>Open Site ↗</b> to visit directly &bull; Press <b>Copy</b> to grab URL
@@ -1128,7 +1128,7 @@
     <div class="empty-state" id="emptyState">
       <div class="empty-icon">🔍</div>
       <h3>No tools found matching your search</h3>
-      <p>Try searching for different keywords, clear your category filters, or explore all 46 tools.</p>
+      <p>Try searching for different keywords, clear your category filters, or explore all 47 tools.</p>
       <button id="resetFiltersBtn" class="btn btn-primary">Reset Filters</button>
     </div>
   </main>
@@ -1342,6 +1342,22 @@
       },
 
       /* 💻 Developer & Terminal Tools */
+      {
+        id: "idempotency-keys",
+        name: "Idempotency Keys in Postgres",
+        url: "https://brandur.org/idempotency-keys",
+        domain: "brandur.org",
+        category: "Developer & Terminal Tools",
+        categoryIcon: "💻",
+        tags: ["System Design", "Postgres", "APIs", "Stripe"],
+        icon: "🔑",
+        summary: "Brandur Leach's canonical engineering blueprint on implementing Stripe-like idempotency keys in PostgreSQL with atomic phases, recovery points, and safe API retries.",
+        useCases: [
+          "Designing mission-critical payment, billing, and order APIs where duplicate network requests must never cause double charges.",
+          "Structuring multi-step database mutations into ACID-compliant atomic phases and recovery points to safely survive network partitions and server restarts."
+        ],
+        proTip: "Combine an 'Idempotency-Key' HTTP header with PostgreSQL's serializable transactions and an asynchronous reaper worker that purges keys older than 72 hours."
+      },
       {
         id: "phind",
         name: "Phind",
