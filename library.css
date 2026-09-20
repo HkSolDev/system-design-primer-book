@@ -1,0 +1,130 @@
+/* =========================================================================
+   library.css — shared design layer for the whole reading library
+   (System Design Primer · Internet Toolbox · AI Engineer Roadmap)
+
+   Loaded AFTER each page's own <style>, so these tokens win. Only variable
+   names that already exist in the pages are overridden, so nothing breaks
+   if a page doesn't use one. Static file — works as-is on Cloudflare assets.
+   ========================================================================= */
+
+:root {
+  --paper: #F5F3EC;
+  --paper-raised: #FDFCF9;
+  --paper-card: #FFFFFF;
+  --ink: #191C22;
+  --ink-soft: #444954;
+  --ink-muted: #6E7480;
+  --rule: #DCD8CC;
+  --rule-light: #E9E6DC;
+  --spine: #1F4E8C;
+  --spine-hover: #163A6A;
+  --spine-soft: #DCE7F5;
+  --spine-tint: #EDF3FB;
+  --code-bg: #E9E6DC;
+  --badge-bg: #EAE8DF;
+  --accent: #1F4E8C;
+  --accent-soft: #DCE7F5;
+  --shadow: 0 1px 2px rgba(30, 25, 15, .06), 0 8px 24px rgba(30, 25, 15, .09);
+  --shadow-sm: 0 1px 2px rgba(30, 25, 15, .06);
+  --shadow-md: 0 4px 16px rgba(30, 25, 15, .08);
+  --shadow-lg: 0 12px 34px rgba(30, 25, 15, .12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12151A;
+    --paper-raised: #191D24;
+    --paper-card: #1F242C;
+    --ink: #ECEAE2;
+    --ink-soft: #AEB2BC;
+    --ink-muted: #828896;
+    --rule: #2D323B;
+    --rule-light: #252A32;
+    --spine: #86B7F0;
+    --spine-hover: #A9CCF5;
+    --spine-soft: #223550;
+    --spine-tint: #1A2940;
+    --code-bg: #232830;
+    --badge-bg: #282E38;
+    --accent: #86B7F0;
+    --accent-soft: #1A2940;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .45);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, .45);
+    --shadow-lg: 0 12px 34px rgba(0, 0, 0, .55);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #12151A;
+  --paper-raised: #191D24;
+  --paper-card: #1F242C;
+  --ink: #ECEAE2;
+  --ink-soft: #AEB2BC;
+  --ink-muted: #828896;
+  --rule: #2D323B;
+  --rule-light: #252A32;
+  --spine: #86B7F0;
+  --spine-hover: #A9CCF5;
+  --spine-soft: #223550;
+  --spine-tint: #1A2940;
+  --code-bg: #232830;
+  --badge-bg: #282E38;
+  --accent: #86B7F0;
+  --accent-soft: #1A2940;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .45);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, .45);
+  --shadow-lg: 0 12px 34px rgba(0, 0, 0, .55);
+}
+
+/* ---------- Polish shared by every page ---------- */
+html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; }
+
+::selection { background: color-mix(in srgb, var(--spine) 28%, transparent); }
+
+:focus-visible {
+  outline: 2px solid var(--spine);
+  outline-offset: 2px;
+}
+input:focus-visible, textarea:focus-visible { outline: none; }
+
+* { scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 10px; border: 2px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); background-clip: content-box; border: 2px solid transparent; }
+
+/* ---------- Library switcher (used by the book sidebar & toolbox header) ---------- */
+.lib-switch {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.lib-switch a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  background: var(--paper-card);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: border-color .15s, background .15s, transform .15s, color .15s;
+}
+.lib-switch a span { font-size: 16px; }
+.lib-switch a:hover { border-color: var(--spine); color: var(--spine); transform: translateY(-1px); }
+.lib-switch a[aria-current="page"] { background: var(--spine-tint); border-color: var(--spine); color: var(--spine); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- Book sidebar: give the table of contents room to breathe ---------- */
+.creator-card .creator-bio { display: none; }
+.creator-card { padding-bottom: 10px; }

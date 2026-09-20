@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Internet Hidden Toolbox — A curated directory of 47 high-yield web tools, academic research search engines, terminal utilities, privacy shields, and focus audio. With practical use cases and navigation guides.">
   <meta property="og:title" content="Internet Hidden Toolbox · Curated Tools for Developers & Researchers">
-  <meta property="og:description" content="Discover 47 handpicked web tools for research, coding, design, privacy, and productivity with practical use cases and navigation guides.">
+  <meta property="og:description" content="Discover 51 handpicked web tools for research, coding, design, privacy, and productivity with practical use cases and navigation guides.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@HKsoldev">
@@ -984,6 +984,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="library.css">
 </head>
 <body>
 
@@ -1002,6 +1003,11 @@
         <a href="index.html" class="btn" title="Return to The System Design Primer Interactive Reading Edition">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
           <span class="header-btn-text">System Design Primer</span>
+        </a>
+
+        <a href="ai-engineer-roadmap.html" class="btn" title="Open the free, link-verified AI Engineer Roadmap">
+          <span>🧭</span>
+          <span class="header-btn-text">AI Roadmap</span>
         </a>
 
         <button id="surpriseBtn" class="btn" title="Jump to a random tool from the toolbox">
@@ -1025,14 +1031,14 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-eyebrow">
-        <span>⚡ 47 Hand-Curated Internet Gems</span>
+        <span>⚡ 51 Hand-Curated Internet Gems</span>
       </div>
       <h2>The Internet Hidden Toolbox</h2>
       <p>A categorized, interactive directory of essential web tools, open-access academic engines, terminal workbenches, privacy shields, and cognitive focus streams. Complete with practical use cases and navigation guides.</p>
 
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num" id="totalToolsCount">47</span>
+          <span class="stat-num" id="totalToolsCount">51</span>
           <span class="stat-label">Curated Tools</span>
         </div>
         <div class="stat-item">
@@ -1094,7 +1100,7 @@
   <main class="content-container">
     <div class="results-meta">
       <div class="results-count">
-        Showing <b id="visibleCount">47</b> of <span id="totalCount">47</span> tools
+        Showing <b id="visibleCount">51</b> of <span id="totalCount">51</span> tools
       </div>
       <div class="results-hint">
         Click <b>Open Site ↗</b> to visit directly &bull; Press <b>Copy</b> to grab URL
@@ -1128,7 +1134,7 @@
     <div class="empty-state" id="emptyState">
       <div class="empty-icon">🔍</div>
       <h3>No tools found matching your search</h3>
-      <p>Try searching for different keywords, clear your category filters, or explore all 47 tools.</p>
+      <p>Try searching for different keywords, clear your category filters, or explore all 51 tools.</p>
       <button id="resetFiltersBtn" class="btn btn-primary">Reset Filters</button>
     </div>
   </main>
@@ -2010,6 +2016,7 @@
     const searchClearBtn = document.getElementById('searchClearBtn');
     const visibleCountEl = document.getElementById('visibleCount');
     const totalCountEl = document.getElementById('totalCount');
+    const totalToolsStatEl = document.getElementById('totalToolsCount');
     const emptyState = document.getElementById('emptyState');
     const gridViewBtn = document.getElementById('gridViewBtn');
     const tableViewBtn = document.getElementById('tableViewBtn');
@@ -2208,6 +2215,8 @@
 
       // Update Counts
       visibleCountEl.textContent = filtered.length;
+      totalCountEl.textContent = TOOLS.length;
+      if (totalToolsStatEl) totalToolsStatEl.textContent = TOOLS.length;
 
       // Toggle Empty State
       if (filtered.length === 0) {

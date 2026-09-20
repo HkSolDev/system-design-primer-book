@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="A free, link-verified 6-stage roadmap to becoming a production-grade AI / LLM engineer: foundations, transformer internals, advanced RAG, agents, fine-tuning & serving, and LLMOps. With playable videos, progress tracking, portfolio projects and a 16-week plan.">
+<meta property="og:title" content="The AI Engineer Roadmap · Free, Verified Learning Path">
+<meta property="og:description" content="Six stages from Python and PyTorch to RAG, agents, fine-tuning, serving and evals — every link checked, videos playable in-page, progress saved in your browser.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@HKsoldev">
+<meta name="twitter:creator" content="@HKsoldev">
+<title>🧭 The AI Engineer Roadmap · Free Learning Path</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="library.css">
+
+<style>
+  :root{
+    --paper:#F5F3EC; --paper-raised:#FDFCF9; --paper-card:#FFFFFF;
+    --ink:#191C22; --ink-soft:#444954; --ink-muted:#6E7480;
+    --rule:#DCD8CC; --rule-light:#E9E6DC;
+    --spine:#1F4E8C; --spine-hover:#163A6A; --spine-soft:#DCE7F5; --spine-tint:#EDF3FB;
+    --mark:#F3CE2E; --code-bg:#E9E6DC;
+    --shadow-sm:0 1px 2px rgba(30,25,15,.06);
+    --shadow-md:0 4px 16px rgba(30,25,15,.08);
+    --shadow-lg:0 12px 34px rgba(30,25,15,.12);
+    --s1:#3B6EA8; --s2:#7A5AC8; --s3:#0E8A7D; --s4:#B86E08; --s5:#C23B6A; --s6:#3F8F3F;
+    --radius-sm:6px; --radius-md:10px; --radius-lg:16px; --radius-full:9999px;
+    --font-serif:"Source Serif 4",Georgia,serif;
+    --font-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --sidebar-w:312px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#12151A; --paper-raised:#191D24; --paper-card:#1F242C;
+      --ink:#ECEAE2; --ink-soft:#AEB2BC; --ink-muted:#828896;
+      --rule:#2D323B; --rule-light:#252A32;
+      --spine:#86B7F0; --spine-hover:#A9CCF5; --spine-soft:#223550; --spine-tint:#1A2940;
+      --mark:#B08F1E; --code-bg:#232830;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.35); --shadow-md:0 4px 16px rgba(0,0,0,.45); --shadow-lg:0 12px 34px rgba(0,0,0,.55);
+      --s1:#7FB0DA; --s2:#A78BFA; --s3:#2DD4BF; --s4:#F0B429; --s5:#F472B6; --s6:#6FCB6F;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#12151A; --paper-raised:#191D24; --paper-card:#1F242C;
+    --ink:#ECEAE2; --ink-soft:#AEB2BC; --ink-muted:#828896;
+    --rule:#2D323B; --rule-light:#252A32;
+    --spine:#86B7F0; --spine-hover:#A9CCF5; --spine-soft:#223550; --spine-tint:#1A2940;
+    --mark:#B08F1E; --code-bg:#232830;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.35); --shadow-md:0 4px 16px rgba(0,0,0,.45); --shadow-lg:0 12px 34px rgba(0,0,0,.55);
+    --s1:#7FB0DA; --s2:#A78BFA; --s3:#2DD4BF; --s4:#F0B429; --s5:#F472B6; --s6:#6FCB6F;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{background:var(--paper);color:var(--ink);font-family:var(--font-sans);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+  a{color:var(--spine);text-decoration:none}
+  a:hover{color:var(--spine-hover)}
+  code{font-family:var(--font-mono);font-size:.88em;background:var(--code-bg);padding:1px 6px;border-radius:4px}
+  button{font:inherit;color:inherit}
+
+  /* ---------- Shell ---------- */
+  .app{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr);min-height:100vh}
+  .sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--paper-raised);border-right:1px solid var(--rule);display:flex;flex-direction:column;z-index:60}
+  .brand{padding:22px 20px 14px}
+  .kicker{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px}
+  .brand h1{font-family:var(--font-serif);font-size:24px;line-height:1.15;font-weight:700;letter-spacing:-.01em}
+  .byline{font-size:12px;color:var(--ink-muted);margin-top:8px;line-height:1.45}
+  .lib-switch{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:0 16px 14px}
+  .lib-switch a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:var(--radius-md);border:1px solid var(--rule);background:var(--paper-card);font-size:11px;font-weight:600;color:var(--ink-soft);text-align:center;line-height:1.2;transition:border-color .15s,background .15s,transform .15s}
+  .lib-switch a span{font-size:16px}
+  .lib-switch a:hover{border-color:var(--spine);color:var(--spine);transform:translateY(-1px)}
+  .lib-switch a[aria-current="page"]{background:var(--spine-tint);border-color:var(--spine);color:var(--spine)}
+  .searchwrap{padding:0 16px 12px}
+  .searchbox{position:relative}
+  .searchbox svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-muted);pointer-events:none}
+  .searchbox input{width:100%;padding:9px 34px 9px 34px;border-radius:var(--radius-md);border:1px solid var(--rule);background:var(--paper-card);color:var(--ink);font:inherit;font-size:13.5px;outline:none}
+  .searchbox input:focus{border-color:var(--spine);box-shadow:0 0 0 3px var(--spine-tint)}
+  .searchbox kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:10.5px;color:var(--ink-muted);border:1px solid var(--rule);border-radius:4px;padding:0 5px;background:var(--paper-raised)}
+  .searchbox input:not(:placeholder-shown)+kbd{display:none}
+  .overall{margin:0 16px 12px;padding:12px 14px;border:1px solid var(--rule);border-radius:var(--radius-md);background:var(--paper-card)}
+  .overall-top{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--ink-muted);margin-bottom:8px}
+  .overall-top b{font-family:var(--font-mono);font-size:15px;color:var(--ink)}
+  .bar{height:6px;border-radius:9px;background:var(--rule-light);overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--s1),var(--s3),var(--s6));border-radius:9px;transition:width .35s ease}
+  .next-btn{margin-top:10px;width:100%;padding:8px 10px;border-radius:var(--radius-sm);border:1px solid var(--spine);background:var(--spine);color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;transition:background .15s}
+  .next-btn:hover{background:var(--spine-hover)}
+  :root[data-theme="dark"] .next-btn,:root:not([data-theme="light"]) .next-btn{color:#0E1620}
+  .toc{padding:4px 10px 16px;flex:1}
+  .group-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);padding:14px 10px 6px}
+  .toc a{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:var(--radius-sm);color:var(--ink-soft);font-size:13.5px;line-height:1.3;border-left:3px solid transparent}
+  .toc a:hover{background:var(--spine-tint);color:var(--ink)}
+  .toc a.active{background:var(--spine-tint);color:var(--ink);font-weight:600;border-left-color:var(--c,var(--spine))}
+  .toc .num{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:6px;font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--c,var(--ink-muted));background:color-mix(in srgb,var(--c,var(--ink-muted)) 14%,transparent)}
+  .toc .name{flex:1;min-width:0}
+  .toc .frac{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-muted)}
+  .toc a.complete .frac{color:var(--s6);font-weight:600}
+  .sidefoot{padding:12px 16px;border-top:1px solid var(--rule);display:flex;gap:8px;align-items:center;position:sticky;bottom:0;background:var(--paper-raised)}
+  .iconbtn{border:1px solid var(--rule);background:var(--paper-card);border-radius:var(--radius-sm);padding:6px 10px;font-size:12px;cursor:pointer;color:var(--ink-soft)}
+  .iconbtn:hover{border-color:var(--spine);color:var(--spine)}
+  .sidefoot .spacer{flex:1}
+  .scrim{display:none}
+  .mobile-bar{display:none}
+  .progress{position:fixed;top:0;left:var(--sidebar-w);right:0;height:3px;z-index:70;background:transparent}
+  .progress i{display:block;height:100%;width:0;background:var(--spine)}
+
+  main{min-width:0}
+  .page{max-width:900px;margin:0 auto;padding:0 40px 80px}
+  .banner{display:none;background:var(--spine-tint);border-bottom:1px solid var(--spine-soft);padding:9px 20px;font-size:13px;color:var(--ink-soft)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:56px 0 30px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--spine);background:var(--spine-tint);border:1px solid var(--spine-soft);padding:5px 12px;border-radius:var(--radius-full)}
+  .hero h2{font-family:var(--font-serif);font-size:clamp(34px,5vw,50px);line-height:1.08;font-weight:700;letter-spacing:-.02em;margin:18px 0 16px}
+  .hero h2 em{font-style:italic;color:var(--spine)}
+  .hero .dek{font-size:18px;color:var(--ink-soft);max-width:660px;line-height:1.6}
+  .stats{display:flex;flex-wrap:wrap;gap:10px 30px;margin-top:26px;padding-top:18px;border-top:1px solid var(--rule)}
+  .stat b{font-family:var(--font-mono);font-size:22px;color:var(--spine);margin-right:6px}
+  .stat span{font-size:13px;color:var(--ink-muted)}
+  .honest{margin-top:22px;padding:12px 16px;border-left:3px solid var(--s4);background:color-mix(in srgb,var(--s4) 9%,var(--paper-card));border-radius:0 var(--radius-md) var(--radius-md) 0;font-size:14px;color:var(--ink-soft)}
+  .honest b{color:var(--ink)}
+
+  .section-title{font-family:var(--font-serif);font-size:26px;font-weight:700;letter-spacing:-.01em;margin:44px 0 6px}
+  .section-sub{color:var(--ink-muted);font-size:14.5px;margin-bottom:18px;max-width:640px}
+
+  /* ---------- Path stepper ---------- */
+  .path{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .path a{position:relative;display:block;padding:14px 16px 16px;background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-md);color:var(--ink);transition:transform .15s,box-shadow .15s,border-color .15s;overflow:hidden}
+  .path a::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c)}
+  .path a:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--c)}
+  .path .pn{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--c);letter-spacing:.08em}
+  .path .pt{font-family:var(--font-serif);font-size:17px;font-weight:700;line-height:1.25;margin:3px 0 6px}
+  .path .pw{font-size:12.5px;color:var(--ink-muted)}
+  .path .bar{margin-top:10px;height:4px}
+  .path .bar i{background:var(--c)}
+
+  .tests{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .test{padding:14px 16px;background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-md)}
+  .test h4{font-size:14.5px;margin-bottom:3px}
+  .test p{font-size:13.5px;color:var(--ink-muted);line-height:1.5}
+  .howto{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+  .howto div{padding:14px 16px;border:1px dashed var(--rule);border-radius:var(--radius-md);font-size:13.5px;color:var(--ink-soft)}
+  .howto b{display:block;color:var(--ink);margin-bottom:2px;font-size:14px}
+
+  /* ---------- Filter bar ---------- */
+  .filterbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);margin:36px -40px 0;padding:10px 40px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .chip{border:1px solid var(--rule);background:var(--paper-card);color:var(--ink-soft);border-radius:var(--radius-full);padding:5px 13px;font-size:12.5px;font-weight:500;cursor:pointer;transition:all .15s}
+  .chip:hover{border-color:var(--spine);color:var(--spine)}
+  .chip.on{background:var(--spine);border-color:var(--spine);color:#fff}
+  :root[data-theme="dark"] .chip.on,:root:not([data-theme="light"]) .chip.on{color:#0E1620}
+  .filterbar .count{margin-left:auto;font-size:12.5px;color:var(--ink-muted);font-family:var(--font-mono)}
+
+  /* ---------- Stage ---------- */
+  .stage{padding-top:52px;--c:var(--s1)}
+  .stage[data-n="1"]{--c:var(--s1)} .stage[data-n="2"]{--c:var(--s2)} .stage[data-n="3"]{--c:var(--s3)}
+  .stage[data-n="4"]{--c:var(--s4)} .stage[data-n="5"]{--c:var(--s5)} .stage[data-n="6"]{--c:var(--s6)}
+  .stage-head{display:flex;gap:18px;align-items:flex-start}
+  .stage-num{flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-family:var(--font-serif);font-size:30px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 13%,var(--paper-card));border:1px solid color-mix(in srgb,var(--c) 35%,var(--rule))}
+  .stage-eyebrow{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);font-weight:600}
+  .stage h3{font-family:var(--font-serif);font-size:32px;line-height:1.15;font-weight:700;letter-spacing:-.01em;margin:2px 0 6px}
+  .stage .dek{font-size:16px;color:var(--ink-soft);max-width:660px}
+  .why{margin:22px 0 4px;padding:14px 18px;background:color-mix(in srgb,var(--c) 8%,var(--paper-card));border:1px solid color-mix(in srgb,var(--c) 22%,var(--rule));border-radius:var(--radius-md);font-size:14.5px;color:var(--ink-soft)}
+  .why b{color:var(--ink)}
+  .sub{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+  .sub::after{content:"";flex:1;height:1px;background:var(--rule)}
+  .master{display:flex;flex-wrap:wrap;gap:8px}
+  .master span{font-size:13px;padding:5px 12px;border-radius:var(--radius-full);background:var(--paper-card);border:1px solid var(--rule);color:var(--ink-soft)}
+  .master span::before{content:"◆";color:var(--c);margin-right:7px;font-size:9px;vertical-align:1px}
+
+  /* video cards */
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+  .vcard{background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,border-color .15s}
+  .vcard:hover{box-shadow:var(--shadow-md);border-color:color-mix(in srgb,var(--c) 40%,var(--rule))}
+  .vthumb{position:relative;aspect-ratio:16/9;background:#0d1117 center/cover no-repeat;cursor:pointer;display:block;width:100%;border:0}
+  .vthumb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vthumb .play{position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:rgba(0,0,0,.62);display:grid;place-items:center;transition:transform .15s,background .15s;backdrop-filter:blur(4px)}
+  .vthumb:hover .play{transform:scale(1.1);background:var(--c)}
+  .vthumb .play svg{margin-left:3px}
+  .vthumb .dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.78);color:#fff;font-family:var(--font-mono);font-size:11px;padding:1px 6px;border-radius:4px}
+  .vbody{padding:11px 14px 12px;display:flex;flex-direction:column;gap:3px;flex:1}
+  .vtitle{font-size:14px;font-weight:600;line-height:1.35}
+  .vmeta{font-size:12px;color:var(--ink-muted)}
+  .vwhy{font-size:12.5px;color:var(--ink-soft);line-height:1.45;margin-top:2px}
+  .vfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+  .vfoot a{font-size:12px;font-weight:600}
+
+  /* list resources */
+  .rlist{display:flex;flex-direction:column;gap:8px}
+  .res{display:flex;gap:14px;align-items:flex-start;padding:12px 14px;background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-md);transition:box-shadow .15s,border-color .15s,opacity .2s}
+  .res:hover{box-shadow:var(--shadow-sm);border-color:color-mix(in srgb,var(--c) 40%,var(--rule))}
+  .rico{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:color-mix(in srgb,var(--c) 12%,var(--paper));border:1px solid color-mix(in srgb,var(--c) 25%,var(--rule))}
+  .rmain{flex:1;min-width:0}
+  .rtitle{font-size:14.5px;font-weight:600;line-height:1.35;color:var(--ink)}
+  a.rtitle:hover{color:var(--spine)}
+  .rtitle .ext{font-weight:400;color:var(--ink-muted);font-size:12px;margin-left:4px}
+  .rmeta{font-size:12px;color:var(--ink-muted);margin-top:1px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+  .rwhy{font-size:13.5px;color:var(--ink-soft);margin-top:4px;line-height:1.5}
+  .tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:1px 7px;border-radius:4px}
+  .tag.s{background:color-mix(in srgb,var(--c) 16%,transparent);color:var(--c)}
+  .tag.c{background:var(--rule-light);color:var(--ink-soft)}
+  .tag.d{border:1px solid var(--rule);color:var(--ink-muted)}
+  .done{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-muted);cursor:pointer;user-select:none;flex:none}
+  .done input{appearance:none;-webkit-appearance:none;width:18px;height:18px;border-radius:5px;border:1.5px solid var(--ink-muted);background:var(--paper-card);cursor:pointer;display:grid;place-items:center;transition:all .12s}
+  .done input:checked{background:var(--c);border-color:var(--c)}
+  .done input:checked::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+  .done input:focus-visible{outline:2px solid var(--spine);outline-offset:2px}
+  .res.is-done,.vcard.is-done{opacity:.62}
+  .res.is-done .rtitle,.vcard.is-done .vtitle{text-decoration:line-through;text-decoration-color:var(--ink-muted)}
+  .flash{animation:flash 1.6s ease}
+  @keyframes flash{0%,100%{box-shadow:0 0 0 0 transparent}20%{box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 45%,transparent)}}
+
+  .checkpoint{margin-top:26px;display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:var(--radius-md);border:1.5px dashed color-mix(in srgb,var(--c) 55%,var(--rule));background:color-mix(in srgb,var(--c) 6%,var(--paper-card))}
+  .checkpoint .cp-ico{font-size:22px;line-height:1}
+  .checkpoint h4{font-size:12px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--c);margin-bottom:3px}
+  .checkpoint p{font-size:14.5px;color:var(--ink-soft)}
+  .checkpoint .done{margin-left:auto}
+  .empty-note{display:none;font-size:13.5px;color:var(--ink-muted);padding:10px 0}
+
+  /* ---------- Projects ---------- */
+  .projects{display:grid;gap:16px}
+  .proj{background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:22px 24px;box-shadow:var(--shadow-sm)}
+  .proj-top{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+  .proj .pno{font-family:var(--font-mono);font-size:11.5px;color:var(--spine);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+  .proj h4{font-family:var(--font-serif);font-size:21px;line-height:1.25;flex-basis:100%}
+  .proj p{font-size:14.5px;color:var(--ink-soft);margin-top:6px}
+  .stack{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+  .stack span{font-family:var(--font-mono);font-size:11.5px;padding:2px 9px;border-radius:6px;background:var(--spine-tint);border:1px solid var(--spine-soft);color:var(--spine)}
+  .proj h5{font-size:11px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin:14px 0 6px}
+  .proj ul{padding-left:20px;font-size:14px;color:var(--ink-soft)}
+  .proj li{margin:3px 0}
+  .bullet{font-family:var(--font-mono);font-size:12.5px;line-height:1.55;background:var(--code-bg);padding:10px 12px;border-radius:var(--radius-sm);color:var(--ink-soft)}
+  .bullet em{font-style:normal;color:var(--s4);font-weight:600}
+
+  /* ---------- Schedule ---------- */
+  .sched{border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;background:var(--paper-card)}
+  .srow{display:grid;grid-template-columns:120px 1fr 1.2fr;gap:16px;padding:14px 20px;border-top:1px solid var(--rule-light);align-items:start}
+  .srow:first-child{border-top:0}
+  .srow.head{background:var(--paper-raised);font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);padding:10px 20px}
+  .srow .wk{font-family:var(--font-mono);font-weight:600;font-size:13px;color:var(--c)}
+  .srow .fo{font-size:14px;font-weight:600}
+  .srow .fo small{display:block;font-weight:400;color:var(--ink-muted);font-size:12.5px}
+  .srow .ml{font-size:13.5px;color:var(--ink-soft)}
+
+  /* ---------- Community ---------- */
+  .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .cgroup{background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-md);padding:14px 16px}
+  .cgroup h4{font-size:13px;font-family:var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px}
+  .cgroup a{display:block;padding:7px 0;border-top:1px solid var(--rule-light);font-size:14px;font-weight:600;line-height:1.35}
+  .cgroup a:first-of-type{border-top:0}
+  .cgroup a small{display:block;font-weight:400;color:var(--ink-muted);font-size:12.5px;margin-top:1px}
+  .verify{margin-top:36px;padding:16px 18px;border:1px solid var(--rule);border-radius:var(--radius-md);background:var(--paper-raised);font-size:13.5px;color:var(--ink-soft)}
+  .verify b{color:var(--ink)}
+  .verify ul{padding-left:20px;margin-top:6px}
+  footer.foot{margin-top:50px;padding-top:22px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-muted);display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .app{grid-template-columns:1fr}
+    .sidebar{position:fixed;left:0;top:0;width:min(88vw,340px);transform:translateX(-102%);transition:transform .22s ease;box-shadow:var(--shadow-lg)}
+    body.menu-open .sidebar{transform:none}
+    .scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .2s;z-index:55}
+    body.menu-open .scrim{opacity:1;pointer-events:auto}
+    .mobile-bar{display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:45;padding:10px 16px;background:var(--paper-raised);border-bottom:1px solid var(--rule);font-weight:600;font-size:14px}
+    .mobile-bar button{border:1px solid var(--rule);background:var(--paper-card);border-radius:var(--radius-sm);padding:4px 10px;font-size:16px;cursor:pointer}
+    .progress{left:0}
+    .page{padding:0 16px 64px}
+    .filterbar{margin:28px -16px 0;padding:10px 16px;top:49px}
+    .hero{padding-top:32px}
+  }
+  @media (max-width:720px){
+    .path{grid-template-columns:1fr 1fr}
+    .howto{grid-template-columns:1fr}
+    .srow{grid-template-columns:1fr;gap:4px}
+    .srow.head{display:none}
+    .stage-head{gap:12px}
+    .stage-num{width:46px;height:46px;font-size:24px;border-radius:12px}
+    .stage h3{font-size:26px}
+    .res{flex-wrap:wrap}
+    .res .done{margin-left:48px}
+    .checkpoint{flex-wrap:wrap}
+    .checkpoint .done{margin-left:36px}
+  }
+  @media (max-width:440px){ .path{grid-template-columns:1fr} }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+  @media print{.sidebar,.mobile-bar,.filterbar,.progress,.banner{display:none!important}.app{display:block}.page{max-width:none}}
+</style>
+</head>
+<body>
+
+<div class="scrim" id="scrim"></div>
+<div class="app">
+
+  <aside class="sidebar" id="sidebar" aria-label="Roadmap navigation">
+    <div class="brand">
+      <p class="kicker">Reference · AI Engineering</p>
+      <h1>The AI Engineer Roadmap</h1>
+      <p class="byline">Free, link-verified learning path · curated by <a href="https://x.com/HKsoldev" target="_blank" rel="noopener">HkSolDev</a></p>
+    </div>
+
+    <nav class="lib-switch" aria-label="Library">
+      <a href="index.html"><span>📖</span>System Design</a>
+      <a href="toolbox.html"><span>🧰</span>Toolbox</a>
+      <a href="ai-engineer-roadmap.html" aria-current="page"><span>🧭</span>AI Roadmap</a>
+    </nav>
+
+    <div class="searchwrap">
+      <div class="searchbox">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search" type="search" placeholder="Search videos, repos, topics…" autocomplete="off" aria-label="Search resources">
+        <kbd>/</kbd>
+      </div>
+    </div>
+
+    <div class="overall">
+      <div class="overall-top"><span>Your progress</span><span><b id="ovPct">0%</b> · <span id="ovFrac">0/0</span></span></div>
+      <div class="bar"><i id="ovBar"></i></div>
+      <button class="next-btn" id="nextBtn" type="button">Continue where I left off →</button>
+    </div>
+
+    <nav class="toc" id="toc" aria-label="Table of contents"></nav>
+
+    <div class="sidefoot">
+      <button class="iconbtn" id="themeBtn" type="button" title="Toggle light / dark" aria-label="Toggle theme">◐ Theme</button>
+      <span class="spacer"></span>
+      <button class="iconbtn" id="resetBtn" type="button" title="Clear all ticks">Reset</button>
+    </div>
+  </aside>
+
+  <main>
+    <div class="banner" id="fileBanner">⚡ <b>Tip:</b> YouTube blocks in-page playback when this file is opened straight from disk (<code>file://</code> → Error 153). Run <code>python3 -m http.server 8080</code> in this folder and open <code>http://localhost:8080/ai-engineer-roadmap.html</code> — or just use the deployed site.</div>
+    <div class="mobile-bar">
+      <button id="menuBtn" type="button" aria-label="Open contents">☰</button>
+      <span>AI Engineer Roadmap</span>
+      <span style="margin-left:auto;font-family:var(--font-mono);font-size:12px;color:var(--ink-muted)" id="mobPct">0%</span>
+    </div>
+    <div class="progress"><i id="readBar"></i></div>
+    <div class="page" id="page"><noscript>This roadmap is rendered with JavaScript — please enable it.</noscript></div>
+  </main>
+</div>
+
+<script>
+/* =====================================================================
+   DATA
+   V(id, title, channel, duration, why, tier, embeddable=true)
+   R(type, title, source, url, why, tier, meta)   type: course | read | repo | docs
+   tier: s = start here · c = core · d = deep dive
+   Every URL and video ID below was checked on 2026-09-20.
+   ===================================================================== */
+const V = (id, title, by, dur, why, t = "c", embed = true) => ({ kind: "video", id, title, by, dur, why, t, embed, key: "yt:" + id, url: "https://www.youtube.com/watch?v=" + id });
+const R = (type, title, src, url, why, t = "c", meta = "") => ({ kind: type, title, src, url, why, t, meta, key: url });
+
+const STAGES = [
+{
+  n: 1, id: "stage-1", title: "Foundations", weeks: "Weeks 1–3",
+  dek: "Python concurrency, PyTorch and just enough maths to stop treating a neural network as a black box.",
+  why: "LLM products are <b>I/O-bound services wrapped around a neural network</b>. Interviewers check two things early: can you write concurrent Python that streams, and are “gradient”, “tensor” and “loss” more than buzzwords to you?",
+  master: ["async / await, the event loop, asyncio.gather & timeouts", "FastAPI + Pydantic request/response models", "Vectors, matrices, dot products, softmax", "Gradient descent & backpropagation", "PyTorch tensors, autograd, a training loop", "Train / val / test splits, over- & under-fitting"],
+  videos: [
+    V("aircAruvnKk", "But what is a neural network?", "3Blue1Brown", "18:40", "The best visual first pass at layers, weights and activations.", "s"),
+    V("VMj-3S1tku0", "Building micrograd: backprop from scratch", "Andrej Karpathy", "2:25:52", "Write autograd yourself. If you only do one thing in this stage, do this.", "s"),
+    V("PaCmpygFfXo", "Building makemore: language modelling", "Andrej Karpathy", "1:57:45", "Your first character-level language model — the seed of every LLM.", "c"),
+    V("Qb9s3UiMSTA", "Asyncio in Python – Full Tutorial", "Tech With Tim", "24:59", "Fast, practical tour of async/await, tasks and gather.", "s"),
+    V("oAkLSJNr5zY", "AsyncIO – Complete Guide with Animations", "Corey Schafer", "1:42:41", "Longer, animated version if the event loop still feels fuzzy.", "d"),
+  ],
+  items: [
+    R("course", "Neural Networks: Zero to Hero (full playlist)", "Andrej Karpathy · YouTube", "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ", "The whole series in order — micrograd → makemore → GPT → tokenizer.", "s", "Playlist"),
+    R("course", "Practical Deep Learning for Coders", "fast.ai", "https://course.fast.ai/", "Code-first deep learning with zero fluff.", "c", "Free"),
+    R("course", "Learn PyTorch for Deep Learning", "Zero To Mastery (free online book)", "https://www.learnpytorch.io/", "Hands-on PyTorch from tensors to deployment.", "c", "Free"),
+    R("course", "3Blue1Brown · Neural Networks series", "3Blue1Brown", "https://www.3blue1brown.com/topics/neural-networks", "Gradient descent, backprop and the transformer chapters in one place.", "c"),
+    R("read", "Concurrency and async / await", "FastAPI docs", "https://fastapi.tiangolo.com/async/", "When to use <code>async def</code> vs <code>def</code> — asked in interviews more than you'd think.", "s"),
+    R("docs", "asyncio — Asynchronous I/O", "Python docs", "https://docs.python.org/3/library/asyncio.html", "Reference for tasks, TaskGroup, timeouts and queues.", "d"),
+    R("read", "A Recipe for Training Neural Networks", "Andrej Karpathy", "https://karpathy.github.io/2019/04/25/recipe/", "How practitioners actually debug training runs.", "d"),
+    R("repo", "karpathy/nn-zero-to-hero", "GitHub", "https://github.com/karpathy/nn-zero-to-hero", "Notebooks and exercises that accompany the playlist.", "c", "★ 24k"),
+  ],
+  checkpoint: "Rebuild micrograd without looking, then ship an async FastAPI endpoint that fans out 5 concurrent HTTP calls with <code>asyncio.gather</code>, a timeout, and streamed results."
+},
+{
+  n: 2, id: "stage-2", title: "LLM internals", weeks: "Weeks 2–4",
+  dek: "Transformers, tokenisation and attention — the mental model you need to explain why an LLM fails, not just that it did.",
+  why: "Hallucinations, truncated context, weird token costs and non-English quirks all trace back to <b>tokenisation, attention and how the model was trained</b>. Being able to say why is what separates a senior answer from an API-caller's.",
+  master: ["Tokenisation (BPE) & why token count ≠ word count", "Embeddings & similarity", "Self-attention, multi-head attention, positional encoding", "Context windows & the KV cache", "Pre-training → SFT → RLHF / DPO, at a high level", "Sampling: temperature, top-p, top-k"],
+  videos: [
+    V("zjkBMFhNj_g", "[1hr Talk] Intro to Large Language Models", "Andrej Karpathy", "59:48", "The one-hour overview to watch first — models, training, security, the “LLM OS”.", "s"),
+    V("wjZofJX0v4M", "Transformers, the tech behind LLMs", "3Blue1Brown", "27:14", "Visual walkthrough of the full architecture.", "s"),
+    V("eMlx5fFNoYc", "Attention in transformers, step-by-step", "3Blue1Brown", "26:10", "Queries, keys and values finally make sense.", "c"),
+    V("kCc8FmEb1nY", "Let's build GPT: from scratch, in code", "Andrej Karpathy", "1:56:20", "A working GPT in ~200 lines of PyTorch.", "s"),
+    V("zduSFxRajkE", "Let's build the GPT Tokenizer", "Andrej Karpathy", "2:13:35", "Byte-pair encoding from scratch — explains a surprising number of LLM quirks.", "c"),
+    V("7xTGNNLPyMI", "Deep Dive into LLMs like ChatGPT", "Andrej Karpathy", "3:31:24", "Pre-training, post-training, RL and hallucinations, end to end.", "c"),
+    V("l8pRSuU81PU", "Let's reproduce GPT-2 (124M)", "Andrej Karpathy", "4:01:26", "Real training: bf16, AdamW, GPU memory, benchmarks.", "d"),
+    V("quh7z1q7-uc", "Building LLMs from the Ground Up (3-hour workshop)", "Sebastian Raschka", "2:45:10", "A second, complementary from-scratch build with a different teaching style.", "d"),
+    V("Ub3GoFaUcds", "Stanford CME295 · Lecture 1 – Transformer", "Stanford Online", "1:41:59", "University-grade lecture. Opens on YouTube (the uploader disabled embedding).", "d", false),
+  ],
+  items: [
+    R("course", "Hugging Face LLM Course", "Hugging Face", "https://huggingface.co/learn/llm-course/chapter1/1", "Free hands-on course on <code>transformers</code>, <code>datasets</code> and <code>tokenizers</code>. (Formerly the “NLP Course” — the old URL now redirects here.)", "s", "Free"),
+    R("read", "The Illustrated Transformer", "Jay Alammar", "https://jalammar.github.io/illustrated-transformer/", "The classic visual breakdown of self-attention and the encoder-decoder stack.", "s"),
+    R("read", "The Illustrated GPT-2", "Jay Alammar", "https://jalammar.github.io/illustrated-gpt2/", "Decoder-only models — what ChatGPT-style models actually are.", "c"),
+    R("read", "Attention? Attention!", "Lilian Weng", "https://lilianweng.github.io/posts/2018-06-24-attention/", "Every attention variant, side by side, with the maths.", "d"),
+    R("read", "Understanding Large Language Models", "Sebastian Raschka · Ahead of AI", "https://magazine.sebastianraschka.com/p/understanding-large-language-models", "A reading list of the papers that shaped modern LLMs.", "d"),
+    R("repo", "rasbt/LLMs-from-scratch", "GitHub", "https://github.com/rasbt/LLMs-from-scratch", "Code for “Build a Large Language Model (From Scratch)” — chapter by chapter.", "c", "★ 105k"),
+    R("repo", "mlabonne/llm-course", "GitHub · Maxime Labonne", "https://github.com/mlabonne/llm-course", "The most-starred open LLM roadmap: fundamentals, scientist track and engineer track with notebooks.", "s", "★ 83k"),
+    R("course", "Stanford CS336 · Language Modeling from Scratch", "Stanford", "https://cs336.stanford.edu/", "Graduate-level: build tokeniser, model, training and inference stack. Save for later.", "d", "Free lectures"),
+    R("course", "Stanford CME295 · Transformers & LLMs", "Stanford", "https://cme295.stanford.edu/", "Syllabus and slides for the lecture series above.", "d"),
+  ],
+  checkpoint: "Train a tiny GPT on a text corpus you care about and explain every tensor shape on a whiteboard — from token IDs to logits."
+},
+{
+  n: 3, id: "stage-3", title: "Advanced RAG", weeks: "Weeks 4–7",
+  dek: "Retrieval that survives contact with messy corporate documents — hybrid search, reranking, contextual chunks and honest evaluation.",
+  why: "“Split a PDF into 500-character chunks and query a vector DB” is a demo, not a system. Companies pay for engineers who can <b>measure retrieval quality, cut hallucinations and handle unstructured data</b>. Expect a RAG design question in almost every AI interview.",
+  master: ["Ingestion: layout-aware parsing, tables, chunking strategies", "Hybrid search: dense + BM25 with reciprocal rank fusion", "Cross-encoder reranking (two-stage retrieval)", "Contextual retrieval: prepend document context to chunks", "Query rewriting, HyDE, Self-RAG / Corrective RAG", "Retrieval metrics: Recall@k, MRR, faithfulness"],
+  videos: [
+    V("sVcwVQRHIc8", "Learn RAG From Scratch – Python AI Tutorial", "freeCodeCamp · Lance Martin", "2:33:11", "The clearest end-to-end RAG course on YouTube, from a LangChain engineer.", "s"),
+    V("wd7TZ4w1mSw", "RAG From Scratch: Part 1 (Overview)", "LangChain", "5:13", "Five-minute map of the RAG landscape before you dive in.", "s"),
+    V("r0Dciuq0knU", "Top 3 RAG Retrieval Strategies: Sparse, Dense & Hybrid", "IBM Technology", "8:29", "Why hybrid beats either alone, in one clean explainer.", "c"),
+    V("tmiBae2goJM", "Anthropic's Contextual Retrieval Explained", "Prompt Engineering", "16:14", "Walkthrough of the technique behind the article in “Read”.", "c"),
+    V("XvKiTfd6Xvo", "The Complete Guide to Hybrid Search in RAG", "Dave Ebbelaar", "59:18", "BM25 + embeddings + reranker, coded step by step.", "d"),
+    V("mHxLXzYjQRE", "Production RAG with LangChain & Vector Databases", "freeCodeCamp", "7:38:39", "Marathon course — pick the chapters you need.", "d"),
+  ],
+  items: [
+    R("read", "Contextual Retrieval in AI Systems", "Anthropic Engineering", "https://www.anthropic.com/engineering/contextual-retrieval", "Contextual embeddings + contextual BM25 + reranking cut failed retrievals sharply. Read the numbers, then reproduce them on your data.", "s"),
+    R("read", "Rerankers and Two-Stage Retrieval", "Pinecone", "https://www.pinecone.io/learn/series/rag/rerankers/", "Why a cross-encoder after a bi-encoder is worth the latency.", "c"),
+    R("read", "Getting Started with Hybrid Search", "Pinecone", "https://www.pinecone.io/learn/hybrid-search-intro/", "Sparse + dense in one index.", "c"),
+    R("read", "Hybrid Search Explained", "Weaviate", "https://weaviate.io/blog/hybrid-search-explained", "Fusion algorithms (RRF, relative score) compared.", "d"),
+    R("read", "Building A Generative AI Platform", "Chip Huyen", "https://huyenchip.com/2024/07/25/genai-platform.html", "How RAG, caching, guardrails and routing fit into one architecture.", "c"),
+    R("read", "Patterns for Building LLM-based Systems & Products", "Eugene Yan", "https://eugeneyan.com/writing/llm-patterns/", "Evals, RAG, fine-tuning, caching, guardrails, defensive UX — the seven patterns.", "c"),
+    R("course", "LLM Zoomcamp", "DataTalks.Club", "https://github.com/DataTalksClub/llm-zoomcamp", "Free, project-based course: RAG, vector search, evaluation and monitoring.", "s", "Free · ★ 7k"),
+    R("course", "Retrieval Augmented Generation", "DeepLearning.AI", "https://www.deeplearning.ai/courses/retrieval-augmented-generation", "Structured RAG course from the DeepLearning.AI catalogue.", "c"),
+    R("course", "Advanced Retrieval for AI with Chroma", "DeepLearning.AI", "https://www.deeplearning.ai/courses/advanced-retrieval-for-ai", "Query expansion, cross-encoder reranking and embedding adaptors.", "c"),
+    R("repo", "NirDiamant/RAG_Techniques", "GitHub", "https://github.com/NirDiamant/RAG_Techniques", "Standalone notebooks for dozens of RAG patterns: HyDE, parent-doc, GraphRAG, multimodal.", "s", "★ 30k"),
+    R("repo", "microsoft/graphrag", "GitHub", "https://github.com/microsoft/graphrag", "Graph-based retrieval for questions that span a whole corpus.", "d"),
+    R("repo", "docling-project/docling", "GitHub", "https://github.com/docling-project/docling", "Layout-aware PDF / DOCX parsing (tables, figures) — fixes RAG at ingestion.", "c"),
+    R("docs", "Qdrant documentation", "Qdrant", "https://qdrant.tech/documentation/", "Vector DB with first-class hybrid search and payload filters.", "c"),
+    R("repo", "pgvector/pgvector", "GitHub", "https://github.com/pgvector/pgvector", "Vector search inside Postgres — often the pragmatic choice.", "c"),
+    R("docs", "Chroma", "Chroma", "https://www.trychroma.com/", "Simplest local vector store for prototypes.", "d"),
+  ],
+  checkpoint: "Index ~50 pages of real PDFs with hybrid search + a reranker. Hand-label 30 questions and report <b>Recall@5 with vs. without</b> the reranker."
+},
+{
+  n: 4, id: "stage-4", title: "Agents & workflows", weeks: "Weeks 8–10",
+  dek: "Tool calling, state machines, memory and MCP — and knowing when a plain workflow beats an agent.",
+  why: "Agents are where production LLM systems fail loudest. Hiring managers want people who can <b>bound the loop, checkpoint state, add human approval and trace every step</b> — and who start with the simplest thing that works.",
+  master: ["Tool calling & structured outputs (Pydantic, JSON schema)", "Workflows vs. agents — pick the simplest that works", "State machines: nodes, conditional edges, checkpointing", "Human-in-the-loop approvals", "Short- vs. long-term memory", "Model Context Protocol (MCP) servers & clients", "Declarative prompt optimisation (DSPy)"],
+  videos: [
+    V("D7_ipDqhtwk", "How We Build Effective Agents", "Anthropic · AI Engineer", "15:09", "Barry Zhang's 15-minute distillation of the article below. Start here.", "s"),
+    V("LP5OCa20Zpg", "Tips for building AI agents", "Anthropic", "18:20", "Practical pitfalls from the team that builds them.", "c"),
+    V("jGg_1h0qzaM", "LangGraph Complete Course – Complex AI Agents with Python", "freeCodeCamp", "3:09:52", "Build stateful, tool-using agents with LangGraph.", "s"),
+    V("YmAaKKlDy7k", "LangGraph Agents – Human-in-the-Loop", "LangChain", "5:57", "Interrupts and approvals in six minutes.", "c"),
+    V("kQmXtrmQ5Zg", "Building Agents with Model Context Protocol – Full Workshop", "Anthropic · AI Engineer", "1:44:12", "Mahesh Murag on MCP: servers, clients and real agent loops.", "c"),
+    V("qdmxApz3EJI", "Engineering AI Systems that Endure the Bitter Lesson", "Omar Khattab · AI Engineer", "19:12", "The DSPy creator on why declarative programs outlast prompt hacks.", "c"),
+    V("Dt3H2ninoeY", "DSPy: Compiling Declarative LM Calls into Pipelines", "Omar Khattab", "25:38", "Deeper technical talk on the compiler idea.", "d"),
+  ],
+  items: [
+    R("read", "Building Effective AI Agents", "Anthropic Engineering", "https://www.anthropic.com/engineering/building-effective-agents", "The canonical “workflows vs. agents” essay: prompt chaining, routing, parallelisation, orchestrator-workers.", "s"),
+    R("read", "Effective context engineering for AI agents", "Anthropic Engineering", "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents", "What to put in the context window, and what to keep out.", "c"),
+    R("read", "Writing effective tools for AI agents", "Anthropic Engineering", "https://www.anthropic.com/engineering/writing-tools-for-agents", "Tool design is prompt design — with an eval loop.", "c"),
+    R("read", "How we built our multi-agent research system", "Anthropic Engineering", "https://www.anthropic.com/engineering/multi-agent-research-system", "Real lessons on orchestration, cost and evaluation at scale.", "d"),
+    R("read", "LLM Powered Autonomous Agents", "Lilian Weng", "https://lilianweng.github.io/posts/2023-06-23-agent/", "Planning, memory and tool use — the reference survey.", "c"),
+    R("read", "Agents", "Chip Huyen", "https://huyenchip.com/2025/01/07/agents.html", "Planning, failure modes and evaluation of agents.", "c"),
+    R("course", "Hugging Face AI Agents Course", "Hugging Face", "https://huggingface.co/learn/agents-course", "Free official course: tools, ReAct loops, multi-agent coordination.", "s", "Free"),
+    R("course", "Hugging Face MCP Course", "Hugging Face", "https://huggingface.co/learn/mcp-course", "Build MCP servers and clients hands-on.", "c", "Free"),
+    R("course", "Introduction to LangGraph", "LangChain Academy", "https://academy.langchain.com/", "Official free course: checkpointing, time-travel debugging, multi-agent.", "s", "Free"),
+    R("course", "AI Agents in LangGraph", "DeepLearning.AI", "https://www.deeplearning.ai/courses/ai-agents-in-langgraph", "Short course from LangChain's founder and Andrew Ng.", "c"),
+    R("course", "DSPy: Build and Optimize Agentic Apps", "DeepLearning.AI", "https://www.deeplearning.ai/courses/dspy-build-optimize-agentic-apps", "Hands-on optimisation of prompts and few-shot examples.", "c"),
+    R("course", "MCP: Build Rich-Context AI Apps with Anthropic", "DeepLearning.AI", "https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic", "Build and connect an MCP server.", "c"),
+    R("repo", "microsoft/ai-agents-for-beginners", "GitHub", "https://github.com/microsoft/ai-agents-for-beginners", "18 lessons with code — great scaffolding for a first agent.", "c", "★ 75k"),
+    R("repo", "langchain-ai/langgraph", "GitHub", "https://github.com/langchain-ai/langgraph", "Graph-based agent runtime with persistence and streaming.", "c", "★ 42k"),
+    R("repo", "langchain-ai/langchain-academy", "GitHub", "https://github.com/langchain-ai/langchain-academy", "Notebooks that accompany the LangGraph course.", "d"),
+    R("repo", "stanfordnlp/dspy", "GitHub", "https://github.com/stanfordnlp/dspy", "Programme — don't prompt — language models.", "c", "★ 38k"),
+    R("repo", "pydantic/pydantic-ai", "GitHub", "https://github.com/pydantic/pydantic-ai", "Type-safe agent framework if you like FastAPI ergonomics.", "d", "★ 20k"),
+    R("docs", "Model Context Protocol", "modelcontextprotocol.io", "https://modelcontextprotocol.io/", "The open standard for connecting models to tools and data.", "c"),
+    R("docs", "AI Agents roadmap", "roadmap.sh", "https://roadmap.sh/ai-agents", "Interactive checklist to sanity-check your coverage.", "d"),
+  ],
+  checkpoint: "Ship a multi-step agent with 3+ tools, <b>persisted state, a human-approval gate and a step-by-step trace</b>. Then write down which parts could have been a plain workflow."
+},
+{
+  n: 5, id: "stage-5", title: "Open weights, fine-tuning & serving", weeks: "Weeks 11–13",
+  dek: "Run Llama, Qwen or Mistral yourself: LoRA / QLoRA, preference tuning, quantisation and high-throughput inference.",
+  why: "Cost, privacy and latency push teams towards open models. Senior roles expect you to <b>know when to fine-tune vs. prompt vs. RAG</b> — and to serve a model with continuous batching and a KV cache instead of a naïve loop.",
+  master: ["Fine-tune vs. prompt vs. RAG — the decision tree", "LoRA / QLoRA: rank, alpha, target modules", "SFT and preference optimisation (DPO)", "Quantisation: 4/8-bit, AWQ, GPTQ, GGUF", "Serving: continuous batching, PagedAttention, KV cache", "Local runtimes: Ollama & llama.cpp"],
+  videos: [
+    V("DhRoTONcyZE", "What is Low-Rank Adaptation (LoRA)?", "Edward Hu (the inventor)", "7:29", "The idea, from the person who came up with it.", "s"),
+    V("PXWYUTMt-AU", "LoRA explained visually + PyTorch code from scratch", "Umar Jamil", "26:55", "Implement LoRA yourself to see what the adapters really do.", "c"),
+    V("dMY3dBLojTk", "Fast Fine Tuning with Unsloth", "Matt Williams", "16:29", "A quick hands-on with the Unsloth workflow.", "s"),
+    V("k2pD3k1485A", "Direct Preference Optimization (DPO) explained", "Luis Serrano", "21:15", "Fine-tune on preferences without reinforcement learning.", "c"),
+    V("hvGa5Mba4c8", "DPO explained: Bradley-Terry, log probabilities, maths", "Umar Jamil", "48:46", "The full derivation if you want the maths.", "d"),
+    V("5ZlavKF_98U", "Fast LLM Serving with vLLM and PagedAttention", "Anyscale", "32:07", "The vLLM authors on why serving is a memory problem.", "s"),
+    V("McLdlg5Gc9s", "What is vLLM? Efficient AI Inference", "IBM Technology", "4:58", "Five-minute recap of vLLM's core ideas.", "c"),
+  ],
+  items: [
+    R("course", "LLM Course notebooks: fine-tuning & quantisation", "Maxime Labonne · GitHub", "https://github.com/mlabonne/llm-course#-notebooks", "Ready-to-run Colab notebooks for SFT, DPO, GGUF/AWQ quantisation — use them as the spine of this stage.", "s", "★ 83k"),
+    R("course", "smol course — post-training for small models", "Hugging Face", "https://github.com/huggingface/smol-course", "Practical SFT / preference alignment with TRL.", "c", "Free · ★ 7k"),
+    R("course", "Quantization Fundamentals with Hugging Face", "DeepLearning.AI", "https://www.deeplearning.ai/courses/quantization-fundamentals", "How linear quantisation works and how to apply it.", "c"),
+    R("course", "Finetuning Large Language Models", "DeepLearning.AI", "https://www.deeplearning.ai/courses/finetuning-large-language-models", "Short course on when and how to fine-tune.", "c"),
+    R("course", "Post-training of LLMs", "DeepLearning.AI", "https://www.deeplearning.ai/courses/post-training-of-llms", "SFT, DPO and online RL in one course.", "d"),
+    R("read", "Fine-tuning LLMs Guide", "Unsloth docs", "https://docs.unsloth.ai/get-started/fine-tuning-llms-guide", "Step-by-step guide covering model choice, data and hyper-parameters.", "s"),
+    R("read", "Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA", "Hugging Face blog", "https://huggingface.co/blog/4bit-transformers-bitsandbytes", "How QLoRA fits a 65B model on one GPU.", "c"),
+    R("read", "vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention", "vLLM blog", "https://blog.vllm.ai/2023/06/20/vllm.html", "The original announcement post — short and clear.", "c"),
+    R("read", "QLoRA · LoRA · PagedAttention · DPO (the four papers)", "arXiv", "https://arxiv.org/abs/2305.14314", "QLoRA paper. Companions: <a href=\"https://arxiv.org/abs/2106.09685\" target=\"_blank\" rel=\"noopener\">LoRA</a> · <a href=\"https://arxiv.org/abs/2309.06180\" target=\"_blank\" rel=\"noopener\">PagedAttention</a> · <a href=\"https://arxiv.org/abs/2305.18290\" target=\"_blank\" rel=\"noopener\">DPO</a>.", "d"),
+    R("repo", "unslothai/unsloth", "GitHub", "https://github.com/unslothai/unsloth", "Fast, low-VRAM fine-tuning with free Colab notebooks.", "s", "★ 76k"),
+    R("repo", "vllm-project/vllm", "GitHub", "https://github.com/vllm-project/vllm", "The de-facto open-source inference engine — PagedAttention, continuous batching.", "s", "★ 92k"),
+    R("repo", "huggingface/trl", "GitHub", "https://github.com/huggingface/trl", "SFT, DPO and GRPO trainers built on Transformers.", "c", "★ 19k"),
+    R("repo", "huggingface/peft", "GitHub", "https://github.com/huggingface/peft", "LoRA and friends as a library.", "c"),
+    R("repo", "axolotl-ai-cloud/axolotl", "GitHub", "https://github.com/axolotl-ai-cloud/axolotl", "YAML-driven fine-tuning — popular in the community.", "d", "★ 12k"),
+    R("repo", "sgl-project/sglang", "GitHub", "https://github.com/sgl-project/sglang", "High-performance alternative serving engine.", "d", "★ 36k"),
+    R("repo", "ggml-org/llama.cpp", "GitHub", "https://github.com/ggml-org/llama.cpp", "GGUF quantisation and CPU / Apple-Silicon inference.", "c", "★ 129k"),
+    R("docs", "Ollama", "ollama.com", "https://ollama.com/", "One-command local models — great for dev loops.", "c"),
+    R("docs", "vLLM documentation", "vLLM", "https://docs.vllm.ai/", "OpenAI-compatible server, quantisation and deployment guides.", "c"),
+    R("docs", "Unsloth documentation", "Unsloth", "https://docs.unsloth.ai/", "Model notebooks, dataset formats, export to GGUF.", "c"),
+  ],
+  checkpoint: "QLoRA-fine-tune a 7–8B model on one narrow task, serve <b>base vs. fine-tuned</b> behind vLLM, and report tokens/sec plus quality on a held-out set."
+},
+{
+  n: 6, id: "stage-6", title: "LLMOps, evals & security", weeks: "Weeks 14–16",
+  dek: "Evaluation, tracing, cost and latency engineering, guardrails — the difference between a demo and a system you can change safely.",
+  why: "When an interviewer asks <b>“How do you know this model update didn't break anything?”</b> the answer lives here. Evaluation is the most consistently under-taught skill in AI engineering — and the one hiring managers keep asking about.",
+  master: ["Golden datasets, error analysis & LLM-as-a-judge", "RAG metrics: faithfulness, answer relevance, context precision", "Tracing & observability: latency, tokens, cost per request", "Semantic & prompt caching, streaming (SSE), fallbacks", "Prompt injection & OWASP LLM Top 10", "Guardrails, PII handling, rate limits"],
+  videos: [
+    V("GL0XhAj5LPE", "LLM Evals: Common Mistakes", "Hamel Husain", "28:16", "The mistakes teams make when they “add evals”. Watch before you build any.", "s"),
+    V("BsWxPI9UM4c", "Why AI evals are the hottest new skill", "Hamel Husain & Shreya Shankar · Lenny's Podcast", "1:46:33", "Long-form conversation covering error analysis and eval workflows.", "c"),
+    V("2E8iTvGo9Hs", "10 min Walkthrough of Langfuse", "Langfuse", "10:10", "Tracing, evaluation and prompt management in one demo.", "s"),
+    V("pTneXS_m1rk", "Langfuse Intro – Observability & Tracing Deep Dive", "Langfuse", "11:13", "How traces, spans and scores fit together.", "c"),
+    V("mEv-2Xnb_Wk", "RAG Evaluation with RAGAS and How to Improve Retrieval", "AI Makerspace", "37:21", "Session on measuring and improving a RAG pipeline.", "c"),
+    V("cYuesqIKf9A", "The OWASP Top 10 for LLM Applications", "IBM Technology", "14:22", "Map of the main LLM attack surfaces.", "c"),
+    V("jrHRe9lSqqA", "What Is a Prompt Injection Attack?", "IBM Technology", "10:57", "Direct vs. indirect injection, in plain language.", "s"),
+    V("AtVTT_s8AGc", "What is a semantic cache?", "Redis", "2:41", "The concept in under three minutes.", "c"),
+    V("4HlNv1qpZFY", "Server-Sent Events Crash Course", "Hussein Nasser", "29:48", "How token streaming works over plain HTTP.", "c"),
+    V("98o_L3jlixw", "AI Engineering with Chip Huyen", "The Pragmatic Engineer", "1:14:44", "Career-level view of what the job looks like in production.", "d"),
+  ],
+  items: [
+    R("read", "Your AI Product Needs Evals", "Hamel Husain", "https://hamel.dev/blog/posts/evals/", "The essay that popularised the error-analysis-first approach.", "s"),
+    R("read", "A Field Guide to Rapidly Improving AI Products", "Hamel Husain", "https://hamel.dev/blog/posts/field-guide/", "Look at your data; build simple tools; iterate.", "c"),
+    R("read", "Using LLM-as-a-Judge For Evaluation: A Complete Guide", "Hamel Husain", "https://hamel.dev/blog/posts/llm-judge/", "How to build and validate a judge you can trust.", "c"),
+    R("read", "Task-Specific LLM Evals that Do & Don't Work", "Eugene Yan", "https://eugeneyan.com/writing/evals/", "Metrics by task type: classification, summarisation, translation, Q&A.", "c"),
+    R("read", "What We've Learned From A Year of Building with LLMs", "Applied LLMs", "https://applied-llms.org/", "Tactical, operational and strategic lessons from six practitioners.", "s"),
+    R("read", "OWASP Top 10 for LLM Applications", "OWASP GenAI Security Project", "https://genai.owasp.org/llm-top-10/", "The standard checklist for LLM security reviews.", "s"),
+    R("read", "Prompt injection series", "Simon Willison", "https://simonwillison.net/series/prompt-injection/", "The clearest running commentary on why this is hard.", "c"),
+    R("docs", "Develop test cases & define success", "Claude docs", "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests", "Practical guide to building evals for your own prompts.", "c"),
+    R("docs", "Evaluation best practices", "OpenAI docs", "https://developers.openai.com/api/docs/guides/evals", "Vendor guide to eval-driven development.", "d"),
+    R("course", "Evaluating AI Agents", "DeepLearning.AI", "https://www.deeplearning.ai/courses/evaluating-ai-agents", "Trace-level evaluation of agent behaviour.", "c"),
+    R("course", "Semantic Caching for AI Agents", "DeepLearning.AI", "https://www.deeplearning.ai/courses/semantic-caching-for-ai-agents", "Cut cost and latency with cached answers.", "c"),
+    R("course", "Red Teaming LLM Applications", "DeepLearning.AI", "https://www.deeplearning.ai/courses/red-teaming-llm-applications", "Find vulnerabilities before users do.", "c"),
+    R("repo", "langfuse/langfuse", "GitHub", "https://github.com/langfuse/langfuse", "Open-source tracing, evals and prompt management. Runs locally with Docker.", "s", "★ 35k"),
+    R("repo", "vibrantlabsai/ragas", "GitHub", "https://github.com/vibrantlabsai/ragas", "Programmatic evaluation for RAG and agents. (Moved from explodinggradients/ragas.)", "s", "★ 16k"),
+    R("repo", "promptfoo/promptfoo", "GitHub", "https://github.com/promptfoo/promptfoo", "Test prompts & models from the CLI and in CI; includes red-teaming.", "c", "★ 25k"),
+    R("repo", "confident-ai/deepeval", "GitHub", "https://github.com/confident-ai/deepeval", "Pytest-style LLM unit tests.", "c", "★ 18k"),
+    R("repo", "BerriAI/litellm", "GitHub", "https://github.com/BerriAI/litellm", "One OpenAI-style gateway for 100+ providers, with routing and fallbacks.", "c", "★ 59k"),
+    R("repo", "NVIDIA-NeMo/Guardrails", "GitHub", "https://github.com/NVIDIA-NeMo/Guardrails", "Programmable guardrails for LLM apps. (Moved from NVIDIA/NeMo-Guardrails.)", "d", "★ 7k"),
+    R("repo", "chiphuyen/aie-book", "GitHub", "https://github.com/chiphuyen/aie-book", "Free companion resources to the “AI Engineering” book (the book itself is paid).", "d", "★ 17k"),
+    R("docs", "Ragas documentation", "Ragas", "https://docs.ragas.io/", "Metrics reference and quickstarts.", "c"),
+    R("docs", "Langfuse documentation", "Langfuse", "https://langfuse.com/docs", "Self-hosting, SDKs and eval workflows.", "c"),
+    R("docs", "AI Engineer roadmap", "roadmap.sh", "https://roadmap.sh/ai-engineer", "Interactive checklist to cross-check your coverage.", "d"),
+  ],
+  checkpoint: "Add a CI job that runs a golden set with Ragas or promptfoo and <b>fails the build on a faithfulness regression</b>; log every request to Langfuse with cost and latency."
+}
+];
+
+const PROJECTS = [
+  {
+    no: "Project 1 · after Stage 3–4", title: "Enterprise agentic RAG with continuous evals",
+    what: "Indexes messy corporate documents (PDFs with tables and diagrams) and answers with citations.",
+    stack: ["FastAPI", "LangGraph", "Qdrant / pgvector", "BGE-reranker", "Ragas", "Langfuse"],
+    proves: "You can ship retrieval you can measure — and stop it from regressing.",
+    measure: ["Recall@5 / MRR with and without hybrid search + reranking", "Faithfulness & answer relevance on a hand-labelled set", "p95 latency and cost per question"],
+    bullet: "Built hybrid (dense + BM25) retrieval with cross-encoder reranking, improving Recall@5 from <em>[X]</em> to <em>[Y]</em> on <em>[N]</em> labelled questions; added a Ragas regression gate in CI (faithfulness ≥ <em>[Z]</em>)."
+  },
+  {
+    no: "Project 2 · after Stage 5–6", title: "Self-hosted inference gateway with semantic cache",
+    what: "An API gateway serving an open model with caching, routing and fallback to a hosted API.",
+    stack: ["vLLM", "Docker", "Redis", "LiteLLM", "Prometheus", "Grafana"],
+    proves: "You understand serving, cost and reliability — not just prompts.",
+    measure: ["Throughput (tokens/s) vs. a plain Transformers baseline", "Cache hit rate and latency on cache hits", "Fallback behaviour under load"],
+    bullet: "Deployed <em>[model]</em> on vLLM (continuous batching) reaching <em>[X]×</em> the throughput of a baseline pipeline; semantic cache reduced repeat-query cost by <em>[Y]%</em> at p50 <em>[Z]</em> ms."
+  },
+  {
+    no: "Project 3 · after Stage 5", title: "Domain fine-tune with preference alignment",
+    what: "Fine-tune a small open model for one narrow task (e.g. text-to-SQL, triage notes) and align it with DPO.",
+    stack: ["Unsloth / TRL", "QLoRA", "DPO", "Weights & Biases"],
+    proves: "You can decide when fine-tuning pays off — and prove it against a baseline.",
+    measure: ["Task accuracy vs. the base model and a hosted frontier model", "Cost per 1k requests", "Failure categories from error analysis"],
+    bullet: "QLoRA-tuned <em>[model]</em> on <em>[N]</em> curated examples (LLM-judge-filtered), reaching <em>[X]%</em> on <em>[benchmark]</em> vs. <em>[Y]%</em> for the base model at <em>[Z]%</em> of the inference cost."
+  }
+];
+
+const SCHEDULE = [
+  ["Weeks 1–3", "1", "Python async · Karpathy Zero-to-Hero · Transformers", "Micrograd and a tiny GPT built from scratch"],
+  ["Weeks 4–7", "3", "Advanced RAG · Nir Diamant notebooks · vector DBs", "Project 1: hybrid RAG with reranking and evals"],
+  ["Weeks 8–10", "4", "Agents · LangGraph · MCP · DSPy", "Multi-agent system with human-in-the-loop approvals"],
+  ["Weeks 11–13", "5", "LoRA fine-tuning · vLLM serving · quantisation", "Projects 2 & 3: vLLM gateway + Unsloth fine-tune"],
+  ["Weeks 14–16", "6", "LLMOps · security · system-design mock interviews", "Dockerised projects, Langfuse traces, demo videos on GitHub"]
+];
+
+const COMMUNITY = [
+  { h: "Chat & Q&A", l: [
+    ["Hugging Face Discord", "https://discord.com/invite/JfAtkvEtRb", "~238k members · the biggest open-source ML hub"],
+    ["Latent Space Discord", "https://discord.com/invite/xJJMRaWCRt", "~13k · AI-engineer crowd, ties to the podcast"],
+    ["Unsloth Discord", "https://discord.com/invite/unsloth", "~41k · fine-tuning help straight from the maintainers"],
+    ["Ollama Discord", "https://discord.com/invite/ollama", "~197k · local-model tinkerers"],
+    ["DataTalks.Club Slack", "https://datatalks.club/slack.html", "Home of LLM Zoomcamp & MLOps Zoomcamp"],
+    ["vLLM Slack", "https://slack.vllm.ai/", "Serving & inference discussion"]
+  ]},
+  { h: "Forums & Reddit", l: [
+    ["Hugging Face Forums", "https://discuss.huggingface.co/", "Model / library questions, answered by staff"],
+    ["LangChain Forum", "https://forum.langchain.com/", "LangGraph & LangChain help"],
+    ["r/LocalLLaMA", "https://www.reddit.com/r/LocalLLaMA/", "Local models, quantisation, hardware · not machine-verified"],
+    ["r/LLMDevs", "https://www.reddit.com/r/LLMDevs/", "Building LLM apps · not machine-verified"],
+    ["r/Rag", "https://www.reddit.com/r/Rag/", "RAG-specific threads · not machine-verified"],
+    ["r/MachineLearning", "https://www.reddit.com/r/MachineLearning/", "Research discussion · not machine-verified"]
+  ]},
+  { h: "Straight from the labs", l: [
+    ["Anthropic Engineering blog", "https://www.anthropic.com/engineering", "Agents, evals, context engineering"],
+    ["Claude docs", "https://platform.claude.com/docs/en/home", "API, prompt engineering, evals"],
+    ["Claude cookbooks", "https://github.com/anthropics/claude-cookbooks", "Recipes · ★ 53k · (was anthropic-cookbook)"],
+    ["OpenAI Cookbook", "https://github.com/openai/openai-cookbook", "Recipes · ★ 76k"],
+    ["Hugging Face Cookbook", "https://huggingface.co/learn/cookbook/index", "Open-source recipes"],
+    ["LangChain blog", "https://www.langchain.com/blog", "Agent patterns & product news"],
+    ["DeepLearning.AI courses", "https://www.deeplearning.ai/courses", "Short courses with the labs' engineers"]
+  ]},
+  { h: "Stay current", l: [
+    ["AI Engineer (YouTube)", "https://www.youtube.com/@aiDotEngineer/videos", "Conference talks from practitioners"],
+    ["AI Engineer World's Fair", "https://www.ai.engineer/worldsfair", "The annual conference"],
+    ["Latent Space podcast", "https://www.latent.space/podcast", "Interviews with builders"],
+    ["Ahead of AI", "https://magazine.sebastianraschka.com/", "Sebastian Raschka on research"],
+    ["Interconnects", "https://www.interconnects.ai/", "Nathan Lambert on models & post-training"],
+    ["Simon Willison's blog", "https://simonwillison.net/", "Daily, hands-on LLM notes"],
+    ["Hugging Face Daily Papers", "https://huggingface.co/papers/trending", "Community-voted arXiv papers"],
+    ["The Pragmatic Engineer", "https://newsletter.pragmaticengineer.com/", "How AI is changing the job"]
+  ]},
+  { h: "Benchmarks & pricing", l: [
+    ["Arena", "https://arena.ai/", "Human-preference leaderboard (formerly LMArena)"],
+    ["Artificial Analysis", "https://artificialanalysis.ai/", "Quality, speed and price across providers"],
+    ["OpenRouter rankings", "https://openrouter.ai/rankings", "What developers actually route traffic to"]
+  ]},
+  { h: "Other roadmaps to cross-check", l: [
+    ["roadmap.sh · AI Engineer", "https://roadmap.sh/ai-engineer", "Interactive checklist"],
+    ["roadmap.sh · AI Agents", "https://roadmap.sh/ai-agents", "Agent-specific checklist"],
+    ["Prompt Engineering Guide", "https://www.promptingguide.ai/", "Reference for prompting techniques"],
+    ["Hands-On Large Language Models", "https://github.com/HandsOnLLM/Hands-On-Large-Language-Models", "Code for the O'Reilly book · ★ 29k"],
+    ["Google × Kaggle 5-Day GenAI Intensive", "https://www.kaggle.com/learn-guide/5-day-genai", "Free, structured, notebook-driven"]
+  ]}
+];
+
+/* =====================================================================
+   HELPERS & STATE
+   ===================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const STORE = "aiRoadmap.done.v1";
+let done = new Set();
+try { done = new Set(JSON.parse(localStorage.getItem(STORE) || "[]")); } catch (e) {}
+const save = () => { try { localStorage.setItem(STORE, JSON.stringify([...done])); } catch (e) {} };
+
+const ICON = { course: "🎓", read: "📄", repo: "💻", docs: "📚" };
+const TIER = { s: ["s", "Start here"], c: ["c", "Core"], d: ["d", "Deep dive"] };
+const TYPE_LABEL = { video: "Videos", course: "Courses", read: "Articles", repo: "Repos", docs: "Docs" };
+const cpKey = s => "checkpoint:" + s.id;
+
+function doneBox(key) {
+  return `<label class="done" title="Mark as done"><input type="checkbox" data-key="${esc(key)}" ${done.has(key) ? "checked" : ""}><span>Done</span></label>`;
+}
+function renderVideo(v) {
+  const thumb = `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
+  const tier = TIER[v.t];
+  const media = v.embed
+    ? `<button class="vthumb" type="button" style="background-image:url('${thumb}')" data-vid="${v.id}" aria-label="Play: ${esc(v.title)}"><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">${v.dur}</span></button>`
+    : `<a class="vthumb" href="${v.url}" target="_blank" rel="noopener" style="background-image:url('${thumb}')" aria-label="Open on YouTube: ${esc(v.title)}"><span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></span><span class="dur">${v.dur}</span></a>`;
+  return `<article class="vcard res-item ${done.has(v.key) ? "is-done" : ""}" data-key="${esc(v.key)}" data-type="video" data-search="${esc((v.title + " " + v.by + " " + v.why).toLowerCase())}">
+    ${media}
+    <div class="vbody">
+      <div class="rmeta"><span class="tag ${tier[0]}">${tier[1]}</span></div>
+      <div class="vtitle">${esc(v.title)}</div>
+      <div class="vmeta">${esc(v.by)}</div>
+      <div class="vwhy">${esc(v.why)}</div>
+      <div class="vfoot"><a href="${v.url}" target="_blank" rel="noopener">${v.embed ? "Open on YouTube ↗" : "Watch on YouTube ↗"}</a>${doneBox(v.key)}</div>
+    </div>
+  </article>`;
+}
+function renderItem(r) {
+  const tier = TIER[r.t];
+  return `<div class="res res-item ${done.has(r.key) ? "is-done" : ""}" data-key="${esc(r.key)}" data-type="${r.kind}" data-search="${esc((r.title + " " + r.src + " " + r.why.replace(/<[^>]+>/g, "")).toLowerCase())}">
+    <div class="rico" aria-hidden="true">${ICON[r.kind]}</div>
+    <div class="rmain">
+      <a class="rtitle" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}<span class="ext">↗</span></a>
+      <div class="rmeta"><span class="tag ${tier[0]}">${tier[1]}</span><span>${esc(r.src)}</span>${r.meta ? `<span>· ${esc(r.meta)}</span>` : ""}</div>
+      <div class="rwhy">${r.why}</div>
+    </div>
+    ${doneBox(r.key)}
+  </div>`;
+}
+function renderStage(s) {
+  const order = { s: 0, c: 1, d: 2 };
+  const byTier = (a, b) => order[a.t] - order[b.t];
+  const vids = s.videos.slice().sort(byTier);
+  const group = (label, list, cls) => list.length ? `<div class="group" data-group><div class="sub">${label}</div>${cls === "v" ? `<div class="vgrid">${list.map(renderVideo).join("")}</div>` : `<div class="rlist">${list.map(renderItem).join("")}</div>`}</div>` : "";
+  const items = s.items.slice().sort(byTier);
+  const courses = items.filter(i => i.kind === "course");
+  const reads = items.filter(i => i.kind === "read");
+  const code = items.filter(i => i.kind === "repo" || i.kind === "docs");
+  return `<section class="stage" id="${s.id}" data-n="${s.n}">
+    <div class="stage-head">
+      <div class="stage-num">${s.n}</div>
+      <div><div class="stage-eyebrow">Stage ${s.n} · ${s.weeks}</div><h3>${esc(s.title)}</h3><p class="dek">${s.dek}</p></div>
+    </div>
+    <div class="why"><b>Why it matters in interviews.</b> ${s.why}</div>
+    <div class="sub">What to master</div>
+    <div class="master">${s.master.map(m => `<span>${esc(m)}</span>`).join("")}</div>
+    ${group("▶ Watch", vids, "v")}
+    ${group("🎓 Courses & guided paths", courses)}
+    ${group("📄 Read", reads)}
+    ${group("💻 Repos & docs", code)}
+    <div class="empty-note">No resources in this stage match your filter.</div>
+    <div class="checkpoint" data-checkpoint="${cpKey(s)}">
+      <div class="cp-ico" aria-hidden="true">🏁</div>
+      <div><h4>Stage ${s.n} checkpoint</h4><p>${s.checkpoint}</p></div>
+      ${doneBox(cpKey(s))}
+    </div>
+  </section>`;
+}
+function renderProjects() {
+  return `<div class="projects">${PROJECTS.map(p => `<article class="proj">
+    <div class="proj-top"><span class="pno">${p.no}</span><h4>${p.title}</h4></div>
+    <p>${p.what}</p>
+    <div class="stack">${p.stack.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+    <p><b>What it proves:</b> ${p.proves}</p>
+    <h5>Measure these (don't invent numbers)</h5>
+    <ul>${p.measure.map(m => `<li>${m}</li>`).join("")}</ul>
+    <h5>Résumé bullet template — replace every <span style="color:var(--s4)">[bracket]</span> with your own measured result</h5>
+    <div class="bullet">${p.bullet}</div>
+  </article>`).join("")}</div>`;
+}
+function renderSchedule() {
+  return `<div class="sched"><div class="srow head"><span>When</span><span>Focus</span><span>Milestone</span></div>${SCHEDULE.map(r => `<div class="srow stage" data-n="${r[1]}" style="padding-top:14px"><span class="wk">${r[0]}</span><span class="fo">${r[2]}</span><span class="ml">${r[3]}</span></div>`).join("")}</div>`;
+}
+function renderCommunity() {
+  return `<div class="cgrid">${COMMUNITY.map(g => `<div class="cgroup"><h4>${g.h}</h4>${g.l.map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])} ↗<small>${esc(l[2])}</small></a>`).join("")}</div>`).join("")}</div>`;
+}
+
+/* ---------------- Page ---------------- */
+const allRes = STAGES.flatMap(s => [...s.videos, ...s.items]);
+const nVideos = STAGES.reduce((n, s) => n + s.videos.length, 0);
+const total = allRes.length + STAGES.length;
+
+$("#page").innerHTML = `
+  <section class="hero" id="overview">
+    <span class="eyebrow">🧭 Free · Link-verified · 2026 edition</span>
+    <h2>From Python to a <em>production-grade</em> AI engineer.</h2>
+    <p class="dek">Six stages, one path: foundations, transformer internals, advanced RAG, agents, fine-tuning &amp; serving, and LLMOps. Every video plays in the page, every link was checked, and your progress is saved in this browser.</p>
+    <div class="stats">
+      <div class="stat"><b>6</b><span>stages</span></div>
+      <div class="stat"><b>${allRes.length}</b><span>resources</span></div>
+      <div class="stat"><b>${nVideos}</b><span>playable videos</span></div>
+      <div class="stat"><b>16</b><span>weeks at ~10–15 h/week</span></div>
+    </div>
+    <div class="honest"><b>Reality check.</b> This is aimed at ₹20 LPA+ AI / LLM engineer roles, but no roadmap can guarantee an offer. Offers come from projects you can demo, numbers you measured yourself, and interviews you've practised. This page maximises the odds — it doesn't replace the work.</div>
+  </section>
+
+  <h2 class="section-title">The path</h2>
+  <p class="section-sub">Each stage builds on the last. Tap one to jump in.</p>
+  <div class="path">${STAGES.map(s => `<a href="#${s.id}" style="--c:var(--s${s.n})" data-jump="${s.id}"><div class="pn">STAGE ${s.n} · ${s.weeks.toUpperCase()}</div><div class="pt">${esc(s.title)}</div><div class="pw" data-frac="${s.id}"></div><div class="bar"><i data-bar="${s.id}"></i></div></a>`).join("")}</div>
+
+  <h2 class="section-title">What hiring managers actually test</h2>
+  <p class="section-sub">Calling a chat API is table stakes. These five areas are where the offers are decided.</p>
+  <div class="tests">
+    <div class="test"><h4>Advanced RAG</h4><p>Hybrid search, reranking, contextual retrieval, query rewriting — with numbers.</p></div>
+    <div class="test"><h4>Evaluation &amp; observability</h4><p>Golden sets, LLM-as-a-judge, tracing, regression tests in CI.</p></div>
+    <div class="test"><h4>Agentic workflows</h4><p>Tool routing, state machines, memory, human approval, bounded loops.</p></div>
+    <div class="test"><h4>Open models &amp; fine-tuning</h4><p>LoRA / QLoRA, quantisation, serving with vLLM, choosing the right tool.</p></div>
+    <div class="test"><h4>Cost, latency &amp; security</h4><p>Caching, streaming, fallbacks, prompt-injection defence, guardrails.</p></div>
+  </div>
+
+  <h2 class="section-title">How to use this page</h2>
+  <div class="howto">
+    <div><b>1 · Follow the tiers</b>“Start here” first, “Core” next, “Deep dive” only when a project needs it.</div>
+    <div><b>2 · Tick as you go</b>Progress lives in this browser (localStorage) — it won't sync between devices.</div>
+    <div><b>3 · Build the checkpoint</b>Don't leave a stage until its checkpoint is real, running code.</div>
+  </div>
+
+  <div class="filterbar" id="filterbar" role="toolbar" aria-label="Filter resources by type">
+    <button class="chip on" data-filter="all" type="button">All</button>
+    <button class="chip" data-filter="video" type="button">▶ Videos</button>
+    <button class="chip" data-filter="course" type="button">🎓 Courses</button>
+    <button class="chip" data-filter="read" type="button">📄 Articles</button>
+    <button class="chip" data-filter="repo" type="button">💻 Repos</button>
+    <button class="chip" data-filter="docs" type="button">📚 Docs</button>
+    <button class="chip" data-filter="todo" type="button">☐ Not done</button>
+    <span class="count" id="matchCount"></span>
+  </div>
+
+  ${STAGES.map(renderStage).join("")}
+
+  <section id="projects" class="stage" data-n="4" style="--c:var(--spine)">
+    <h2 class="section-title" style="margin-top:0">Portfolio projects</h2>
+    <p class="section-sub">Three builds that give you something concrete to demo. The résumé lines are <b>templates</b> — fill in results you measured yourself, and be ready to explain how.</p>
+    ${renderProjects()}
+  </section>
+
+  <section id="schedule" style="padding-top:20px">
+    <h2 class="section-title">The 16-week plan</h2>
+    <p class="section-sub">Assumes roughly 10–15 focused hours a week. Stages overlap on purpose — slip a week, not a milestone.</p>
+    ${renderSchedule()}
+  </section>
+
+  <section id="community" style="padding-top:20px">
+    <h2 class="section-title">Communities &amp; staying current</h2>
+    <p class="section-sub">Ask questions where the maintainers hang out, and follow a handful of high-signal sources instead of everything.</p>
+    ${renderCommunity()}
+    <div class="verify"><b>How this was verified (2026-09-20).</b> Every link was requested and every YouTube video was confirmed embeddable. Things that changed since older roadmaps:
+      <ul>
+        <li>Hugging Face’s “NLP Course” is now the <b>LLM Course</b>.</li>
+        <li><code>ragas</code>, <code>anthropic-cookbook</code> and <code>NeMo-Guardrails</code> repos moved (links here point to the new homes).</li>
+        <li>Stanford CME295 lecture 1 can’t be embedded, so it opens on YouTube.</li>
+        <li>Reddit blocks automated checks, so those four links are marked as not machine-verified. GitHub star counts are a snapshot.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Curated by <a href="https://x.com/HKsoldev" target="_blank" rel="noopener">HkSolDev</a> · <a href="https://github.com/HkSolDev" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.youtube.com/@MrDevGhost" target="_blank" rel="noopener">YouTube</a></span>
+    <span><a href="index.html">📖 System Design Primer</a> · <a href="toolbox.html">🧰 Internet Toolbox</a></span>
+  </footer>
+`;
+
+/* ---------------- Sidebar TOC ---------------- */
+const toc = $("#toc");
+toc.innerHTML = `
+  <div class="group-label">Start</div>
+  <a href="#overview" data-id="overview"><span class="num">◎</span><span class="name">Overview</span></a>
+  <div class="group-label">Stages</div>
+  ${STAGES.map(s => `<a href="#${s.id}" data-id="${s.id}" style="--c:var(--s${s.n})"><span class="num">${s.n}</span><span class="name">${esc(s.title)}</span><span class="frac" data-frac="${s.id}"></span></a>`).join("")}
+  <div class="group-label">Apply it</div>
+  <a href="#projects" data-id="projects"><span class="num">⚒</span><span class="name">Portfolio projects</span></a>
+  <a href="#schedule" data-id="schedule"><span class="num">🗓</span><span class="name">16-week plan</span></a>
+  <a href="#community" data-id="community"><span class="num">👥</span><span class="name">Communities</span></a>
+`;
+
+/* ---------------- Progress ---------------- */
+function stageKeys(s) { return [...s.videos, ...s.items].map(r => r.key).concat(cpKey(s)); }
+function updateProgress() {
+  let d = 0;
+  STAGES.forEach(s => {
+    const keys = stageKeys(s), n = keys.filter(k => done.has(k)).length;
+    d += n;
+    $$(`[data-frac="${s.id}"]`).forEach(el => { el.textContent = `${n}/${keys.length}`; });
+    $$(`[data-bar="${s.id}"]`).forEach(el => { el.style.width = (100 * n / keys.length) + "%"; });
+    const a = $(`.toc a[data-id="${s.id}"]`); if (a) a.classList.toggle("complete", n === keys.length);
+  });
+  const pct = Math.round(100 * d / total);
+  $("#ovPct").textContent = pct + "%"; $("#ovFrac").textContent = `${d}/${total}`; $("#ovBar").style.width = pct + "%"; $("#mobPct").textContent = pct + "%";
+}
+document.addEventListener("change", e => {
+  const box = e.target.closest(".done input"); if (!box) return;
+  const key = box.dataset.key;
+  box.checked ? done.add(key) : done.delete(key);
+  save();
+  $$(`.done input[data-key="${CSS.escape(key)}"]`).forEach(b => { b.checked = box.checked; const c = b.closest(".res-item"); if (c) c.classList.toggle("is-done", box.checked); });
+  updateProgress(); applyFilters();
+});
+$("#resetBtn").addEventListener("click", () => {
+  if (!done.size || !confirm("Clear all your ticks on this device?")) return;
+  done.clear(); save();
+  $$(".done input").forEach(b => b.checked = false); $$(".is-done").forEach(c => c.classList.remove("is-done"));
+  updateProgress(); applyFilters();
+});
+$("#nextBtn").addEventListener("click", () => {
+  const next = allRes.find(r => !done.has(r.key));
+  const cp = STAGES.find(s => !done.has(cpKey(s)) && [...s.videos, ...s.items].every(r => done.has(r.key)));
+  const key = next ? next.key : (cp ? cpKey(cp) : null);
+  if (!key) { alert("Everything is ticked — go build something. 🎉"); return; }
+  setFilter("all"); $("#search").value = ""; applyFilters();
+  const el = $(`[data-key="${CSS.escape(key)}"]`)?.closest(".res-item, .checkpoint") || $(`[data-checkpoint="${CSS.escape(key)}"]`);
+  if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); closeMenu(); }
+});
+
+/* ---------------- Search & filters ---------------- */
+let filter = "all";
+function setFilter(f) { filter = f; $$(".chip").forEach(c => c.classList.toggle("on", c.dataset.filter === f)); }
+function applyFilters() {
+  const q = $("#search").value.trim().toLowerCase();
+  let shown = 0;
+  $$(".res-item").forEach(el => {
+    const okType = filter === "all" || filter === "todo" || el.dataset.type === filter;
+    const okTodo = filter !== "todo" || !el.classList.contains("is-done");
+    const okQ = !q || el.dataset.search.includes(q);
+    const show = okType && okTodo && okQ;
+    el.style.display = show ? "" : "none";
+    if (show) shown++;
+  });
+  $$(".group[data-group]").forEach(g => { g.style.display = $$(".res-item", g).some(e => e.style.display !== "none") ? "" : "none"; });
+  $$(".stage[id^='stage-']").forEach(st => {
+    const any = $$(".res-item", st).some(e => e.style.display !== "none");
+    $(".empty-note", st).style.display = any ? "none" : "block";
+  });
+  $("#matchCount").textContent = (q || filter !== "all") ? `${shown} of ${allRes.length} shown` : `${allRes.length} resources`;
+}
+$("#filterbar").addEventListener("click", e => { const c = e.target.closest(".chip"); if (!c) return; setFilter(c.dataset.filter); applyFilters(); });
+$("#search").addEventListener("input", applyFilters);
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)) { e.preventDefault(); $("#search").focus(); }
+  if (e.key === "Escape") { if (document.activeElement === $("#search")) { $("#search").value = ""; applyFilters(); $("#search").blur(); } closeMenu(); }
+});
+
+/* ---------------- In-page video (click-to-play facade) ---------------- */
+document.addEventListener("click", e => {
+  const t = e.target.closest("button.vthumb"); if (!t) return;
+  const f = document.createElement("iframe");
+  f.src = `https://www.youtube.com/embed/${t.dataset.vid}?autoplay=1&rel=0`;
+  f.title = "YouTube video player";
+  f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+  f.referrerPolicy = "strict-origin-when-cross-origin";
+  f.allowFullscreen = true;
+  const wrap = document.createElement("div"); wrap.className = "vthumb"; wrap.style.cursor = "default"; wrap.appendChild(f);
+  t.replaceWith(wrap);
+});
+if (location.protocol === "file:") $("#fileBanner").style.display = "block";
+
+/* ---------------- Theme, menu, scroll-spy ---------------- */
+const root = document.documentElement;
+try { const t = localStorage.getItem("theme"); if (t) root.setAttribute("data-theme", t); } catch (e) {}
+$("#themeBtn").addEventListener("click", () => {
+  const cur = root.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const nxt = cur === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", nxt);
+  try { localStorage.setItem("theme", nxt); } catch (e) {}
+});
+const closeMenu = () => document.body.classList.remove("menu-open");
+$("#menuBtn").addEventListener("click", () => document.body.classList.toggle("menu-open"));
+$("#scrim").addEventListener("click", closeMenu);
+toc.addEventListener("click", e => { if (e.target.closest("a")) closeMenu(); });
+
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    $$(".toc a").forEach(a => a.classList.toggle("active", a.dataset.id === en.target.id));
+    const act = $(".toc a.active"); if (act) act.scrollIntoView({ block: "nearest" });
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+["overview", ...STAGES.map(s => s.id), "projects", "schedule", "community"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+addEventListener("scroll", () => {
+  const h = document.documentElement; $("#readBar").style.width = (100 * h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) + "%";
+}, { passive: true });
+
+updateProgress(); applyFilters();
+</script>
+</body>
+</html>

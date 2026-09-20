@@ -1,4 +1,4 @@
-# The System Design Primer · Interactive Reading Edition 🚀
+# The Reading Library · System Design Primer, Internet Toolbox & AI Engineer Roadmap 🚀
 
 > An interactive, distraction-free reading edition of Donne Martin's legendary **[System Design Primer](https://github.com/donnemartin/system-design-primer)** — enriched with in-page playable video lectures, curated seminal engineering whitepapers, and 5 full interview case studies.
 
@@ -26,7 +26,9 @@ This **Interactive Reading Edition** transforms the primer into a unified, high-
 * 🔍 **Instant Full-Text Search:** Client-side search indexing across all 24 chapters, video metadata, and article summaries.
 * 🖍️ **Local Highlighting:** Select any passage to drop a persistent highlight saved automatically in your browser.
 * 🌓 **Dark & Light Mode:** Tailored typography (Source Serif 4, IBM Plex Sans, IBM Plex Mono) with smooth contrast.
-* 🧰 **Internet Hidden Toolbox (`toolbox.html`):** An interactive, searchable directory of 47 high-yield web tools, academic research engines (Unpaywall, Elicit, Consensus, Connected Papers), developer terminal tools (Phind, Regex101, ExplainShell, Carbon), privacy shields (VirusTotal, Privnote, Temp-Mail), and cognitive focus audio (Radio Garden, Music For Programming) &mdash; complete with practical use cases, pro tips, instant search, and one-click browser bookmark export.
+* 🧰 **Internet Hidden Toolbox (`toolbox.html`):** An interactive, searchable directory of 51 high-yield web tools, academic research engines (Unpaywall, Elicit, Consensus, Connected Papers), developer terminal tools (Phind, Regex101, ExplainShell, Carbon), privacy shields (VirusTotal, Privnote, Temp-Mail), and cognitive focus audio (Radio Garden, Music For Programming) &mdash; complete with practical use cases, pro tips, instant search, and one-click browser bookmark export.
+
+* 🧭 **AI Engineer Roadmap (`ai-engineer-roadmap.html`):** A free, link-verified 6-stage path to a production-grade AI / LLM engineer role — foundations, LLM internals, advanced RAG, agents, fine-tuning & serving, and LLMOps/evals/security. 44 in-page playable videos, ~90 courses, articles, repos and docs sorted into *Start here / Core / Deep dive* tiers, per-stage checkpoints, 3 portfolio-project briefs, a 16-week plan, and a communities section (Discord, Slack, forums, newsletters). Search, type filters, dark/light mode, and tick-off progress saved in your browser.
 
 ---
 
@@ -38,6 +40,23 @@ This interactive study edition was curated and built by **HkSolDev** (`@MrDevGho
 * **GitHub:** [@HkSolDev](https://github.com/HkSolDev)
 * **YouTube:** [@MrDevGhost](https://www.youtube.com/@MrDevGhost)
 * **Instagram:** [@mr.devghost](https://www.instagram.com/mr.devghost/)
+
+---
+
+## 🗂️ What's in this folder
+
+| File | What it is |
+| :--- | :--- |
+| `index.html` | The System Design Primer reading edition (the site root). |
+| `systemdesignprimerbook.html` | Identical copy of `index.html` kept for older links. **Edit `index.html` and copy it over.** |
+| `toolbox.html` | Internet Hidden Toolbox directory. |
+| `ai-engineer-roadmap.html` | AI Engineer Roadmap (data lives in the `STAGES` array near the top of its `<script>`). |
+| `library.css` | Shared design tokens + polish loaded by all three pages (loaded *after* each page's own `<style>`). |
+| `wrangler.json` | Cloudflare static-assets config (`assets.directory = "."`). |
+
+Everything is static — no build step, no server code, relative links only — so it deploys as-is to Cloudflare (Workers Static Assets or Pages) and GitHub Pages.
+
+**Keeping the roadmap fresh:** every URL and YouTube ID was checked on 2026-09-20. Re-check periodically (links rot, repos move — three already had). A quick loop: extract URLs with `grep -oE 'https?://[^" ]+' ai-engineer-roadmap.html` and `curl -sI` each one; YouTube IDs can be checked via `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<id>`.
 
 ---
 

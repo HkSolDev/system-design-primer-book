@@ -1,4 +1,8 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="An interactive, searchable reading edition of Donne Martin's System Design Primer with in-page playable video lectures, seminal whitepapers, and 5 classic case studies. Curated by HkSolDev (@MrDevGhost).">
   <meta property="og:title" content="The System Design Primer · Interactive Reading Edition">
   <meta property="og:description" content="Comprehensive field guide to large-scale system design with in-page video lessons, architectural trade-offs, and landmark case studies.">
@@ -697,6 +701,7 @@
     line-height: 1.35;
   }
 </style>
+<link rel="stylesheet" href="library.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <div class="protocol-banner" id="protocolBanner">
@@ -722,14 +727,11 @@
     </div>
 
     <div class="toolbox-entry-wrap">
-      <a href="toolbox.html" class="toolbox-entry-card" title="Open Internet Hidden Toolbox">
-        <span class="tb-entry-badge">NEW RESOURCE</span>
-        <div class="tb-entry-title">
-          <span>🧰 Internet Hidden Toolbox</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </div>
-        <p class="tb-entry-desc">46 curated web tools for research, dev, design &amp; focus &rarr;</p>
-      </a>
+      <nav class="lib-switch" aria-label="Library">
+        <a href="index.html" aria-current="page" title="The System Design Primer"><span>📖</span>System Design</a>
+        <a href="toolbox.html" title="Internet Hidden Toolbox · 51 curated web tools"><span>🧰</span>Toolbox</a>
+        <a href="ai-engineer-roadmap.html" title="AI Engineer Roadmap · 6 stages, 44 playable videos"><span>🧭</span>AI Roadmap</a>
+      </nav>
     </div>
 
     <nav class="toc" id="toc" aria-label="Table of contents"></nav>
@@ -772,7 +774,7 @@
     <div class="mobile-bar">
       <button id="menuBtn" aria-label="Open contents">☰</button>
       <span>The System Design Primer</span>
-      <a href="toolbox.html" style="font-size: 12px; font-weight: 600; color: var(--spine); margin-left: auto; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--spine-tint); border: 1px solid var(--spine-soft);">🧰 Toolbox ↗</a>
+      <a href="toolbox.html" style="font-size: 12px; font-weight: 600; color: var(--spine); margin-left: auto; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--spine-tint); border: 1px solid var(--spine-soft);">🧰 ↗</a><a href="ai-engineer-roadmap.html" style="font-size: 12px; font-weight: 600; color: var(--spine); margin-left: 6px; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--spine-tint); border: 1px solid var(--spine-soft);">🧭 ↗</a>
     </div>
     <div class="progress"><i id="progressBar"></i></div>
     <div class="page" id="page"></div>
@@ -2026,7 +2028,7 @@ CHAPTERS.forEach((ch, i) => {
 // Append Internet Hidden Toolbox to Table of Contents
 const toolboxGroupLabel = document.createElement("div");
 toolboxGroupLabel.className = "group-label";
-toolboxGroupLabel.textContent = "Bonus · Tooling";
+toolboxGroupLabel.textContent = "Bonus · Library";
 tocEl.appendChild(toolboxGroupLabel);
 
 const tbTocA = document.createElement("a");
@@ -2035,6 +2037,13 @@ tbTocA.innerHTML = `<span class="num">🧰</span>Internet Hidden Toolbox ↗`;
 tbTocA.style.fontWeight = "600";
 tbTocA.style.color = "var(--spine)";
 tocEl.appendChild(tbTocA);
+
+const rmTocA = document.createElement("a");
+rmTocA.href = "ai-engineer-roadmap.html";
+rmTocA.innerHTML = `<span class="num">🧭</span>AI Engineer Roadmap ↗`;
+rmTocA.style.fontWeight = "600";
+rmTocA.style.color = "var(--spine)";
+tocEl.appendChild(rmTocA);
 
 
 /* ---------------- Inline Video Playback ---------------- */
