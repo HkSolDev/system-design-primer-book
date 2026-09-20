@@ -13,6 +13,7 @@
 
   <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>The System Design Primer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📖%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --paper:#F0EFE9;
@@ -702,6 +703,7 @@
   }
 </style>
 <link rel="stylesheet" href="library.css">
+<link rel="stylesheet" href="book.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <div class="protocol-banner" id="protocolBanner">
@@ -728,10 +730,17 @@
 
     <div class="toolbox-entry-wrap">
       <nav class="lib-switch" aria-label="Library">
-        <a href="index.html" aria-current="page" title="The System Design Primer"><span>📖</span>System Design</a>
-        <a href="toolbox.html" title="Internet Hidden Toolbox · 51 curated web tools"><span>🧰</span>Toolbox</a>
-        <a href="ai-engineer-roadmap.html" title="AI Engineer Roadmap · 6 stages, 44 playable videos"><span>🧭</span>AI Roadmap</a>
+        <a href="index.html" title="Library home"><span>🏠</span>Home</a>
+        <a href="systemdesignprimerbook.html" aria-current="page" title="The System Design Primer"><span>📖</span>System Design</a>
+        <a href="ai-engineer-roadmap.html" title="AI Engineer Roadmap"><span>🧭</span>AI Roadmap</a>
+        <a href="toolbox.html" title="Internet Hidden Toolbox"><span>🧰</span>Tools</a>
       </nav>
+    </div>
+
+    <div class="overall">
+      <div class="overall-top"><span>Chapters read</span><span><b id="bookPct">0%</b> · <span id="bookFrac">0/0</span></span></div>
+      <div class="bar"><i id="bookBar"></i></div>
+      <button class="next-btn" id="continueBtn" type="button">Continue reading →</button>
     </div>
 
     <nav class="toc" id="toc" aria-label="Table of contents"></nav>
@@ -774,7 +783,7 @@
     <div class="mobile-bar">
       <button id="menuBtn" aria-label="Open contents">☰</button>
       <span>The System Design Primer</span>
-      <a href="toolbox.html" style="font-size: 12px; font-weight: 600; color: var(--spine); margin-left: auto; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--spine-tint); border: 1px solid var(--spine-soft);">🧰 ↗</a><a href="ai-engineer-roadmap.html" style="font-size: 12px; font-weight: 600; color: var(--spine); margin-left: 6px; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--spine-tint); border: 1px solid var(--spine-soft);">🧭 ↗</a>
+      <a href="index.html" style="font-size: 12px; font-weight: 600; color: var(--spine); margin-left: auto; text-decoration: none; padding: 4px 8px; border-radius: 4px; background: var(--spine-tint); border: 1px solid var(--spine-soft);">🏠 Home</a>
     </div>
     <div class="progress"><i id="progressBar"></i></div>
     <div class="page" id="page"></div>
@@ -822,8 +831,8 @@ const CHAPTERS = [
     part: "Front matter",
     title: "Welcome",
     dek: "What this book is, and how to read it.",
-    video: {"id": "bUHFg8CZFws", "channel": "Exponent", "title": "System Design Interview: How to Structure Your 45-Minute Interview", "duration": "14:20", "desc": "A masterclass on steering the conversation, clarifying scope, defining API contracts, and avoiding common traps."},
-    articles: [{"source": "GitHub", "title": "donnemartin/system-design-primer", "url": "https://github.com/donnemartin/system-design-primer", "desc": "The official open-source repository with 270k+ stars, comprehensive diagrams, and interview flashcards.", "readTime": "Reference"}, {"source": "LeetCode", "title": "My System Design Template & Framework", "url": "https://leetcode.com/discuss/career/229177/My-System-Design-Template", "desc": "The widely adopted community blueprint covering functional requirements, constraints, and deep-dive checklists.", "readTime": "8 min read"}, {"source": "Palantir", "title": "How to Rock a Systems Design Interview", "url": "https://web.archive.org/web/20210505130322/https://www.palantir.com/2011/10/how-to-rock-a-systems-design-interview/", "desc": "Palantir's legendary guide explaining how interviewers evaluate trade-offs, architecture ownership, and problem scoping.", "readTime": "10 min read"}],
+    videos: [{"id": "i7twT3x5yv8", "tier": "s", "title": "System Design Interview: A Step-By-Step Guide", "channel": "ByteByteGo", "duration": "9:54", "why": "A ten-minute, diagram-driven walk through a step-by-step way to structure any system design round."}, {"id": "SqcXvc3ZmRU", "tier": "c", "title": "System Design Primer \u2b50\ufe0f: How to start with distributed systems?", "channel": "Gaurav Sen", "duration": "9:22", "why": "Gaurav Sen's popular primer on where to start with distributed systems."}, {"id": "m8Icp_Cid5o", "tier": "d", "title": "System Design for Beginners Course", "channel": "freeCodeCamp.org", "duration": "1:25:07", "why": "A long-form beginner course from freeCodeCamp covering the core building blocks."}],
+    articles: [{"kind": "Repo", "source": "GitHub", "title": "donnemartin/system-design-primer", "url": "https://github.com/donnemartin/system-design-primer", "desc": "The open-source repository this whole book is based on \u2014 diagrams, Anki decks and practice questions.", "tier": "s"}, {"kind": "Guide", "source": "Hello Interview", "title": "System Design in a Hurry", "url": "https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction", "desc": "A compact, modern crash course on the essentials for a system design interview.", "tier": "s"}, {"kind": "Article", "source": "Palantir (Wayback Machine)", "title": "How to Rock a Systems Design Interview", "url": "https://web.archive.org/web/20210505130322/https://www.palantir.com/2011/10/how-to-rock-a-systems-design-interview/", "desc": "A classic interviewer-side view of what a systems design round is testing. Archived copy.", "tier": "c"}, {"kind": "Newsletter", "source": "Alex Xu \u00b7 ByteByteGo", "title": "ByteByteGo Newsletter", "url": "https://blog.bytebytego.com/", "desc": "Weekly visual explainers on how real systems work, from the authors of the System Design Interview books.", "tier": "c"}, {"kind": "Book (online)", "source": "aosabook.org", "title": "The Architecture of Open Source Applications", "url": "https://aosabook.org/en/index.html", "desc": "Free chapters in which the authors of nginx, Git, Redis-like systems and more explain how they were built.", "tier": "d"}],
     html: `
     <p>This is a reading edition of <em>The System Design Primer</em> — an open-source, community-maintained field guide to designing large-scale systems, originally compiled by Donne Martin and hundreds of contributors on GitHub. It's the resource engineers reach for before a system-design interview, and the one they keep re-reading afterward because the trade-offs never stop being relevant.</p>
     <p>Every topic here follows the same discipline: <strong>everything is a trade-off</strong>. There is no universally correct answer to "SQL or NoSQL," "cache or no cache," "REST or RPC" — only the right answer for a given set of constraints. The primer's job, and this book's job, is to make those constraints and their consequences legible.</p>
@@ -835,8 +844,8 @@ const CHAPTERS = [
     part: "Front matter",
     title: "Study guide",
     dek: "Suggested depth by timeline: short, medium, long.",
-    video: {"id": "i53Gi_K3o7I", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "System Design Interview: A Step-By-Step Guide", "duration": "9:15", "desc": "Visual roadmap of the 4 key stages of a system design round and how to allocate your interview time effectively."},
-    articles: [{"source": "The Pragmatic Engineer", "title": "System Design Interviews: What Interviewers Look For", "url": "https://blog.pragmaticengineer.com/system-design-interview/", "desc": "Gergely Orosz's insider breakdown of interview expectations across junior, senior, and staff levels.", "readTime": "12 min read"}, {"source": "Hired in Tech", "title": "The System Design Process & Roadmap", "url": "https://www.hiredintech.com/system-design", "desc": "Step-by-step preparation modules and key architectural patterns tested in top tech companies.", "readTime": "15 min read"}],
+    videos: [{"id": "BTjxUS_PylA", "tier": "s", "title": "8 Most Important System Design Concepts You Should Know", "channel": "ByteByteGo", "duration": "6:05", "why": "Eight foundational concepts \u2014 a fast checklist of what you should be able to explain."}, {"id": "i53Gi_K3o7I", "tier": "c", "title": "20 System Design Concepts Explained in 10 Minutes", "channel": "NeetCode", "duration": "11:41", "why": "NeetCode's ten-minute tour of twenty common system design concepts."}, {"id": "o-k7h2G3Gco", "tier": "c", "title": "How to Crack Any System Design Interview", "channel": "ByteByteGo", "duration": "8:19", "why": "A short talk on how to approach an interview instead of memorising answers."}],
+    articles: [{"kind": "Guide", "source": "Tech Interview Handbook", "title": "System design interview guide for Software Engineers", "url": "https://www.techinterviewhandbook.org/system-design/", "desc": "A free, structured preparation guide with a suggested approach and study resources.", "tier": "s"}, {"kind": "Article", "source": "Gergely Orosz \u00b7 The Pragmatic Engineer", "title": "Preparing for the Systems Design and Coding Interview", "url": "https://blog.pragmaticengineer.com/preparing-for-the-systems-design-and-coding-interviews/", "desc": "How a hiring manager and interviewer prepared, and what he recommends studying.", "tier": "c"}, {"kind": "Guide", "source": "HiredInTech", "title": "System Design", "url": "https://www.hiredintech.com/system-design/", "desc": "A step-by-step preparation series with a repeatable process for approaching design questions.", "tier": "c"}, {"kind": "Repo", "source": "GitHub \u00b7 binhnguyennus", "title": "awesome-scalability", "url": "https://github.com/binhnguyennus/awesome-scalability", "desc": "A very large, categorised reading list of scalability, reliability and performance write-ups.", "tier": "d"}],
     html: `
     <p><strong>Q: Do I need to know everything in this book?</strong><br>A: No. What you're asked depends on your experience, the role, the company, and luck. Architects and team leads are generally expected to know more than individual contributors; top-tier companies are more likely to run one or more dedicated design rounds.</p>
     <p>Start broad, then go deeper in a few areas:</p>
@@ -853,8 +862,8 @@ const CHAPTERS = [
     part: "Front matter",
     title: "How to approach the interview",
     dek: "A repeatable four-step process for an open-ended design conversation.",
-    video: {"id": "ZgdS0EUmn70", "channel": "Gaurav Sen", "title": "Intro to Architecture and Systems Design Interviews", "duration": "18:42", "desc": "How to approach open-ended design problems: requirements gathering, establishing bounds, and iterative component design."},
-    articles: [{"source": "High Scalability", "title": "Google Pro Tip: Use Back-Of-The-Envelope Calculations", "url": "http://highscalability.com/blog/2011/1/26/google-pro-tip-use-back-of-the-envelope-calculations-to-choo.html", "desc": "How Google engineers make design decisions by quickly calculating QPS, bandwidth, and memory constraints.", "readTime": "7 min read"}, {"source": "LeetCode", "title": "Anatomy of a FAANG System Design Interview", "url": "https://leetcode.com/discuss/general-discussion/1082786/System-Design%3A-Designing-a-system-step-by-step", "desc": "Step-by-step evaluation rubric from Big Tech interviewers with grading rubrics.", "readTime": "11 min read"}],
+    videos: [{"id": "ZgdS0EUmn70", "tier": "s", "title": "Episode 06: Intro to Architecture and Systems Design Interviews", "channel": "Jackson Gabbard", "duration": "49:15", "why": "A former Facebook engineer on what architecture and systems design interviews look for."}, {"id": "L9TfZdODuFQ", "tier": "c", "title": "How to Answer System Design Interview Questions (Complete Guide)", "channel": "Aced (formerly Exponent)", "duration": "7:10", "why": "A structured framework for answering system design questions clearly."}, {"id": "Ru54dxzCyD0", "tier": "c", "title": "How to Prepare for System Design Interviews w/ Meta Staff Engineer", "channel": "Hello Interview", "duration": "18:27", "why": "Preparation advice from a Meta staff engineer who runs mock interviews."}, {"id": "bUHFg8CZFws", "tier": "d", "title": "System Design Interview \u2013 Step By Step Guide", "channel": "System Design Interview", "duration": "1:23:31", "why": "A long, full walkthrough of an interview-style step-by-step process."}],
+    articles: [{"kind": "Guide", "source": "Hello Interview", "title": "System Design Delivery Framework", "url": "https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery", "desc": "A way to structure the 45 minutes: requirements, entities, API, high-level design, deep dives.", "tier": "s"}, {"kind": "Article", "source": "High Scalability", "title": "Google Pro Tip: Use Back-of-the-envelope-calculations to Choose the Best Design", "url": "https://highscalability.com/google-pro-tip-use-back-of-the-envelope-calculations-to-choo/", "desc": "Why quick estimation is used to choose between designs before building anything.", "tier": "c"}, {"kind": "Reference", "source": "GitHub Gist", "title": "Latency Numbers Every Programmer Should Know", "url": "https://gist.github.com/jboner/2841832", "desc": "The classic table of orders of magnitude you need for estimation.", "tier": "c"}],
     html: `
     <p>The system design interview is an open-ended conversation, and you are expected to lead it.</p>
     <h3>1 · Outline use cases, constraints, and assumptions</h3>
@@ -880,8 +889,8 @@ const CHAPTERS = [
     part: "I \u00b7 Foundations",
     title: "Performance vs. scalability",
     dek: "Two different problems that get confused constantly.",
-    video: {"id": "-W9F__D3oY4", "channel": "Harvard University \u00b7 David J. Malan", "title": "Harvard CS75 (Lecture 9): Scalability", "duration": "1:12:35", "desc": "The foundational scalability lecture cited in the System Design Primer covering vertical vs. horizontal scaling, caching, and state management."},
-    articles: [{"source": "All Things Distributed", "title": "A Word on Scalability (Werner Vogels, Amazon CTO)", "url": "https://www.allthingsdistributed.com/2006/03/a_word_on_scalability.html", "desc": "The definitive definition of scalability: proportionality of performance to resources added without breaking the bank.", "readTime": "6 min read"}, {"source": "Martin Fowler", "title": "Patterns of Distributed Systems: Scalability & Replication", "url": "https://martinfowler.com/articles/patterns-of-distributed-systems/", "desc": "Detailed catalog of structural patterns for distributing compute and state across clusters.", "readTime": "14 min read"}, {"source": "SlideShare", "title": "Scalability, Availability & Stability Patterns (Jonas Bon\u00e9r)", "url": "https://www.slideshare.net/jboner/scalability-availability-stability-patterns", "desc": "Foundational slide deck on resilience, degradation, and scaling principles.", "readTime": "Slide Deck"}],
+    videos: [{"id": "EWS_CIxttVw", "tier": "s", "title": "Scalability Simply Explained in 10 Minutes", "channel": "ByteByteGo", "duration": "9:20", "why": "A ten-minute explanation of what scalability really means, with visuals."}, {"id": "xpDnVSmNFX0", "tier": "c", "title": "System Design BASICS: Horizontal vs. Vertical Scaling", "channel": "Gaurav Sen", "duration": "7:56", "why": "Horizontal vs. vertical scaling explained by Gaurav Sen."}, {"id": "-W9F__D3oY4", "tier": "d", "title": "CS75 (Summer 2012) Lecture 9 Scalability Harvard Web Development David Malan", "channel": "George Schott", "duration": "1:45:40", "why": "Harvard's David Malan on scalability in a full lecture (CS75, 2012)."}],
+    articles: [{"kind": "Article", "source": "Werner Vogels \u00b7 All Things Distributed", "title": "A Word on Scalability", "url": "https://www.allthingsdistributed.com/2006/03/a_word_on_scalability.html", "desc": "Amazon's CTO on what scalability means and what it doesn't.", "tier": "s"}, {"kind": "Article", "source": "Martin Fowler / Unmesh Joshi", "title": "Catalog of Patterns of Distributed Systems", "url": "https://martinfowler.com/articles/patterns-of-distributed-systems/", "desc": "A catalogue of the patterns (replication, leader election, partitioning\u2026) inside real distributed systems.", "tier": "c"}, {"kind": "Slides", "source": "Jonas Bon\u00e9r \u00b7 SlideShare", "title": "Scalability, Availability & Stability Patterns", "url": "https://www.slideshare.net/jboner/scalability-availability-stability-patterns", "desc": "A widely-shared slide deck on scaling, availability and stability patterns.", "tier": "d"}],
     html: `
     <p>A service is <strong>scalable</strong> if performance increases proportionally to resources added. Increasing performance usually means serving more units of work, but can also mean handling larger units of work as datasets grow.</p>
     <p>A sharper way to tell them apart:</p>
@@ -950,8 +959,8 @@ const CHAPTERS = [
     part: "I \u00b7 Foundations",
     title: "Latency vs. throughput",
     dek: "The trade-off you'll be asked about most.",
-    video: {"id": "lJ8ydIuPFeU", "channel": "Gil Tene \u00b7 Strange Loop", "title": "How NOT to Measure Latency", "duration": "51:40", "desc": "The industry-standard talk exposing 'Coordinated Omission' and showing why averages hide severe outages and why percentiles (p99/p99.9) matter."},
-    articles: [{"source": "Communications of the ACM", "title": "The Tail at Scale (Jeff Dean & Luiz Andr\u00e9 Barroso)", "url": "https://cacm.acm.org/magazines/2013/2/160173-the-tail-at-scale/fulltext", "desc": "How Google tames high tail latency across thousands of servers using hedged requests and tied requests.", "readTime": "12 min read"}, {"source": "Brendan Gregg", "title": "Latency and Utilization Fundamentals (The USE Method)", "url": "https://www.brendangregg.com/usemethod.html", "desc": "Systems performance guru Brendan Gregg explains latency measurement, queuing delay, and saturation.", "readTime": "9 min read"}],
+    videos: [{"id": "lJ8ydIuPFeU", "tier": "s", "title": "\"How NOT to Measure Latency\" by Gil Tene", "channel": "Strange Loop Conference", "duration": "42:59", "why": "Gil Tene's Strange Loop talk on why most latency measurements are misleading."}, {"id": "FqR5vESuKe0", "tier": "c", "title": "Latency Numbers Programmer Should Know: Crash Course System Design #1", "channel": "ByteByteGo", "duration": "6:22", "why": "The latency numbers every engineer should know, explained visually."}],
+    articles: [{"kind": "Paper", "source": "Dean & Barroso \u00b7 CACM", "title": "The Tail at Scale", "url": "https://cacm.acm.org/research/the-tail-at-scale/", "desc": "Why tail latency dominates in large systems and the techniques used to tame it.", "tier": "s"}, {"kind": "Article", "source": "Brendan Gregg", "title": "The USE Method", "url": "https://www.brendangregg.com/usemethod.html", "desc": "A simple method for finding performance bottlenecks: utilisation, saturation and errors for every resource.", "tier": "c"}, {"kind": "Article", "source": "AWS Builders' Library", "title": "Using load shedding to avoid overload", "url": "https://aws.amazon.com/builders-library/using-load-shedding-to-avoid-overload/", "desc": "How Amazon keeps latency acceptable under overload by rejecting work early.", "tier": "d"}],
     html: `
     <p><strong>Latency</strong> is the time to perform some action or produce some result.</p>
     <p><strong>Throughput</strong> is the number of such actions or results per unit of time.</p>
@@ -989,8 +998,8 @@ const CHAPTERS = [
     part: "I \u00b7 Foundations",
     title: "Availability vs. consistency",
     dek: "The CAP theorem, and the two shapes of distributed system it implies.",
-    video: {"id": "kU72LidjP0w", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "CAP Theorem Simplified", "duration": "8:45", "desc": "Visual breakdown of Consistency, Availability, and Partition Tolerance with CP vs AP database trade-offs."},
-    articles: [{"source": "Martin Kleppmann", "title": "Please Stop Calling Databases CP or AP", "url": "https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html", "desc": "Why network partitions are rare inside single datacenters, why latency dominates, and why PACELC is a better model.", "readTime": "10 min read"}, {"source": "Daniel Abadi", "title": "Consistency Tradeoffs in Modern Distributed Database System Design (PACELC)", "url": "http://dbmsmusings.blogspot.com/2010/04/problems-with-cap-theorem-guiding.html", "desc": "The famous formulation: If Partition (P) choose A or C; Else (E) choose Latency (L) or Consistency (C).", "readTime": "12 min read"}, {"source": "IEEE Computer", "title": "CAP Twelve Years Later: How the Rules Have Changed (Eric Brewer)", "url": "https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/", "desc": "Eric Brewer revisits his 2000 conjecture and explains how modern systems balance consistency and availability dynamically.", "readTime": "15 min read"}],
+    videos: [{"id": "BHqjEjzAicA", "tier": "s", "title": "CAP Theorem Simplified", "channel": "ByteByteGo", "duration": "5:33", "why": "CAP theorem in under six minutes."}, {"id": "VdrEq0cODu4", "tier": "c", "title": "CAP Theorem in System Design Interviews", "channel": "Hello Interview", "duration": "13:56", "why": "How CAP shows up in interviews and how to talk about the trade-off."}],
+    articles: [{"kind": "Article", "source": "Martin Kleppmann", "title": "Please stop calling databases CP or AP", "url": "https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html", "desc": "Why the CP/AP labels are too coarse to be useful, and what to say instead.", "tier": "s"}, {"kind": "Article", "source": "Eric Brewer \u00b7 InfoQ", "title": "CAP Twelve Years Later: How the Rules Have Changed", "url": "https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/", "desc": "The author of the CAP conjecture revisits what it does and doesn't mean.", "tier": "c"}, {"kind": "Paper", "source": "Daniel Abadi", "title": "Consistency Tradeoffs in Modern Distributed Database System Design (PACELC)", "url": "https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf", "desc": "Extends CAP with the latency-vs-consistency trade-off that exists even without partitions.", "tier": "d"}, {"kind": "Article", "source": "Daniel Abadi \u00b7 DBMS Musings", "title": "Problems with CAP, and Yahoo's little known NoSQL system", "url": "https://dbmsmusings.blogspot.com/2010/04/problems-with-cap-and-yahoos-little.html", "desc": "The blog post that first introduced the PACELC idea.", "tier": "d"}],
     html: `
     <h3>CAP theorem</h3>
     <figure class="fig"><img src="${IMG.bgLMI2u}" alt="CAP theorem diagram: consistency, availability, and partition tolerance as three overlapping requirements"><figcaption>Source: <a href="https://robertgreiner.com/cap-theorem-revisited" target="_blank" rel="noopener">CAP theorem revisited</a></figcaption></figure>
@@ -1059,8 +1068,8 @@ const CHAPTERS = [
     part: "I \u00b7 Foundations",
     title: "Consistency patterns",
     dek: "Weak, eventual, and strong \u2014 three answers to \\\\u201cwhen will a read see the write?\\\\u201d",
-    video: {"id": "U2s0l_2wZkE", "channel": "Cambridge University \u00b7 Martin Kleppmann", "title": "Linearizability and Quorum Consistency", "duration": "42:18", "desc": "Rigorous academic lecture on strong consistency (linearizability), read/write quorums (R + W > N), and eventual consistency."},
-    articles: [{"source": "ACM CACM", "title": "Eventually Consistent - Revisited (Werner Vogels)", "url": "https://www.allthingsdistributed.com/2008/12/eventually_consistent.html", "desc": "Amazon CTO discusses client-side consistency: read-your-writes, session consistency, and monotonic reads.", "readTime": "8 min read"}, {"source": "Amazon Whitepaper", "title": "Dynamo: Amazon\u2019s Highly Available Key-value Store (SOSP 2007)", "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf", "desc": "The landmark paper that launched the NoSQL revolution: sloppy quorums, vector clocks, and hinted handoff.", "readTime": "Paper \u00b7 16 pages"}, {"source": "Jepsen", "title": "Consistency Models Hierarchy & Verification", "url": "https://jepsen.io/consistency", "desc": "Visual map of strict serializability, sequential consistency, causal consistency, and read committed.", "readTime": "Reference"}],
+    videos: [{"id": "noUNH3jDLC0", "tier": "s", "title": "Distributed Systems 7.2: Linearizability", "channel": "Martin Kleppmann", "duration": "18:44", "why": "Linearizability from Cambridge's distributed systems course."}, {"id": "9uCP3qHNbWw", "tier": "c", "title": "Distributed Systems 7.3: Eventual consistency", "channel": "Martin Kleppmann", "duration": "14:59", "why": "Eventual consistency \u2014 what it promises and what it doesn't."}, {"id": "uNxl3BFcKSA", "tier": "d", "title": "Distributed Systems 5.2: Quorums", "channel": "Martin Kleppmann", "duration": "9:37", "why": "How quorum reads and writes trade availability for consistency."}],
+    articles: [{"kind": "Article", "source": "Werner Vogels", "title": "Eventually Consistent", "url": "https://www.allthingsdistributed.com/2008/12/eventually_consistent.html", "desc": "Amazon's CTO on consistency models such as read-your-writes and session consistency.", "tier": "s"}, {"kind": "Paper", "source": "Amazon \u00b7 SOSP 2007", "title": "Dynamo: Amazon's Highly Available Key-value Store", "url": "https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf", "desc": "The paper behind many NoSQL designs: partitioning, replication, versioning, quorum.", "tier": "c"}, {"kind": "Reference", "source": "Jepsen", "title": "Consistency Models", "url": "https://jepsen.io/consistency", "desc": "An interactive map of consistency models and how they relate.", "tier": "c"}],
     html: `
     <h3>Weak consistency</h3>
     <p>After a write, subsequent reads may or may not see it — a best-effort approach. Seen in systems like memcached. Works well for real-time cases such as VoIP, video chat, and realtime multiplayer games, where a dropped update (like a moment of lost call audio) is simply gone rather than replayed.</p>
@@ -1103,8 +1112,8 @@ const CHAPTERS = [
     part: "I \u00b7 Foundations",
     title: "Availability patterns",
     dek: "Fail-over, replication, and the arithmetic of nines.",
-    video: {"id": "tEylFYlmOHw", "channel": "Google Cloud Tech", "title": "SLOs, SLIs, SLAs: Measuring Availability and Reliability", "duration": "9:30", "desc": "How Google site reliability engineers measure and enforce availability, define error budgets, and calculate the true cost of 'nines' in production."},
-    articles: [{"source": "Google SRE Book", "title": "Embracing Risk & Service Level Objectives", "url": "https://sre.google/sre-book/embracing-risk/", "desc": "How to set availability targets, calculate downtime budgets, and make data-driven launch decisions.", "readTime": "14 min read"}, {"source": "AWS Well-Architected", "title": "Reliability Pillar & Multi-AZ Disaster Recovery", "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html", "desc": "Best practices for fault isolation, automated failover, RTO, RPO, and backup strategies.", "readTime": "Guide"}],
+    videos: [{"id": "E3ReKuJ8ewA", "tier": "s", "title": "The Art of SLOs (Service Level Objectives)", "channel": "Google Cloud Tech", "duration": "4:01", "why": "A four-minute introduction to service level objectives."}, {"id": "U53wC2A75Is", "tier": "c", "title": "Getting started with SLOs", "channel": "Google Cloud Tech", "duration": "8:13", "why": "Getting started with SLOs in practice."}, {"id": "bI8Ry6GhMSE", "tier": "c", "title": "Database Replication Explained (in 5 Minutes)", "channel": "Aced (formerly Exponent)", "duration": "5:02", "why": "How database replication supports failover and availability."}],
+    articles: [{"kind": "Book chapter", "source": "Google SRE Book", "title": "Embracing Risk", "url": "https://sre.google/sre-book/embracing-risk/", "desc": "Why 100% reliability is the wrong target and how error budgets work.", "tier": "s"}, {"kind": "Book chapter", "source": "Google SRE Book", "title": "Service Level Objectives", "url": "https://sre.google/sre-book/service-level-objectives/", "desc": "SLIs, SLOs and SLAs \u2014 how to define and use them.", "tier": "c"}, {"kind": "Docs", "source": "AWS Well-Architected", "title": "Reliability Pillar", "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html", "desc": "Design principles and best practices for fault isolation, failover, and disaster recovery.", "tier": "c"}, {"kind": "Article", "source": "AWS Builders' Library", "title": "Static stability using Availability Zones", "url": "https://aws.amazon.com/builders-library/static-stability-using-availability-zones/", "desc": "Designing so a system keeps working through a failure without having to react to it.", "tier": "d"}, {"kind": "Article", "source": "AWS Builders' Library", "title": "Timeouts, retries and backoff with jitter", "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/", "desc": "The retry mistakes that turn small failures into outages, and how to avoid them.", "tier": "d"}],
     html: `
     <h3>Fail-over</h3>
     <h4>Active-passive</h4>
@@ -1136,8 +1145,8 @@ const CHAPTERS = [
     part: "II \u00b7 The network path",
     title: "Domain name system",
     dek: "Translating names to addresses, hierarchically and with caching at every layer.",
-    video: {"id": "kU8g9_Sj290", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "Everything You Need to Know About DNS & Its Types", "duration": "7:22", "desc": "Recursive vs. authoritative resolvers, DNS records (A, AAAA, CNAME, NS, MX), Anycast routing, and GeoDNS."},
-    articles: [{"source": "Cloudflare", "title": "What is DNS? How Anycast Routing Prevents Outages", "url": "https://www.cloudflare.com/learning/dns/what-is-dns/", "desc": "Comprehensive guide to root nameservers, TLDs, authoritative lookups, and BGP Anycast routing.", "readTime": "9 min read"}, {"source": "Julia Evans", "title": "How DNS Works: A Visual Guide & Zine", "url": "https://jvns.ca/blog/2023/04/24/how-dns-works/", "desc": "Delightful and deeply technical breakdown of DNS packet inspection, TTLs, and resolver caching.", "readTime": "8 min read"}],
+    videos: [{"id": "27r4Bzuj5NQ", "tier": "s", "title": "Everything You Need to Know About DNS: Crash Course System Design #4", "channel": "ByteByteGo", "duration": "5:45", "why": "ByteByteGo's five-minute crash course on how DNS works."}, {"id": "UVR9lhUGAyU", "tier": "c", "title": "DNS Explained in 100 Seconds", "channel": "Fireship", "duration": "2:16", "why": "DNS in about two minutes."}, {"id": "AlkDbnbv7dk", "tier": "c", "title": "What happens when you type a URL into your browser?", "channel": "ByteByteGo", "duration": "5:20", "why": "What happens between typing a URL and seeing the page."}],
+    articles: [{"kind": "Article", "source": "Cloudflare Learning Center", "title": "What is DNS?", "url": "https://www.cloudflare.com/learning/dns/what-is-dns/", "desc": "Plain-language explanation of resolvers, root, TLD and authoritative servers.", "tier": "s"}, {"kind": "Interactive", "source": "howdns.works", "title": "How DNS works", "url": "https://howdns.works/", "desc": "A short illustrated story of a DNS lookup, step by step.", "tier": "c"}, {"kind": "Interactive", "source": "Julia Evans", "title": "mess with dns", "url": "https://messwithdns.net/", "desc": "A hands-on playground where you can create DNS records and watch how they behave.", "tier": "c"}],
     html: `
     <figure class="fig"><img src="${IMG.IOyLj4i}" alt="DNS lookup diagram showing hierarchical name resolution"><figcaption>Source: <a href="http://www.slideshare.net/srikrupa5/dns-security-presentation-issa" target="_blank" rel="noopener">DNS security presentation</a></figcaption></figure>
     <p>A DNS translates a domain name such as <code>www.example.com</code> into an IP address. DNS is hierarchical, with a handful of authoritative servers at the top. Your router or ISP tells you which DNS server to query. Lower-level servers cache mappings — which can go stale during propagation delays — and your browser or OS caches results too, for a period set by the record's <strong>TTL</strong>.</p>
@@ -1156,10 +1165,10 @@ const CHAPTERS = [
     part: "II \u00b7 The network path",
     title: "Content delivery network",
     dek: "Serving static \u2014 and sometimes dynamic \u2014 content from the edge, near the user.",
-    video: {"id": "kY87y4wOQ4M", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "What Is A CDN? How Does It Work?", "duration": "6:58", "desc": "Edge servers, Points of Presence (PoPs), Push vs. Pull caching, TTL invalidation, and edge computing (Workers/Lambda@Edge)."},
-    articles: [{"source": "Cloudflare", "title": "How CDN Edge Caching and Origin Shielding Work", "url": "https://www.cloudflare.com/learning/cdn/what-is-a-cdn/", "desc": "Explains origin shielding, dynamic content acceleration, cache keys, and cache hit ratio optimization.", "readTime": "7 min read"}, {"source": "Fastly Engineering", "title": "Cache Invalidation at Scale: Instant Purging", "url": "https://www.fastly.com/blog/cache-invalidation-at-scale", "desc": "How surrogate keys and globally distributed purges invalidate cached content in under 150 milliseconds.", "readTime": "8 min read"}],
+    videos: [{"id": "RI9np1LWzqw", "tier": "s", "title": "What Is A CDN? How Does It Work?", "channel": "ByteByteGo", "duration": "4:24", "why": "How a CDN works, in under five minutes."}, {"id": "Bsq5cKkS33I", "tier": "c", "title": "What is a Content Delivery Network (CDN)?", "channel": "IBM Technology", "duration": "4:36", "why": "IBM's short explainer on what a content delivery network does."}, {"id": "b4_6thkYZXs", "tier": "c", "title": "What is a CDN (Content Delivery Network)?", "channel": "Gaurav Sen", "duration": "5:43", "why": "Gaurav Sen on CDNs and how they fit into a design."}],
+    articles: [{"kind": "Article", "source": "Cloudflare Learning Center", "title": "What is a CDN?", "url": "https://www.cloudflare.com/learning/cdn/what-is-a-cdn/", "desc": "How edge caching reduces latency and load on the origin.", "tier": "s"}, {"kind": "Docs", "source": "Cloudflare", "title": "Cache (CDN) documentation", "url": "https://developers.cloudflare.com/cache/", "desc": "How cache keys, TTLs and purging work in a production CDN.", "tier": "c"}, {"kind": "Site", "source": "Netflix", "title": "Open Connect", "url": "https://openconnect.netflix.com/en/", "desc": "How Netflix delivers video by placing cache appliances inside ISP networks.", "tier": "d"}],
     html: `
-    <figure class="fig"><img src="${IMG.h9TAuGI}" alt="Content delivery network diagram showing edge servers close to users"><figcaption>Source: <a href="https://www.creative-artworks.eu/why-use-a-content-delivery-network-cdn/" target="_blank" rel="noopener">Why use a CDN</a></figcaption></figure>
+    <figure class="fig"><img src="${IMG.h9TAuGI}" alt="Content delivery network diagram showing edge servers close to users"><figcaption>Source: Why use a CDN (creative-artworks.eu; page no longer online)</figcaption></figure>
     <p>A CDN is a globally distributed network of proxy servers that serve content from locations close to the user. Typically static assets (HTML/CSS/JS, photos, video); some CDNs (CloudFront) also support dynamic content. DNS resolution tells clients which edge server to contact.</p>
     <p>Two performance wins: users get content from a nearby data center, and your own servers never see the requests the CDN absorbs.</p>
     <h3>Push CDNs</h3>
@@ -1174,8 +1183,8 @@ const CHAPTERS = [
     part: "II \u00b7 The network path",
     title: "Load balancer",
     dek: "Distributing requests, terminating SSL, and enabling horizontal scale.",
-    video: {"id": "R2j1N0R5oH0", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "Top 6 Load Balancing Algorithms Every Developer Should Know", "duration": "8:15", "desc": "Round-robin, least connections, IP hash, weighted round-robin, consistent hashing, and Layer 4 vs. Layer 7 routing comparisons."},
-    articles: [{"source": "Envoy Proxy", "title": "Introduction to Modern Network Load Balancing (Matt Klein)", "url": "https://blog.envoyproxy.io/introduction-to-modern-network-load-balancing-and-proxying-a2746a5c22a9", "desc": "The definitive industry masterclass on L4 vs L7, client-side load balancing, connection pooling, and health checking.", "readTime": "25 min read"}, {"source": "Google Research", "title": "Maglev: A Fast and Reliable Software Network Load Balancer (USENIX NSDI)", "url": "https://research.google/pubs/pub44824/", "desc": "Google's internal kernel-bypassing packet router handling millions of requests per second with consistent hashing.", "readTime": "Whitepaper \u00b7 14 pages"}],
+    videos: [{"id": "dBmxNsS3BGE", "tier": "s", "title": "Top 6 Load Balancing Algorithms Every Developer Should Know", "channel": "ByteByteGo", "duration": "5:18", "why": "The six most common load balancing algorithms explained visually."}, {"id": "K0Ta65OqQkY", "tier": "c", "title": "What is LOAD BALANCING? \u2696\ufe0f", "channel": "Gaurav Sen", "duration": "13:50", "why": "Gaurav Sen's explanation of load balancing and where it sits in a design."}, {"id": "UF9Iqmg94tk", "tier": "c", "title": "Consistent Hashing | Algorithms You Should Know #1", "channel": "ByteByteGo", "duration": "8:04", "why": "Consistent hashing \u2014 why it matters when servers come and go."}],
+    articles: [{"kind": "Book chapter", "source": "Google SRE Book", "title": "Load Balancing at the Frontend", "url": "https://sre.google/sre-book/load-balancing-frontend/", "desc": "How Google spreads traffic across data centres using DNS and virtual IPs.", "tier": "s"}, {"kind": "Book chapter", "source": "Google SRE Book", "title": "Load Balancing in the Datacenter", "url": "https://sre.google/sre-book/load-balancing-datacenter/", "desc": "How load is balanced across backends inside a data centre, and how failing tasks are handled.", "tier": "c"}, {"kind": "Paper", "source": "Google \u00b7 NSDI 2016", "title": "Maglev: A Fast and Reliable Software Network Load Balancer", "url": "https://research.google/pubs/maglev-a-fast-and-reliable-software-network-load-balancer/", "desc": "Google's software network load balancer and how it achieves consistent hashing at scale.", "tier": "d"}, {"kind": "Article", "source": "AWS Builders' Library", "title": "Workload isolation using shuffle sharding", "url": "https://aws.amazon.com/builders-library/workload-isolation-using-shuffle-sharding/", "desc": "A technique that limits the blast radius of a bad client or request.", "tier": "d"}],
     html: `
     <figure class="fig"><img src="${IMG.h81n9iK}" alt="Load balancer diagram distributing client requests across application servers"><figcaption>Source: <a href="http://horicky.blogspot.com/2010/10/scalable-system-design-patterns.html" target="_blank" rel="noopener">Scalable system design patterns</a></figcaption></figure>
     <p>Load balancers distribute incoming requests across computing resources — application servers, databases — and return each resource's response to the right client. They're effective at keeping requests away from unhealthy servers, preventing any one resource from overloading, and removing a single point of failure. They can be hardware (expensive) or software (HAProxy, e.g.).</p>
@@ -1198,8 +1207,8 @@ const CHAPTERS = [
     part: "II \u00b7 The network path",
     title: "Reverse proxy",
     dek: "A single public face for your internal services \u2014 useful even with one backend.",
-    video: {"id": "y2Zt-hG6p5g", "channel": "Hussein Nasser", "title": "Reverse Proxy vs Forward Proxy (Difference Explained)", "duration": "13:40", "desc": "Practical demonstration of reverse proxies (NGINX, HAProxy, Envoy), SSL/TLS termination, request compression, backend shielding, and caching."},
-    articles: [{"source": "Cloudflare", "title": "What Is a Reverse Proxy and Why Is It Used?", "url": "https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/", "desc": "Deep dive into security benefits, load distribution, SSL encryption offloading, and caching static responses.", "readTime": "6 min read"}, {"source": "NGINX Blog", "title": "Inside NGINX: How We Designed for Performance & Scale", "url": "https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/", "desc": "Event-driven asynchronous worker architecture vs thread-per-connection server architectures.", "readTime": "12 min read"}],
+    videos: [{"id": "4NB0NDtOwIQ", "tier": "s", "title": "Proxy vs Reverse Proxy (Real-world Examples)", "channel": "ByteByteGo", "duration": "5:17", "why": "Proxy vs. reverse proxy with real-world examples."}, {"id": "ozhe__GdWC8", "tier": "c", "title": "Proxy vs. Reverse Proxy (Explained by Example)", "channel": "Hussein Nasser", "duration": "11:06", "why": "Hussein Nasser explains proxy vs. reverse proxy by example."}, {"id": "RqfaTIWc3LQ", "tier": "c", "title": "Reverse Proxy vs API Gateway vs Load Balancer", "channel": "ByteByteGo", "duration": "3:06", "why": "How reverse proxy, API gateway and load balancer differ \u2014 in three minutes."}],
+    articles: [{"kind": "Article", "source": "Cloudflare Learning Center", "title": "What is a reverse proxy?", "url": "https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/", "desc": "What reverse proxies do: shielding servers, caching, TLS termination.", "tier": "s"}, {"kind": "Docs", "source": "NGINX", "title": "NGINX Reverse Proxy", "url": "https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/", "desc": "How to configure NGINX as a reverse proxy, including headers and buffering.", "tier": "c"}, {"kind": "Docs", "source": "Envoy", "title": "What is Envoy", "url": "https://www.envoyproxy.io/docs/envoy/latest/intro/what_is_envoy", "desc": "The design goals of a modern L4/L7 proxy widely used in service meshes.", "tier": "d"}],
     html: `
     <figure class="fig"><img src="${IMG.n41Azff}" alt="Reverse proxy diagram sitting between clients and internal servers"><figcaption>Source: <a href="https://upload.wikimedia.org/wikipedia/commons/6/67/Reverse_proxy_h2g2bob.svg" target="_blank" rel="noopener">Wikipedia</a></figcaption></figure>
     <p>A reverse proxy is a web server that centralizes internal services behind one public interface. Client requests are forwarded to whichever backend can fulfil them, and the proxy returns that response to the client.</p>
@@ -1214,8 +1223,8 @@ const CHAPTERS = [
     part: "III \u00b7 Services & data",
     title: "Application layer",
     dek: "Separating the web tier from the platform tier, and finding services at runtime.",
-    video: {"id": "ZfWlP9W65eE", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "Reverse Proxy vs API Gateway vs Load Balancer vs Service Mesh", "duration": "10:14", "desc": "Untangling modern application infrastructure: microservices decomposition, service discovery, API gateways, and Envoy service mesh."},
-    articles: [{"source": "Martin Fowler", "title": "Microservice Architecture & Circuit Breaker Pattern", "url": "https://martinfowler.com/articles/microservices.html", "desc": "The seminal essay defining microservices principles, decentralized governance, and resilient circuit breakers.", "readTime": "18 min read"}, {"source": "Microservices.io", "title": "Pattern: Saga (Distributed Transactions in Microservices)", "url": "https://microservices.io/patterns/data/saga.html", "desc": "How to maintain data consistency across microservices without 2-phase commit (choreography vs orchestration).", "readTime": "10 min read"}, {"source": "Netflix TechBlog", "title": "Fault Tolerance in a High-Volume Distributed System", "url": "https://netflixtechblog.com/fault-tolerance-in-a-high-volume-distributed-system-91ecd4dd4c7b", "desc": "How Netflix isolates service failures and prevents cascading outages using bulkheading and timeouts.", "readTime": "11 min read"}],
+    videos: [{"id": "lTAcCNbJ7KE", "tier": "s", "title": "What Are Microservices Really All About? (And When Not To Use It)", "channel": "ByteByteGo", "duration": "4:45", "why": "What microservices are about \u2014 and when not to use them."}, {"id": "rv4LlmLmVWk", "tier": "c", "title": "Microservices explained - the What, Why and How?", "channel": "TechWorld with Nana", "duration": "18:30", "why": "TechWorld with Nana's longer explainer on the what, why and how of microservices."}],
+    articles: [{"kind": "Article", "source": "Martin Fowler & James Lewis", "title": "Microservices", "url": "https://martinfowler.com/articles/microservices.html", "desc": "The essay that defined the characteristics of the microservice style.", "tier": "s"}, {"kind": "Article", "source": "Martin Fowler", "title": "Circuit Breaker", "url": "https://martinfowler.com/bliki/CircuitBreaker.html", "desc": "A pattern that stops a failing dependency from taking everything down with it.", "tier": "c"}, {"kind": "Pattern", "source": "microservices.io", "title": "Pattern: Saga", "url": "https://microservices.io/patterns/data/saga.html", "desc": "Keeping data consistent across services without distributed transactions.", "tier": "c"}, {"kind": "Article", "source": "Netflix TechBlog", "title": "Fault Tolerance in a High-Volume, Distributed System", "url": "https://netflixtechblog.com/fault-tolerance-in-a-high-volume-distributed-system-91ab4faae74a", "desc": "How the Netflix API isolates and tolerates failures in its dependencies (the origin of Hystrix).", "tier": "d"}],
     html: `
     <figure class="fig"><img src="${IMG.yB5SYwm}" alt="Application layer diagram separating the web layer, platform layer, and workers"><figcaption>Source: <a href="http://lethain.com/introduction-to-architecting-systems-for-scale/#platform_layer" target="_blank" rel="noopener">Intro to architecting systems for scale</a></figcaption></figure>
     <p>Separating the web layer from the application (platform) layer lets you scale and configure each independently — a new API means adding application servers, not necessarily web servers. The single responsibility principle favors small, autonomous services that cooperate; small teams owning small services can plan more aggressively for growth. Workers in this layer also enable <a href="#asynchronism">asynchronism</a>.</p>
@@ -1231,8 +1240,8 @@ const CHAPTERS = [
     part: "III \u00b7 Services & data",
     title: "Database",
     dek: "Scaling a relational store \u2014 replication, federation, sharding, denormalization, tuning.",
-    video: {"id": "kKjm4ehYiMs", "channel": "Amazon Web Services (AWS)", "title": "AWS re:Invent: Scaling Up to Your First 10 Million Users", "duration": "59:20", "desc": "The classic masterclass walking through scaling an SQL database from a single server to read-replicas, vertical scaling, caching, federation, and sharding."},
-    articles: [{"source": "Book", "title": "Use The Index, Luke! (Markus Winand)", "url": "https://use-the-index-luke.com/", "desc": "The definitive guide to database indexing, B-Tree internals, composite index ordering, and query execution plans.", "readTime": "Comprehensive Guide"}, {"source": "Figma Engineering", "title": "How Figma Partitioned Its PostgreSQL Databases to Scale 100x", "url": "https://www.figma.com/blog/how-figma-scaled-its-databases/", "desc": "Real-world engineering journey of horizontally partitioning relational data across multiple Postgres instances without downtime.", "readTime": "15 min read"}, {"source": "ScyllaDB", "title": "Understanding Wide-Column Stores and LSM-Tree Storage Engines", "url": "https://www.scylladb.com/glossary/wide-column-store/", "desc": "How Cassandra and ScyllaDB achieve ultra-high write throughput using MemTables, CommitLogs, and SSTables.", "readTime": "9 min read"}],
+    videos: [{"id": "_Ss42Vb1SU4", "tier": "s", "title": "SQL vs. NoSQL Explained (in 4 Minutes)", "channel": "Aced (formerly Exponent)", "duration": "4:01", "why": "SQL vs. NoSQL explained in four minutes."}, {"id": "be6PLMKKSto", "tier": "c", "title": "The Basics of Database Sharding and Partitioning in System Design", "channel": "Aced (formerly Exponent)", "duration": "6:02", "why": "The basics of database sharding and partitioning."}, {"id": "BHCSL_ZifI0", "tier": "c", "title": "DB Indexing in System Design Interviews - B-tree, Geospatial, Inverted Index, and more!", "channel": "Hello Interview", "duration": "14:16", "why": "Database indexes for system design interviews: B-tree, geospatial, inverted and more."}, {"id": "_1IKwnbscQU", "tier": "d", "title": "7 Must-know Strategies to Scale Your Database", "channel": "ByteByteGo", "duration": "8:42", "why": "Seven strategies for scaling a database."}],
+    articles: [{"kind": "Book (online)", "source": "Markus Winand", "title": "Use The Index, Luke", "url": "https://use-the-index-luke.com/", "desc": "A free guide to SQL indexing and performance for developers.", "tier": "s"}, {"kind": "Article", "source": "Figma Blog", "title": "How Figma's Databases Team Lived to Tell the Scale", "url": "https://www.figma.com/blog/how-figmas-databases-team-lived-to-tell-the-scale/", "desc": "A real-world story of horizontally sharding a Postgres stack.", "tier": "c"}, {"kind": "Article", "source": "ScyllaDB", "title": "Wide-Column Store", "url": "https://www.scylladb.com/glossary/wide-column-store/", "desc": "A concise reference on wide-column databases and their data model.", "tier": "d"}],
     html: `
     <figure class="fig"><img src="${IMG.Xkm5CXz}" alt="Database architecture diagram showing an application talking to a relational database"><figcaption>Source: <a href="https://www.youtube.com/watch?v=kKjm4ehYiMs" target="_blank" rel="noopener">Scaling up to your first 10 million users</a></figcaption></figure>
     <h3>Relational database management systems (RDBMS)</h3>
@@ -1302,8 +1311,8 @@ const CHAPTERS = [
     part: "III \u00b7 Services & data",
     title: "Cache",
     dek: "Absorbing uneven load, and the five strategies for keeping a cache honest.",
-    video: {"id": "0h6Q5r-5z-o", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "Caching Strategies Explained: System Design Fundamentals", "duration": "9:02", "desc": "In-depth comparison of Cache-Aside, Write-Through, Write-Behind (Write-Back), and Refresh-Ahead strategies, plus eviction algorithms (LRU, LFU)."},
-    articles: [{"source": "USENIX NSDI", "title": "Scaling Memcache at Facebook (Nishtala et al.)", "url": "https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf", "desc": "The landmark paper on handling billions of requests per second, lease tokens for thundering herds, and multi-region invalidation.", "readTime": "Paper \u00b7 14 pages"}, {"source": "AWS Builders' Library", "title": "Caching Challenges and Strategies (Amazon Architecture)", "url": "https://aws.amazon.com/builders-library/caching-challenges-and-strategies/", "desc": "Amazon's internal best practices on cache stampedes, negative caching, and TTL jitter to prevent thundering herds.", "readTime": "12 min read"}, {"source": "Redis Documentation", "title": "Key Eviction Policies and Memory Optimization", "url": "https://redis.io/docs/reference/eviction/", "desc": "Detailed breakdown of all LRU, LFU, volatile, and allkeys eviction algorithms under memory pressure.", "readTime": "6 min read"}],
+    videos: [{"id": "dGAgxozNWFE", "tier": "s", "title": "Cache Systems Every Developer Should Know", "channel": "ByteByteGo", "duration": "5:48", "why": "How caching works at every layer of a system, in six minutes."}, {"id": "wh98s0XhMmQ", "tier": "c", "title": "Caching Pitfalls Every Developer Should Know", "channel": "ByteByteGo", "duration": "6:41", "why": "Common caching pitfalls: stampedes, penetration, avalanches."}, {"id": "ccemOqDrc2I", "tier": "c", "title": "Basic Caching Techniques Explained - Spatial, Temporal, Distributed, Write-Through, Write-Back,Aside", "channel": "Hussein Nasser", "duration": "9:35", "why": "Cache-aside, write-through and write-back explained by Hussein Nasser."}],
+    articles: [{"kind": "Article", "source": "AWS Builders' Library", "title": "Caching challenges and strategies", "url": "https://aws.amazon.com/builders-library/caching-challenges-and-strategies/", "desc": "Trade-offs when caching for latency and availability, including modal behaviour.", "tier": "s"}, {"kind": "Paper", "source": "Facebook \u00b7 NSDI 2013", "title": "Scaling Memcache at Facebook", "url": "https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf", "desc": "How Facebook scaled memcached to billions of requests per second.", "tier": "c"}, {"kind": "Docs", "source": "Redis", "title": "Key eviction", "url": "https://redis.io/docs/latest/reference/eviction/", "desc": "How Redis chooses what to evict when memory is full.", "tier": "c"}],
     html: `
     <figure class="fig"><img src="${IMG.Q6z24La}" alt="Caching diagram: a dispatcher checking cache before hitting the database"><figcaption>Source: <a href="http://horicky.blogspot.com/2010/10/scalable-system-design-patterns.html" target="_blank" rel="noopener">Scalable system design patterns</a></figcaption></figure>
     <p>Caching improves load times and takes load off servers and databases. A dispatcher first checks whether a request's result already exists before doing the real work. Popular items skew the read distribution a database would otherwise spread evenly; a cache in front absorbs that skew and traffic spikes.</p>
@@ -1355,8 +1364,8 @@ def set_user(user_id, values):
     part: "IV \u00b7 Moving parts",
     title: "Asynchronism",
     dek: "Queues that let a request return before the real work finishes.",
-    video: {"id": "33a5g44uX34", "channel": "Hussein Nasser", "title": "What is a Message Queue and When Should You Use RabbitMQ vs Kafka?", "duration": "18:25", "desc": "Message queues vs. append-only distributed event streams, point-to-point routing vs. pub/sub, broker-managed queues vs. consumer-tracked offsets."},
-    articles: [{"source": "LinkedIn Engineering", "title": "The Log: What Every Software Engineer Should Know About Real-Time Data (Jay Kreps)", "url": "https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying", "desc": "The landmark essay by Kafka co-creator Jay Kreps establishing the append-only commit log as the core abstraction of distributed data systems.", "readTime": "30 min read"}, {"source": "Uber Engineering", "title": "Reliable Reprocessing and Dead Letter Queues with Apache Kafka", "url": "https://www.uber.com/blog/reliable-reprocessing-and-dead-letter-queues-with-apache-kafka/", "desc": "How Uber handles message processing failures, poison pills, and backpressure at massive scale.", "readTime": "10 min read"}, {"source": "Martin Kleppmann", "title": "Turning the Database Inside Out with Apache Samza / Kafka", "url": "https://martin.kleppmann.com/2015/03/04/turning-the-database-inside-out.html", "desc": "Reimagining data architecture: streams as writes, and derived materialized views as reads.", "readTime": "15 min read"}],
+    videos: [{"id": "W4_aGb_MOls", "tier": "s", "title": "What is a Message Queue and When should you use Messaging Queue Systems Like RabbitMQ and Kafka", "channel": "Hussein Nasser", "duration": "13:05", "why": "What a message queue is and when to use RabbitMQ or Kafka."}, {"id": "x4k1XEjNzYQ", "tier": "c", "title": "Kafka vs. RabbitMQ vs. Messaging Middleware vs. Pulsar", "channel": "ByteByteGo", "duration": "4:31", "why": "Kafka vs. RabbitMQ vs. other messaging middleware \u2014 how they differ."}, {"id": "-RDyEFvnTXI", "tier": "c", "title": "Apache Kafka Fundamentals You Should Know", "channel": "ByteByteGo", "duration": "4:55", "why": "Apache Kafka fundamentals in five minutes."}, {"id": "uvb00oaa3k8", "tier": "c", "title": "Kafka in 100 Seconds", "channel": "Fireship", "duration": "2:35", "why": "Kafka in about 100 seconds."}],
+    articles: [{"kind": "Docs", "source": "Apache Kafka", "title": "Introduction", "url": "https://kafka.apache.org/intro", "desc": "What event streaming is and how Kafka's topics, partitions and consumers work.", "tier": "s"}, {"kind": "Article", "source": "Jay Kreps (Wayback Machine)", "title": "The Log: What every software engineer should know about real-time data's unifying abstraction", "url": "https://web.archive.org/web/20240105095933/https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying", "desc": "The essay behind Kafka. LinkedIn removed the original page, so this is the archived copy.", "tier": "c"}, {"kind": "Article", "source": "Uber Engineering", "title": "Building Reliable Reprocessing and Dead Letter Queues with Apache Kafka", "url": "https://www.uber.com/us/en/blog/reliable-reprocessing/", "desc": "A retry/dead-letter design that avoids blocking healthy traffic.", "tier": "c"}, {"kind": "Article", "source": "Martin Kleppmann", "title": "Turning the database inside-out with Apache Samza", "url": "https://martin.kleppmann.com/2015/03/04/turning-the-database-inside-out.html", "desc": "Treating streams and materialised views as the core of data architecture.", "tier": "d"}, {"kind": "Article", "source": "AWS Builders' Library", "title": "Avoiding insurmountable queue backlogs", "url": "https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/", "desc": "Why queues can hurt you when they get deep, and how to stay out of trouble.", "tier": "d"}],
     html: `
     <figure class="fig"><img src="${IMG['54GYsSx']}" alt="Asynchronism diagram: workers processing jobs from a queue in the background"><figcaption>Source: <a href="http://lethain.com/introduction-to-architecting-systems-for-scale/#platform_layer" target="_blank" rel="noopener">Intro to architecting systems for scale</a></figcaption></figure>
     <p>Asynchronous workflows shrink request times for expensive operations that would otherwise run inline, and let time-consuming work — periodic aggregation, say — happen ahead of when it's needed.</p>
@@ -1375,10 +1384,10 @@ def set_user(user_id, values):
     part: "IV \u00b7 Moving parts",
     title: "Communication",
     dek: "HTTP, TCP, UDP, RPC, and REST \u2014 the protocols underneath every API decision.",
-    video: {"id": "yWzKJPw_VzM", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "What is RPC? gRPC Introduction & REST Comparison", "duration": "8:30", "desc": "Remote Procedure Calls, Protocol Buffers binary serialization, HTTP/2 multiplexing, and when to pick gRPC over REST."},
-    articles: [{"source": "Book (Online)", "title": "High Performance Browser Networking (Ilya Grigorik)", "url": "https://hpbn.co/", "desc": "The definitive book on TCP handshakes, TLS overhead, HTTP/2 multiplexing, and WebSocket framing.", "readTime": "Full Online Book"}, {"source": "Cloudflare", "title": "The Road to HTTP/3 and QUIC Protocol", "url": "https://blog.cloudflare.com/http-3-vs-http-2/", "desc": "Why TCP head-of-line blocking prompted UDP-based QUIC, zero-RTT connection resumption, and connection migration.", "readTime": "11 min read"}, {"source": "Brandur Leach (Stripe Architecture)", "title": "Implementing Stripe-like Idempotency Keys in Postgres", "url": "https://brandur.org/idempotency-keys", "desc": "The canonical blueprint for fault-tolerant APIs: atomic phases in PostgreSQL, recovery points, foreign state mutations, and idempotency key caching.", "readTime": "22 min read"}, {"source": "Uber Engineering", "title": "Moving from REST to gRPC at Scale across 2000+ Microservices", "url": "https://www.uber.com/blog/service-mesh/", "desc": "How Uber reduced CPU consumption and payload size by standardizing internal inter-service calls on gRPC.", "readTime": "12 min read"}],
+    videos: [{"id": "4vLxWqE94l4", "tier": "s", "title": "Top 6 Most Popular API Architecture Styles", "channel": "ByteByteGo", "duration": "4:21", "why": "The six most popular API architecture styles at a glance."}, {"id": "gnchfOojMk4", "tier": "c", "title": "What is RPC? gRPC Introduction.", "channel": "ByteByteGo", "duration": "6:09", "why": "What RPC is and how gRPC works."}, {"id": "yWzKJPw_VzM", "tier": "c", "title": "What Is GraphQL? REST vs. GraphQL", "channel": "ByteByteGo", "duration": "5:15", "why": "REST vs. GraphQL."}, {"id": "P6SZLcGE4us", "tier": "c", "title": "Top 8 Most Popular Network Protocols Explained", "channel": "ByteByteGo", "duration": "6:25", "why": "The most popular network protocols, explained."}, {"id": "uwoD5YsGACg", "tier": "c", "title": "TCP vs UDP Comparison", "channel": "PowerCert Animated Videos", "duration": "4:37", "why": "TCP vs. UDP with animations."}],
+    articles: [{"kind": "Book (online)", "source": "Ilya Grigorik", "title": "High Performance Browser Networking", "url": "https://hpbn.co/", "desc": "A free book on TCP, TLS, HTTP/2 and how the network shapes performance.", "tier": "s"}, {"kind": "Article", "source": "Cloudflare Blog", "title": "Comparing HTTP/3 vs. HTTP/2 Performance", "url": "https://blog.cloudflare.com/http-3-vs-http-2/", "desc": "Measurements of what QUIC and HTTP/3 change in practice.", "tier": "c"}, {"kind": "Article", "source": "Brandur Leach", "title": "Implementing Stripe-like Idempotency Keys in Postgres", "url": "https://brandur.org/idempotency-keys", "desc": "A detailed design for safely retryable API requests.", "tier": "c"}, {"kind": "Docs", "source": "gRPC", "title": "Core concepts, architecture and lifecycle", "url": "https://grpc.io/docs/what-is-grpc/core-concepts/", "desc": "Service definitions, streaming modes and the RPC lifecycle.", "tier": "c"}, {"kind": "Guide", "source": "Google Cloud", "title": "API design guide", "url": "https://cloud.google.com/apis/design", "desc": "Resource-oriented API design conventions used across Google APIs.", "tier": "d"}],
     html: `
-    <figure class="fig"><img src="${IMG['5KeocQs']}" alt="OSI seven-layer model diagram"><figcaption>Source: <a href="http://www.escotal.com/osilayer.html" target="_blank" rel="noopener">OSI 7 layer model</a></figcaption></figure>
+    <figure class="fig"><img src="${IMG['5KeocQs']}" alt="OSI seven-layer model diagram"><figcaption>Source: OSI 7 layer model (escotal.com; page no longer online)</figcaption></figure>
     <h3>HTTP</h3>
     <p>A request/response protocol for encoding and transporting data between client and server, self-contained enough to flow through routers and intermediaries doing load balancing, caching, encryption, and compression along the way. A request is a verb plus a resource:</p>
     <div class="table-wrap"><table><tr><th>Verb</th><th>Description</th><th>Idempotent</th><th>Safe</th><th>Cacheable</th></tr>
@@ -1528,8 +1537,8 @@ def set_user(user_id, values):
     part: "IV \u00b7 Moving parts",
     title: "Security",
     dek: "The basics almost every design question expects, even in outline.",
-    video: {"id": "CPbvxxslDTU", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "OAuth 2.0 Explained in Simple Terms", "duration": "9:45", "desc": "Authentication vs. Authorization, OAuth 2.0 grant types (Authorization Code with PKCE), JWT tokens, and identity provider handshakes."},
-    articles: [{"source": "Cloudflare", "title": "How TLS 1.3 Works: Zero-RTT Handshakes and Forward Secrecy", "url": "https://www.cloudflare.com/learning/ssl/what-is-tls/", "desc": "How TLS 1.3 dropped the cryptographic handshake round-trip from 2 RTTs to 1 RTT (and 0-RTT for resumed sessions).", "readTime": "8 min read"}, {"source": "Stripe Engineering", "title": "Scaling Your API with Rate Limiters (Token Bucket & Leaky Bucket Algorithms)", "url": "https://stripe.com/blog/rate-limiters", "desc": "Stripe's battle-tested rate limiting architecture using Redis counters and sliding window logs to prevent API abuse.", "readTime": "14 min read"}, {"source": "OWASP", "title": "Top 10 API Security Risks & Mitigation", "url": "https://owasp.org/www-project-api-security/", "desc": "Essential security checklist covering Broken Object Level Authorization (BOLA), mass assignment, and injection vulnerabilities.", "readTime": "Reference"}],
+    videos: [{"id": "ZV5yTm4pT8g", "tier": "s", "title": "OAuth 2 Explained In Simple Terms", "channel": "ByteByteGo", "duration": "4:32", "why": "OAuth 2 explained in simple terms."}, {"id": "fyTxwIa-1U0", "tier": "c", "title": "Session Vs JWT: The Differences You May Not Know!", "channel": "ByteByteGo", "duration": "7:00", "why": "Sessions vs. JWTs \u2014 how they differ and when to use each."}, {"id": "t18YB3xDfXI", "tier": "c", "title": "An Illustrated Guide to OAuth and OpenID Connect", "channel": "OktaDev", "duration": "16:36", "why": "An illustrated guide to OAuth and OpenID Connect."}, {"id": "YXkOdWBwqaA", "tier": "c", "title": "Rate Limiter System Design: Token Bucket, Leaky Bucket, Scaling", "channel": "ByteByteGo", "duration": "7:46", "why": "Rate limiter design: token bucket, leaky bucket and scaling."}],
+    articles: [{"kind": "Reference", "source": "OWASP", "title": "OWASP Top 10", "url": "https://owasp.org/projects/top-ten", "desc": "The standard awareness list of the most critical web application security risks.", "tier": "s"}, {"kind": "Reference", "source": "OWASP", "title": "API Security Top 10", "url": "https://api-security.owasp.org/", "desc": "The ten most critical API security risks.", "tier": "c"}, {"kind": "Article", "source": "Aaron Parecki", "title": "OAuth 2 Simplified", "url": "https://aaronparecki.com/oauth-2-simplified/", "desc": "A short, practical guide to the OAuth 2 flows.", "tier": "c"}, {"kind": "Guide", "source": "jwt.io", "title": "Introduction to JSON Web Tokens", "url": "https://www.jwt.io/introduction", "desc": "What JWTs are, their structure and when to use them.", "tier": "c"}, {"kind": "Article", "source": "Cloudflare Learning Center", "title": "What is TLS?", "url": "https://www.cloudflare.com/learning/ssl/what-is-tls/", "desc": "How the TLS handshake secures traffic between client and server.", "tier": "c"}, {"kind": "Article", "source": "Stripe", "title": "Scaling your API with rate limiters", "url": "https://stripe.com/blog/rate-limiters", "desc": "The rate limiting and load shedding techniques Stripe uses in production.", "tier": "d"}],
     html: `
     <p>Security is its own vast field, and unless you have real depth here — or the role explicitly demands it — an interview rarely wants more than the fundamentals stated clearly:</p>
     <ul>
@@ -1584,8 +1593,8 @@ def set_user(user_id, values):
     part: "Appendix",
     title: "Reference tables",
     dek: "Powers of two, and the latency numbers every programmer should know by heart.",
-    video: {"id": "yPf_h3q2yqY", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "Back-of-the-Envelope Estimation for System Design Interviews", "duration": "7:15", "desc": "Rules of thumb for QPS, daily storage calculations, network bandwidth math, and powers of two conversions."},
-    articles: [{"source": "Interactive Tool", "title": "Interactive Latency Numbers Every Programmer Should Know (Colin Scott)", "url": "https://colin-scott.github.io/personal_website/research/interactive_latency.html", "desc": "Sliders from 1990 to 2026 showing how CPU cache, RAM, SSD, and cross-datacenter latencies have evolved.", "readTime": "Interactive Tool"}, {"source": "Google Stanford Talk", "title": "Building Software Systems at Google and Lessons Learned (Jeff Dean)", "url": "https://static.googleusercontent.com/media/research.google.com/en//people/jeff/stanford-cs295-talk.pdf", "desc": "Jeff Dean's famous lecture introducing back-of-the-envelope calculations and BigTable/MapReduce insights.", "readTime": "Slide Deck \u00b7 58 slides"}, {"source": "Essay", "title": "Teach Yourself Programming in Ten Years (Peter Norvig)", "url": "https://norvig.com/21-days.html", "desc": "Google Director of Research Peter Norvig on building deep engineering competence.", "readTime": "10 min read"}],
+    videos: [{"id": "UC5xf8FbdJc", "tier": "s", "title": "Back-Of-The-Envelope Estimation / Capacity Planning", "channel": "ByteByteGo", "duration": "8:32", "why": "Back-of-the-envelope estimation and capacity planning."}, {"id": "xbgzl2maQUU", "tier": "c", "title": "Algorithms You Should Know Before System Design Interviews", "channel": "ByteByteGo", "duration": "6:55", "why": "The core algorithms worth knowing before a system design interview."}],
+    articles: [{"kind": "Interactive", "source": "Colin Scott", "title": "Numbers Every Programmer Should Know By Year", "url": "https://colin-scott.github.io/personal_website/research/interactive_latency.html", "desc": "An interactive table showing how typical latencies change over the years.", "tier": "s"}, {"kind": "Slides", "source": "Jeff Dean \u00b7 LADIS 2009", "title": "Designs, Lessons and Advice from Building Large Distributed Systems", "url": "https://www.cs.cornell.edu/projects/ladis2009/talks/dean-keynote-ladis2009.pdf", "desc": "A keynote with the well-known list of numbers and lessons from building Google's systems.", "tier": "c"}, {"kind": "Reference", "source": "GitHub Gist", "title": "Latency Numbers Every Programmer Should Know", "url": "https://gist.github.com/jboner/2841832", "desc": "The classic reference table.", "tier": "c"}, {"kind": "Essay", "source": "Peter Norvig", "title": "Teach Yourself Programming in Ten Years", "url": "https://norvig.com/21-days.html", "desc": "A famous essay on how long real expertise takes; it also lists common timing figures.", "tier": "d"}],
     html: `
     <p>You'll often be asked to do a rough estimate by hand — how long to generate 100 thumbnails from disk, how much memory a structure needs. These two tables are the ones worth memorizing.</p>
     <h3>Powers of two</h3>
@@ -1626,8 +1635,8 @@ def set_user(user_id, values):
     part: "V \u00b7 Classic Case Studies",
     title: "Case study: URL Shortener (TinyURL / Pastebin)",
     dek: "Designing a high-throughput, low-latency URL shortening service with Base62 encoding and pre-generated keys.",
-    video: {"id": "fMZMm_0ZhK4", "channel": "Tushar Roy", "title": "System Design: Design a Service Like TinyURL", "duration": "28:14", "desc": "The classic whiteboard walkthrough covering Base62 encoding, hash collisions, Key Generation Service (KGS), distributed counters, caching, and read/write trade-offs."},
-    articles: [{"source": "High Scalability", "title": "System Design: URL Shortener / Pastebin Architecture", "url": "http://highscalability.com/blog/2014/9/22/system-design-tinyurl-and-pastebin.html", "desc": "Detailed discussion of MD5 vs 64-bit base conversion, range partitioning, and high-read cache scaling.", "readTime": "12 min read"}, {"source": "GitHub Primer", "title": "Design Pastebin.com Solution & Code", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/pastebin", "desc": "Donne Martin's complete breakdown with relational vs NoSQL schemas, write/read paths, and trade-off analysis.", "readTime": "Exercise & Solution"}],
+    videos: [{"id": "qSJAvd5Mgio", "tier": "s", "title": "Design a URL Shortener (Bitly) - System Design Interview", "channel": "NeetCodeIO", "duration": "48:33", "why": "NeetCode's full walkthrough of designing a URL shortener."}, {"id": "iUU4O1sWtJA", "tier": "c", "title": "Beginner System Design Interview: Design Bitly w/ a Ex-Meta Staff Engineer", "channel": "Hello Interview", "duration": "59:30", "why": "Design Bitly with a former Meta staff engineer."}, {"id": "Cg3XIqs_-4c", "tier": "c", "title": "Tiny URL - System Design Interview Question (URL shortener)", "channel": "TechPrep", "duration": "9:39", "why": "A quick TinyURL design walkthrough."}, {"id": "fMZMm_0ZhK4", "tier": "d", "title": "System Design : Design a service like TinyUrl", "channel": "Tushar Roy - Coding Made Simple", "duration": "24:10", "why": "Tushar Roy on designing a TinyURL-like service."}],
+    articles: [{"kind": "Guide", "source": "Hello Interview", "title": "Design a URL Shortener Like Bitly", "url": "https://www.hellointerview.com/learn/system-design/problem-breakdowns/bitly", "desc": "A worked answer covering requirements, ID generation, caching and scaling.", "tier": "s"}, {"kind": "Solution", "source": "GitHub \u00b7 System Design Primer", "title": "Design Pastebin.com (or Bit.ly)", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/pastebin", "desc": "The primer's own worked solution with code and diagrams.", "tier": "c"}],
     html: `
     <div class="case-banner">
       <span class="case-tag">Interview Classic</span>
@@ -1711,8 +1720,8 @@ def set_user(user_id, values):
     part: "V \u00b7 Classic Case Studies",
     title: "Case study: Twitter Timeline & News Feed",
     dek: "Generating real-time news feeds at scale: comparing Fan-out on Write vs. Fan-out on Read and hybrid architectures.",
-    video: {"id": "KmAyPUv9Ab8", "channel": "Gaurav Sen", "title": "System Design: Twitter Timeline and Search", "duration": "22:50", "desc": "Deep dive into timeline generation: Fan-out on write (push model) vs. Fan-out on read (pull model), handling high-follower celebrity accounts with a hybrid approach, and distributed caching."},
-    articles: [{"source": "Twitter Engineering", "title": "Timelines at Scale: Under the Hood of Twitter\u2019s Delivery Pipeline", "url": "https://blog.x.com/engineering/en_us/topics/infrastructure/2013/timelines-at-scale", "desc": "How Twitter processes 300,000 timeline deliveries per second using Redis clusters and in-memory caches.", "readTime": "14 min read"}, {"source": "GitHub Primer", "title": "Design Twitter Timeline and Search Solution", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/twitter", "desc": "End-to-end architecture with fan-out services, search cluster inverted indexes, and trade-offs.", "readTime": "Exercise & Solution"}],
+    videos: [{"id": "o5n85GRKuzk", "tier": "s", "title": "Design Twitter - System Design Interview", "channel": "NeetCode", "duration": "26:16", "why": "NeetCode designs a Twitter-style feed."}, {"id": "Nfa-uUHuFHg", "tier": "c", "title": "System Design Interview Walkthrough: Design Twitter", "channel": "Hello Interview", "duration": "23:04", "why": "A system design walkthrough of Twitter."}, {"id": "FEkXjNFrL1o", "tier": "c", "title": "Twitter Timeline Architecture |  Fanout | System Design", "channel": "ByteMonk", "duration": "5:43", "why": "Fan-out and Twitter timeline architecture."}],
+    articles: [{"kind": "Talk", "source": "Raffi Krikorian \u00b7 InfoQ", "title": "Timelines at Scale", "url": "https://www.infoq.com/presentations/Twitter-Timeline-Scalability", "desc": "Twitter's engineering lead on how timelines are delivered at scale.", "tier": "s"}, {"kind": "Article", "source": "High Scalability", "title": "The Architecture Twitter Uses to Deal with 150M Active Users, 300K QPS\u2026", "url": "https://highscalability.com/the-architecture-twitter-uses-to-deal-with-150m-active-users/", "desc": "A summary of Twitter's fan-out-on-write architecture and its trade-offs.", "tier": "c"}, {"kind": "Solution", "source": "GitHub \u00b7 System Design Primer", "title": "Design the Twitter timeline and search", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/twitter", "desc": "The primer's worked solution.", "tier": "c"}, {"kind": "Guide", "source": "Hello Interview", "title": "Design Facebook's News Feed", "url": "https://www.hellointerview.com/learn/system-design/problem-breakdowns/fb-news-feed", "desc": "A worked answer on fan-out, ranking and hot accounts.", "tier": "c"}],
     html: `
     <div class="case-banner">
       <span class="case-tag">High Concurrency</span>
@@ -1776,8 +1785,8 @@ def set_user(user_id, values):
     part: "V \u00b7 Classic Case Studies",
     title: "Case study: Distributed Web Crawler",
     dek: "Building a scalable, polite, and fault-tolerant crawler that discovers, downloads, and indexes billions of web pages.",
-    video: {"id": "BKq34T7n2fM", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "System Design: Design a Web Crawler", "duration": "11:30", "desc": "Architecture of a web-scale distributed crawler: URL Frontier queue, politeness policy, DNS resolver cache, HTML downloader, SimHash duplicate detection, and object storage."},
-    articles: [{"source": "Stanford Paper", "title": "The Anatomy of a Large-Scale Hypertextual Web Search Engine (Brin & Page)", "url": "http://infolab.stanford.edu/~backrub/google.html", "desc": "The original paper by Google's founders detailing web crawling, PageRank computation, and document indexing.", "readTime": "Landmark Paper \u00b7 20 pages"}, {"source": "GitHub Primer", "title": "Design a Web Crawler Solution", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/web_crawler", "desc": "Full architectural breakdown with URL frontier state machines, duplicate filtering, and blob storage.", "readTime": "Exercise & Solution"}],
+    videos: [{"id": "krsuaUp__pM", "tier": "s", "title": "Design a Web Crawler System Design Interview w/ a Ex-Meta Staff Engineer", "channel": "Hello Interview", "duration": "1:05:04", "why": "A full web-crawler design with a former Meta staff engineer."}, {"id": "6u25GckPhLU", "tier": "c", "title": "Design a Web Crawler: FAANG Interview Question", "channel": "ByteByteGo", "duration": "5:41", "why": "A five-minute overview of designing a web crawler."}, {"id": "MdWvMX4J-Vc", "tier": "d", "title": "8: Design a Web Crawler | Systems Design Interview Questions With Ex-Google SWE", "channel": "Jordan has no life", "duration": "32:05", "why": "A longer design walkthrough of a web crawler."}],
+    articles: [{"kind": "Paper", "source": "Brin & Page \u00b7 Stanford", "title": "The Anatomy of a Large-Scale Hypertextual Web Search Engine", "url": "http://infolab.stanford.edu/~backrub/google.html", "desc": "The original description of Google's crawler and index.", "tier": "s"}, {"kind": "Solution", "source": "GitHub \u00b7 System Design Primer", "title": "Design a web crawler", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/web_crawler", "desc": "The primer's worked solution.", "tier": "c"}, {"kind": "Guide", "source": "Hello Interview", "title": "Design a Web Crawler", "url": "https://www.hellointerview.com/learn/system-design/problem-breakdowns/web-crawler", "desc": "A worked answer on frontier queues, politeness and de-duplication.", "tier": "c"}],
     html: `
     <div class="case-banner">
       <span class="case-tag">Distributed Pipeline</span>
@@ -1835,8 +1844,8 @@ def set_user(user_id, values):
     part: "V \u00b7 Classic Case Studies",
     title: "Case study: Real-Time Chat System (WhatsApp / Messenger / Slack)",
     dek: "Designing a high-concurrency messaging system with stateful WebSockets, message sync, and presence servers.",
-    video: {"id": "vvhC64DZhtc", "channel": "ByteByteGo \u00b7 Alex Xu", "title": "System Design: Design a Chat System (WhatsApp / Discord / Slack)", "duration": "13:45", "desc": "Stateful WebSocket gateways, connection managers, Presence server for online/offline status, message sync across multiple devices, and distributed message store (HBase/Cassandra)."},
-    articles: [{"source": "Erlang Solutions", "title": "How WhatsApp Scaled to 1 Billion Users with Only 50 Engineers", "url": "https://www.erlang-solutions.com/blog/how-whatsapp-scaled-to-1-billion-users-with-only-50-engineers/", "desc": "How WhatsApp optimized FreeBSD and Erlang BEAM to handle 2+ million concurrent WebSocket connections per server.", "readTime": "11 min read"}, {"source": "Discord Engineering", "title": "How Discord Stores Billions of Messages with ScyllaDB", "url": "https://discord.com/blog/how-discord-stores-billions-of-messages", "desc": "Why Discord migrated from MongoDB to Cassandra, and then to ScyllaDB to conquer GC latency spikes.", "readTime": "15 min read"}],
+    videos: [{"id": "vvhC64hQZMk", "tier": "s", "title": "WHATSAPP System Design: Chat Messaging Systems for Interviews", "channel": "Gaurav Sen", "duration": "25:15", "why": "Gaurav Sen on designing WhatsApp-style chat messaging."}, {"id": "okrR1KXNLtA", "tier": "c", "title": "FAANG System Design Interview: Design A Chat System (WhatsApp, Facebook Messenger, Discord, Slack)", "channel": "ByteByteGo", "duration": "8:45", "why": "ByteByteGo's chat system design (WhatsApp, Messenger, Discord, Slack)."}, {"id": "cr6p0n0N-VA", "tier": "c", "title": "Design Whatsapp: System Design Interview w/ a Ex-Meta Senior Manager", "channel": "Hello Interview", "duration": "58:12", "why": "Design WhatsApp with a former Meta senior manager."}],
+    articles: [{"kind": "Article", "source": "Discord Blog", "title": "How Discord Stores Trillions of Messages", "url": "https://discord.com/blog/how-discord-stores-trillions-of-messages", "desc": "Discord's migration of its message store to ScyllaDB and the changes around it.", "tier": "s"}, {"kind": "Article", "source": "Discord Blog", "title": "How Discord Stores Billions of Messages", "url": "https://discord.com/blog/how-discord-stores-billions-of-messages", "desc": "The earlier story of how Discord's message storage evolved.", "tier": "c"}, {"kind": "Guide", "source": "Hello Interview", "title": "Design a Messaging App Like WhatsApp", "url": "https://www.hellointerview.com/learn/system-design/problem-breakdowns/whatsapp", "desc": "A worked answer on connections, delivery guarantees and fan-out.", "tier": "c"}],
     html: `
     <div class="case-banner">
       <span class="case-tag">Real-Time Web</span>
@@ -1891,8 +1900,8 @@ def set_user(user_id, values):
     part: "V \u00b7 Classic Case Studies",
     title: "Case study: Scaling to Millions of Users on AWS",
     dek: "A step-by-step evolutionary blueprint for scaling a web application from 1 to 10,000,000 users on AWS.",
-    video: {"id": "kKjm4ehYiMs", "channel": "Amazon Web Services (AWS)", "title": "AWS re:Invent: Next-Generation Scaling Architecture", "duration": "59:20", "desc": "The iconic architecture journey: starting with a single EC2 instance, introducing RDS Multi-AZ, adding Elasticache Redis, horizontal Auto Scaling with ALB, CloudFront CDN, and SQS decoupling."},
-    articles: [{"source": "AWS Architecture", "title": "Architecting for the Cloud: AWS Best Practices", "url": "https://docs.aws.amazon.com/whitepapers/latest/architecting-for-the-cloud/welcome.html", "desc": "Official AWS whitepaper on disposable resources, decoupling with queues, stateless applications, and failure domains.", "readTime": "Whitepaper \u00b7 25 pages"}, {"source": "GitHub Primer", "title": "Scaling to Millions of Users on AWS Solution", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/scaling_aws", "desc": "Step-by-step benchmark evolution from 1 to 10M+ users with component diagrams.", "readTime": "Exercise & Solution"}],
+    videos: [{"id": "kKjm4ehYiMs", "tier": "s", "title": "AWS re:Invent 2019: [REPEAT] Scaling up to your first 10 million users (ARC211-R)", "channel": "AWS Events", "duration": "56:20", "why": "AWS re:Invent session on scaling up to your first 10 million users."}, {"id": "ejofP2VKu-4", "tier": "c", "title": "System Design: Scale System From Zero To Million Users | #systemdesign", "channel": "Dev Sense", "duration": "9:24", "why": "Scaling a system from zero to a million users."}, {"id": "tjubQ97lxA4", "tier": "d", "title": "Scale an App to Millions of Users - System Design", "channel": "Caleb Curry", "duration": "45:51", "why": "A 45-minute walkthrough of scaling an app to millions of users."}],
+    articles: [{"kind": "Solution", "source": "GitHub \u00b7 System Design Primer", "title": "Design a system that scales to millions of users on AWS", "url": "https://github.com/donnemartin/system-design-primer/tree/master/solutions/system_design/scaling_aws", "desc": "The primer's step-by-step scaling solution.", "tier": "s"}, {"kind": "Docs", "source": "AWS", "title": "AWS Well-Architected Framework", "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html", "desc": "AWS's framework of best practices for building reliable, secure, efficient systems.", "tier": "c"}],
     html: `
     <div class="case-banner">
       <span class="case-tag">Cloud Architecture</span>
@@ -1935,70 +1944,90 @@ def set_user(user_id, values):
 
 
 /* ---------------- Helper Render Functions ---------------- */
-function renderVideoCard(v) {
-  if (!v || !v.id) return '';
-  return `
-    <div class="media-section">
-      <div class="media-label">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-        Featured Lecture &amp; Walkthrough
+const TIER_LABEL = {s:'Start here', c:'Core', d:'Deep dive'};
+const escH = t => String(t).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+const PLAY_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const PART_COLOR = {
+  'Front matter':'var(--s1)', 'I · Foundations':'var(--s2)', 'II · The network path':'var(--s3)',
+  'III · Services & data':'var(--s4)', 'IV · Moving parts':'var(--s5)', 'Appendix':'var(--ink-muted)',
+  'V · Classic Case Studies':'var(--s6)'
+};
+
+function renderVideos(list) {
+  if (!list || !list.length) return '';
+  const cards = list.map(v => `
+    <article class="video-card">
+      <div class="video-embed-wrap" data-video-id="${v.id}" title="Click to play inside this page">
+        <img class="video-thumb" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">
+        <button class="video-play-btn" type="button" aria-label="Play: ${escH(v.title)}">${PLAY_SVG}</button>
+        <span class="video-duration">${v.duration}</span>
       </div>
-      <div class="video-card">
-        <div class="video-embed-wrap" data-video-id="${v.id}" title="Click to play video inside this page">
-          <img class="video-thumb" src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="${v.title}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${v.id}/0.jpg'">
-          <button class="video-play-btn" aria-label="Play video inline">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-          <span class="video-duration">${v.duration || 'Video'}</span>
-        </div>
-        <div class="video-meta">
-          <span class="channel">${v.channel}</span>
-          <h4>${v.title}</h4>
-          <p>${v.desc}</p>
-          <div class="video-links">
-            <span class="play-now-hint">▶ Click thumbnail to play inline</span>
-            <a class="ext-link" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">Open in YouTube ↗</a>
-          </div>
-        </div>
+      <div class="video-meta">
+        <div class="vtags"><span class="tag ${v.tier}">${TIER_LABEL[v.tier]}</span></div>
+        <h4>${escH(v.title)}</h4>
+        <span class="channel">${escH(v.channel)}</span>
+        <p>${escH(v.why)}</p>
+        <div class="video-links"><a class="ext-link" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">Open on YouTube ↗</a></div>
       </div>
-    </div>
-  `;
+    </article>`).join('');
+  return `<div class="media-section" id="watch-${list[0].id}"><div class="media-label">▶ Watch · ${list.length} video${list.length>1?'s':''} · click a thumbnail to play in the page</div><div class="video-grid">${cards}</div></div>`;
 }
 
 function renderArticlesDeck(articles) {
   if (!articles || !articles.length) return '';
   const cards = articles.map(a => `
     <a class="article-card" href="${a.url}" target="_blank" rel="noopener">
-      <div class="article-card-header">
-        <span class="article-source-badge">${a.source}</span>
-        ${a.readTime ? `<span class="article-read-time">${a.readTime}</span>` : ''}
-      </div>
-      <div class="article-card-title">${a.title} ↗</div>
-      <div class="article-card-desc">${a.desc}</div>
-    </a>
-  `).join('');
-
-  return `
-    <div class="deep-dives-section">
-      <div class="deep-dives-header">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        Seminal engineering articles &amp; deep dives
-      </div>
-      <div class="article-deck">
-        ${cards}
-      </div>
-    </div>
-  `;
+      <div class="article-card-header"><span class="tag ${a.tier}">${TIER_LABEL[a.tier]}</span><span class="article-source-badge">${escH(a.kind)}</span></div>
+      <div class="article-card-title">${escH(a.title)} ↗</div>
+      <div class="article-card-source">${escH(a.source)}</div>
+      <div class="article-card-desc">${escH(a.desc)}</div>
+    </a>`).join('');
+  return `<div class="deep-dives-section"><div class="deep-dives-header">📄 Read &amp; go deeper · ${articles.length} handpicked</div><div class="article-deck">${cards}</div></div>`;
 }
+
+/* ---------------- Reading progress (saved in this browser) ---------------- */
+const READ_KEY = 'sdBook.read.v1';
+let readSet = new Set();
+try { readSet = new Set(JSON.parse(localStorage.getItem(READ_KEY) || '[]')); } catch (e) {}
+const saveRead = () => { try { localStorage.setItem(READ_KEY, JSON.stringify([...readSet])); } catch (e) {} };
 
 /* ---------------- Build TOC + pages ---------------- */
 const tocEl = document.getElementById('toc');
 const pageEl = document.getElementById('page');
 let lastPart = null;
+
+/* hero + part cards */
+const PARTS = [];
+CHAPTERS.forEach(c => {
+  let p = PARTS.find(x => x.name === c.part);
+  if (!p) { p = { name: c.part, ids: [], first: c.id, n: PARTS.length }; PARTS.push(p); }
+  p.ids.push(c.id);
+});
+const nVideos = CHAPTERS.reduce((n, c) => n + (c.videos ? c.videos.length : 0), 0);
+const nArticles = CHAPTERS.reduce((n, c) => n + (c.articles ? c.articles.length : 0), 0);
+const nCases = CHAPTERS.filter(c => c.id.startsWith('case-')).length;
+pageEl.insertAdjacentHTML('beforeend', `
+  <section class="book-hero" id="top">
+    <span class="pill">📖 The System Design Primer · Interactive edition</span>
+    <h2>From “what is scalability” to <em>designing WhatsApp</em>.</h2>
+    <p class="lead">Donne Martin’s legendary primer, with every chapter paired with handpicked videos you can play right here and the best articles to go deeper. Read in order, or jump to what you need.</p>
+    <div class="book-stats">
+      <div><b>${CHAPTERS.length}</b><span>chapters</span></div>
+      <div><b>${nVideos}</b><span>playable videos</span></div>
+      <div><b>${nArticles}</b><span>curated articles</span></div>
+      <div><b>${nCases}</b><span>interview case studies</span></div>
+    </div>
+    <h3 class="path-title">Pick a starting point</h3>
+    <p class="path-sub">Beginners: go top to bottom. In a hurry: start with Front matter, then jump to the case studies.</p>
+    <div class="path">${PARTS.map(p => `<a href="#${p.first}" style="--c:${PART_COLOR[p.name] || 'var(--spine)'}"><div class="pn">${p.name.split(' · ')[0] === p.name ? 'Part' : 'Part ' + p.name.split(' · ')[0]}</div><div class="pt">${(p.name.split(' · ')[1]) || p.name}</div><div class="pw">${p.ids.length} chapter${p.ids.length>1?'s':''}</div><div class="bar"><i data-part-bar="${p.n}"></i></div></a>`).join('')}</div>
+  </section>`);
+
 CHAPTERS.forEach((ch, i) => {
+  const color = PART_COLOR[ch.part] || 'var(--spine)';
   if (ch.part !== lastPart) {
     const label = document.createElement('div');
     label.className = 'group-label';
+    label.style.setProperty('--c', color);
     label.textContent = ch.part;
     tocEl.appendChild(label);
     lastPart = ch.part;
@@ -2006,44 +2035,70 @@ CHAPTERS.forEach((ch, i) => {
   const a = document.createElement('a');
   a.href = '#' + ch.id;
   a.dataset.id = ch.id;
-  a.innerHTML = `<span class="num">${String(i+1).padStart(2,'0')}</span>${ch.title}`;
+  a.style.setProperty('--c', color);
+  a.innerHTML = `<span class="num">${String(i+1).padStart(2,'0')}</span><span class="name">${ch.title}</span><span class="tick">✓</span>`;
   tocEl.appendChild(a);
 
+  const prev = CHAPTERS[i-1], next = CHAPTERS[i+1];
+  const nv = ch.videos ? ch.videos.length : 0, na = ch.articles ? ch.articles.length : 0;
   const sec = document.createElement('section');
   sec.className = 'chapter';
   sec.id = ch.id;
+  sec.style.setProperty('--c', color);
   sec.innerHTML = `
-    <div class="eyebrow">${ch.part}</div>
-    <h2>${ch.title}</h2>
-    <p class="dek">${ch.dek}</p>
-    ${renderVideoCard(ch.video)}
-    <div class="prose">
-      ${ch.html}
-      ${renderArticlesDeck(ch.articles)}
+    <div class="chapter-head">
+      <div class="chapter-num">${String(i+1).padStart(2,'0')}</div>
+      <div><div class="eyebrow">${ch.part}</div><h2>${ch.title}</h2><p class="dek">${ch.dek}</p></div>
+    </div>
+    <div class="chapter-jump">
+      ${nv ? `<a href="#watch-${ch.videos[0].id}">▶ ${nv} video${nv>1?'s':''}</a>` : ''}
+      ${na ? `<a href="#read-${ch.id}">📄 ${na} article${na>1?'s':''}</a>` : ''}
+    </div>
+    <div class="prose">${ch.html}</div>
+    ${renderVideos(ch.videos)}
+    <div id="read-${ch.id}">${renderArticlesDeck(ch.articles)}</div>
+    <div class="chapter-foot">
+      <button class="read-btn" type="button" data-read="${ch.id}">☐ Mark chapter as read</button>
+      <div class="chapter-nav">
+        ${prev ? `<a class="prev" href="#${prev.id}"><small>← Previous</small><span>${prev.title}</span></a>` : ''}
+        ${next ? `<a class="next" href="#${next.id}"><small>Next →</small><span>${next.title}</span></a>` : ''}
+      </div>
     </div>
   `;
   pageEl.appendChild(sec);
 });
 
-// Append Internet Hidden Toolbox to Table of Contents
-const toolboxGroupLabel = document.createElement("div");
-toolboxGroupLabel.className = "group-label";
-toolboxGroupLabel.textContent = "Bonus · Library";
-tocEl.appendChild(toolboxGroupLabel);
-
-const tbTocA = document.createElement("a");
-tbTocA.href = "toolbox.html";
-tbTocA.innerHTML = `<span class="num">🧰</span>Internet Hidden Toolbox ↗`;
-tbTocA.style.fontWeight = "600";
-tbTocA.style.color = "var(--spine)";
-tocEl.appendChild(tbTocA);
-
-const rmTocA = document.createElement("a");
-rmTocA.href = "ai-engineer-roadmap.html";
-rmTocA.innerHTML = `<span class="num">🧭</span>AI Engineer Roadmap ↗`;
-rmTocA.style.fontWeight = "600";
-rmTocA.style.color = "var(--spine)";
-tocEl.appendChild(rmTocA);
+/* read progress wiring */
+function updateReadUI() {
+  const total = CHAPTERS.length, done = CHAPTERS.filter(c => readSet.has(c.id)).length;
+  const pct = Math.round(100 * done / total);
+  document.getElementById('bookPct').textContent = pct + '%';
+  document.getElementById('bookFrac').textContent = done + '/' + total;
+  document.getElementById('bookBar').style.width = pct + '%';
+  CHAPTERS.forEach(c => {
+    const on = readSet.has(c.id);
+    const a = tocEl.querySelector('a[data-id="' + c.id + '"]'); if (a) a.classList.toggle('is-read', on);
+    const b = document.querySelector('.read-btn[data-read="' + c.id + '"]');
+    if (b) { b.classList.toggle('on', on); b.textContent = on ? '✓ Read — click to undo' : '☐ Mark chapter as read'; }
+  });
+  PARTS.forEach(p => {
+    const el = document.querySelector('[data-part-bar="' + p.n + '"]');
+    if (el) el.style.width = (100 * p.ids.filter(id => readSet.has(id)).length / p.ids.length) + '%';
+  });
+}
+pageEl.addEventListener('click', e => {
+  const b = e.target.closest('.read-btn'); if (!b) return;
+  const id = b.dataset.read;
+  readSet.has(id) ? readSet.delete(id) : readSet.add(id);
+  saveRead(); updateReadUI();
+});
+document.getElementById('continueBtn').addEventListener('click', () => {
+  const next = CHAPTERS.find(c => !readSet.has(c.id));
+  if (!next) { document.getElementById('top').scrollIntoView({behavior:'smooth'}); return; }
+  document.getElementById(next.id).scrollIntoView({behavior:'smooth', block:'start'});
+  if (window.innerWidth <= 860) closeSidebar();
+});
+updateReadUI();
 
 
 /* ---------------- Inline Video Playback ---------------- */
@@ -2139,8 +2194,8 @@ const resultsEl = document.getElementById('searchResults');
 function buildIndex(){
   return CHAPTERS.map(ch => {
     let extra = '';
-    if (ch.video) extra += ` ${ch.video.title} ${ch.video.channel} ${ch.video.desc}`;
-    if (ch.articles && ch.articles.length) extra += ' ' + ch.articles.map(a => `${a.title} ${a.source} ${a.desc}`).join(' ');
+    if (ch.videos) extra += ' ' + ch.videos.map(v => `${v.title} ${v.channel} ${v.why}`).join(' ');
+    if (ch.articles && ch.articles.length) extra += ' ' + ch.articles.map(a => `${a.title} ${a.source} ${a.kind} ${a.desc}`).join(' ');
     const text = (ch.html + ' ' + extra).replace(/<[^>]+>/g, ' ').replace(/\s+/g,' ').trim();
     return {id: ch.id, title: ch.title, text};
   });

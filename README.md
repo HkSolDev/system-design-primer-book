@@ -1,4 +1,4 @@
-# The Reading Library · System Design Primer, Internet Toolbox & AI Engineer Roadmap 🚀
+# The Reading Library · System Design, AI Engineering & Tools 🚀
 
 > An interactive, distraction-free reading edition of Donne Martin's legendary **[System Design Primer](https://github.com/donnemartin/system-design-primer)** — enriched with in-page playable video lectures, curated seminal engineering whitepapers, and 5 full interview case studies.
 
@@ -47,16 +47,25 @@ This interactive study edition was curated and built by **HkSolDev** (`@MrDevGho
 
 | File | What it is |
 | :--- | :--- |
-| `index.html` | The System Design Primer reading edition (the site root). |
-| `systemdesignprimerbook.html` | Identical copy of `index.html` kept for older links. **Edit `index.html` and copy it over.** |
-| `toolbox.html` | Internet Hidden Toolbox directory. |
-| `ai-engineer-roadmap.html` | AI Engineer Roadmap (data lives in the `STAGES` array near the top of its `<script>`). |
-| `library.css` | Shared design tokens + polish loaded by all three pages (loaded *after* each page's own `<style>`). |
-| `wrangler.json` | Cloudflare static-assets config (`assets.directory = "."`). |
+| `index.html` | **Library home**: one search across every chapter, video, article, course and tool, plus "continue where you left off". Contains a generated search index. |
+| `systemdesignprimerbook.html` | The System Design Primer reading edition (24 chapters, 75 videos, 87 articles). |
+| `ai-engineer-roadmap.html` | AI Engineer Roadmap. Data lives in the `STAGES` array near the top of its `<script>`. |
+| `toolbox.html` | Internet Hidden Toolbox (85 tools). Data lives in the `TOOLS` array. |
+| `library.css` | Shared design tokens + polish for every page. `book.css` and `toolbox.css` hold page-specific styling. |
+| `scripts/build-index.js` | Regenerates the home-page search index from the three content pages. |
+| `wrangler.json`, `.assetsignore` | Cloudflare static-assets config and what not to upload. |
 
-Everything is static — no build step, no server code, relative links only — so it deploys as-is to Cloudflare (Workers Static Assets or Pages) and GitHub Pages.
+Everything is static: no build step to deploy, no server code, relative links only, so it works as-is on Cloudflare (Workers Static Assets / Pages) and GitHub Pages.
 
-**Keeping the roadmap fresh:** every URL and YouTube ID was checked on 2026-09-20. Re-check periodically (links rot, repos move — three already had). A quick loop: extract URLs with `grep -oE 'https?://[^" ]+' ai-engineer-roadmap.html` and `curl -sI` each one; YouTube IDs can be checked via `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<id>`.
+### After you change any content
+
+```bash
+node scripts/build-index.js   # refreshes the home-page search, then commit index.html
+```
+
+### Keeping links healthy
+
+Links rot (three repos and several articles had already moved or vanished). Every URL and YouTube ID was verified on **2026-09-20**. To re-check, extract the URLs (`grep -oE 'https?://[^" ]+'`) and `curl -sI` them; a YouTube video is embeddable if `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<id>` returns 200. Sites behind bot protection (Cloudflare, Netflix, ACM) answer 403 to scripts but load fine in a browser. When you re-verify, update `CHECKED` in `scripts/build-index.js`.
 
 ---
 
