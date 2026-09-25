@@ -23,7 +23,8 @@ This **Interactive Reading Edition** transforms the primer into a unified, high-
   3. *Distributed Web Crawler* — URL Frontier queue pipeline, SimHash duplicate detection, Bloom filters, async DNS cache.
   4. *Real-Time Chat System (WhatsApp / Slack)* — Stateful WebSockets, Session Registry, Cassandra message store, presence heartbeats.
   5. *Scaling AWS to 10 Million Users* — 7-stage architectural evolution from single EC2 box to global multi-region scale.
-* 🔍 **Instant Full-Text Search:** Client-side search indexing across all 24 chapters, video metadata, and article summaries.
+* 🐧 **Linux, CLI & Git for the Job (Part VI):** Six hands-on chapters for the terminal skills every backend / DevOps / SRE interview assumes: the job bar and a phased plan, Linux CLI essentials, networking + SSH + troubleshooting, Bash scripting, the Git CLI (branching, conflicts, undo and recovery, PRs from the terminal), and labs, portfolio projects and interview drills. 54 verified videos and 55 articles, all playable or linked in-page.
+* 🔍 **Instant Full-Text Search:** Client-side search indexing across all 30 chapters, video metadata, and article summaries.
 * 🖍️ **Local Highlighting:** Select any passage to drop a persistent highlight saved automatically in your browser.
 * 🌓 **Dark & Light Mode:** Tailored typography (Source Serif 4, IBM Plex Sans, IBM Plex Mono) with smooth contrast.
 * 🧰 **Internet Hidden Toolbox (`toolbox.html`):** An interactive, searchable directory of 51 high-yield web tools, academic research engines (Unpaywall, Elicit, Consensus, Connected Papers), developer terminal tools (Phind, Regex101, ExplainShell, Carbon), privacy shields (VirusTotal, Privnote, Temp-Mail), and cognitive focus audio (Radio Garden, Music For Programming) &mdash; complete with practical use cases, pro tips, instant search, and one-click browser bookmark export.
@@ -48,7 +49,7 @@ This interactive study edition was curated and built by **HkSolDev** (`@MrDevGho
 | File | What it is |
 | :--- | :--- |
 | `index.html` | **Library home**: one search across every chapter, video, article, course and tool, plus "continue where you left off". Contains a generated search index. |
-| `systemdesignprimerbook.html` | The System Design Primer reading edition (24 chapters, 75 videos, 87 articles). |
+| `systemdesignprimerbook.html` | The System Design Primer reading edition (30 chapters, 129 videos, 142 articles). |
 | `ai-engineer-roadmap.html` | AI Engineer Roadmap. Data lives in the `STAGES` array near the top of its `<script>`. |
 | `toolbox.html` | Internet Hidden Toolbox (85 tools). Data lives in the `TOOLS` array. |
 | `library.css` | Shared design tokens + polish for every page. `book.css` and `toolbox.css` hold page-specific styling. |

@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="An interactive, searchable reading edition of Donne Martin's System Design Primer with in-page playable video lectures, seminal whitepapers, and 5 classic case studies. Curated by HkSolDev (@MrDevGhost).">
+  <meta name="description" content="An interactive, searchable reading edition of Donne Martin's System Design Primer with in-page playable video lectures, seminal whitepapers, 5 classic case studies, and a Linux, CLI and Git job-skills track. Curated by HkSolDev (@MrDevGhost).">
   <meta property="og:title" content="The System Design Primer · Interactive Reading Edition">
-  <meta property="og:description" content="Comprehensive field guide to large-scale system design with in-page video lessons, architectural trade-offs, and landmark case studies.">
+  <meta property="og:description" content="Comprehensive field guide to large-scale system design with in-page video lessons, architectural trade-offs, landmark case studies, and a hands-on Linux, CLI and Git track.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@HKsoldev">
@@ -1939,6 +1939,749 @@ def set_user(user_id, values):
       &bull; <strong>Decouple</strong> synchronous request-response chains using message queues (SQS) to smooth out sudden traffic spikes.
     </div>
     `
+  },
+  {
+    id: "terminal-job-bar",
+    part: "VI · Linux, CLI & Git",
+    title: "The job bar: Linux, CLI & Git",
+    dek: "What employers assume you can do in a terminal, how to set up a real lab, and a phased plan that ties it together.",
+    videos: [{"id":"MSgoeuMqUmU","tier":"s","title":"Lecture 1: Course Overview + Introduction to the Shell","channel":"Missing Semester","duration":"1:14:44","why":"The 2026 edition of MIT's Missing Semester opens with the shell: navigating, pipes, and combining programs. A strong free starting point."},{"id":"CLh2ACdXNbc","tier":"s","title":"20% of Linux Commands You'll Use 80% of the Time (Real-World Example)","channel":"TechWorld with Nana","duration":"25:02","why":"A short tour of the everyday commands, tied to a realistic example rather than a memorised list."},{"id":"iwolPf6kN-k","tier":"c","title":"Introduction to Linux & Terminal Commands - Full Course for Beginners","channel":"Kunal Kushwaha","duration":"1:56:37","why":"A beginner course covering shell basics, files, permissions, grep, find and processes; recommended in the DevOps learning-path research."},{"id":"tS_zLaH-tew","tier":"c","title":"Linux Essentials for DevOps and Cloud | One-Shot Linux Tutorial","channel":"Telusko","duration":"1:35:58","why":"Linux framed for DevOps and cloud work: servers, SSH and everyday administration in one sitting."}],
+    articles: [{"kind":"Course","source":"MIT CSAIL","title":"The Missing Semester of Your CS Education (2026)","url":"https://missing.csail.mit.edu/2026/","desc":"Lecture videos, notes and exercises on the shell, the command-line environment, and Git. The single best free course for the whole of this part.","tier":"s"},{"kind":"Guide","source":"MDN Web Docs","title":"Command line crash course","url":"https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line","desc":"A short, developer-oriented introduction to the terminal. A good two-day warm-up.","tier":"s"},{"kind":"Docs","source":"Microsoft Learn","title":"Install WSL","url":"https://learn.microsoft.com/en-us/windows/wsl/install","desc":"Official steps to get an Ubuntu shell on Windows so you practise on real Linux.","tier":"s"},{"kind":"Course","source":"Linux Upskill Challenge","title":"Linux Upskill Challenge","url":"https://linuxupskillchallenge.org/","desc":"A month of short daily lessons run on a real server, aimed at people heading for Linux admin and DevOps work.","tier":"c"},{"kind":"Repo","source":"GitHub · jlevy","title":"The Art of Command Line","url":"https://github.com/jlevy/the-art-of-command-line","desc":"A dense, well-loved cheat sheet of habits and one-liners. Keep it as a reference, not a course.","tier":"d"},{"kind":"Article","source":"abhs.in","title":"Remote software developer salary in India, 2026","url":"https://www.abhs.in/blog/remote-software-developer-salary-india-2026","desc":"A blog write-up of pay bands for India-based developers on international remote teams. Treat the figures as estimates.","tier":"d"},{"kind":"Article","source":"iitianvibes.com","title":"USD remote engineering from India: 2026 playbook","url":"https://iitianvibes.com/blog/usd-remote-engineering-india-2026-playbook/","desc":"A community-flavoured guide to how people land and price USD-paid remote roles.","tier":"d"},{"kind":"Article","source":"LinuxCareers","title":"Linux career opportunities in 2026: what the hiring data shows","url":"https://www.linuxcareers.com/resources/blog/2026/07/linux-career-opportunities-in-2026-what-the-hiring-data-shows","desc":"What hiring data says about which skills sit alongside Linux, and how remote-friendly junior roles are.","tier":"d"}],
+    html: `
+    <div class="case-banner">
+      <span class="case-tag">Start here</span>
+      <div class="case-banner-meta">Focus: What employers assume · A real lab · Learn Linux + Git together · 14-day and phased plans</div>
+    </div>
+
+    <div class="tech-pills">
+      <span class="tech-pill">Linux</span>
+      <span class="tech-pill">Bash</span>
+      <span class="tech-pill">Git</span>
+      <span class="tech-pill">SSH</span>
+      <span class="tech-pill">Networking</span>
+    </div>
+
+    <p>Every chapter so far was about <em>designing</em> systems. This part is about <strong>operating</strong> them: the terminal skills that let you log into a server, work out why it is unhappy, change code, and ship the fix. Interviewers for backend, platform, DevOps and SRE roles quietly assume all of it.</p>
+    <p>The advice from three independent research passes (ChatGPT, Perplexity and Grok, Sept 2026) was strikingly consistent, so this part is built around it:</p>
+    <ul>
+      <li><strong>Do not learn Linux, Bash and Git as three separate courses of memorised commands.</strong> Learn them together, in the workflow they are used in: <em>developer pushes code → Git → CI/CD → Linux server → Docker → Kubernetes → logs → troubleshooting</em>.</li>
+      <li><strong>Use a real Linux shell every day</strong>, not screenshots and not a GUI.</li>
+      <li><strong>Build proof, not certificates.</strong> A repo with a working deploy and a troubleshooting write-up beats ten course completions.</li>
+    </ul>
+
+    <div class="callout"><b>Assumed, not a selling point</b> — Linux, the CLI and Git get you <em>through the door</em>; they do not set your price. Public 2026 salary write-ups (linked below) place roughly ₹20 LPA (about $24k) as a fair floor for a first international-remote role and put mid-level bands well above it, with pay driven by a real language, shipped systems, cloud/containers and clear written English. Treat those numbers as blog estimates, not promises. What this part gives you is the base layer that the higher-paying skills sit on.</div>
+
+    <h3>What "the job bar" actually is</h3>
+    <p>You do not need LPIC, RHCSA, or every Git plumbing command. You need this slice, fluently, with no Googling:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Linux they will assume</th><th>Git they will assume</th></tr></thead>
+        <tbody>
+          <tr><td>Move around: <code>pwd</code>, <code>ls -la</code>, <code>cd</code>, <code>tree</code></td><td><code>clone</code>, <code>status</code>, <code>add</code>, <code>commit</code>, <code>log</code>, <code>diff</code></td></tr>
+          <tr><td>Files: <code>cat</code>, <code>less</code>, <code>head</code>, <code>tail</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>mkdir</code>, <code>touch</code></td><td><code>branch</code>, <code>switch</code> / <code>checkout</code>, <code>merge</code></td></tr>
+          <tr><td>Find things: <code>find</code>, <code>grep</code></td><td><code>push</code>, <code>pull</code>, <code>fetch</code></td></tr>
+          <tr><td>Permissions: <code>chmod</code>, <code>chown</code>, what <code>755</code> / <code>644</code> mean</td><td><code>stash</code>, <code>reset</code>, <code>revert</code>, <code>reflog</code></td></tr>
+          <tr><td>Processes and services: <code>ps</code>, <code>top</code>/<code>htop</code>, <code>kill</code>, <code>systemctl</code></td><td>Resolve a merge conflict</td></tr>
+          <tr><td>Logs: <code>journalctl</code>, <code>/var/log</code></td><td>Open a pull request (website or <code>gh</code>)</td></tr>
+          <tr><td>Network: <code>curl</code>, <code>ss</code>, <code>ping</code>, <code>dig</code>, SSH keys</td><td>Tags and a sensible branching workflow</td></tr>
+          <tr><td>Pipes and redirection: <code>|</code>, <code>&gt;</code>, <code>&gt;&gt;</code>, <code>2&gt;</code></td><td></td></tr>
+          <tr><td>Edit a file in <code>nano</code> or basic <code>vim</code>; a small Bash script with <code>if</code> and a loop</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Set up a real lab (do this today)</h3>
+    <ul>
+      <li><strong>Windows:</strong> install WSL2 with Ubuntu (<code>wsl --install</code> in an admin PowerShell) and work <em>only</em> inside the Ubuntu shell. Git Bash alone is not a substitute.</li>
+      <li><strong>Mac:</strong> Terminal is Unix-like and fine for Git and most commands. Add an Ubuntu VM or a cheap cloud box for the Linux-only parts (<code>systemctl</code>, <code>apt</code>, <code>/proc</code>).</li>
+      <li><strong>Best extra practice:</strong> an Ubuntu server you can break. Options: a VirtualBox VM, a free-tier AWS EC2 Ubuntu instance, or a small VPS. Interviews assume Ubuntu or Debian.</li>
+    </ul>
+    <p>Check you are ready, then create a public repo called <code>devops-learning-lab</code> to hold your scripts, notes, diagrams and troubleshooting write-ups:</p>
+    <pre><code>uname -a
+git --version
+which bash
+git config --global user.name  "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+
+    <h3>Learn them together: the daily loop</h3>
+    <p>After three or four days of basics, run this loop every day instead of finishing "a Linux course" and then "a Git course":</p>
+    <ol>
+      <li>In Ubuntu or WSL, make a folder for a tiny project.</li>
+      <li><code>git init</code> or clone a repo.</li>
+      <li>Edit files with <code>nano</code> or <code>vim</code>.</li>
+      <li>Inspect them with Linux tools (<code>ls -l</code>, <code>cat</code>, <code>grep</code>).</li>
+      <li>Commit and push.</li>
+      <li><strong>Break something on purpose</strong> (<code>chmod 000</code> a file, delete it, create a conflict) and fix it.</li>
+    </ol>
+
+    <h3>The 14-day starter plan</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Days</th><th>Do this</th></tr></thead>
+        <tbody>
+          <tr><td>1–2</td><td>WSL/Ubuntu setup. A command-line crash course. <code>ls</code>, <code>cd</code>, <code>cat</code>, pipes.</td></tr>
+          <tr><td>3–6</td><td>OverTheWire Bandit levels 0–12 (chapter 6). No write-ups.</td></tr>
+          <tr><td>4–5</td><td>Learn Git Branching (main sequence and the remotes tab).</td></tr>
+          <tr><td>7–8</td><td>Pro Git basics, one GitHub repo, install <code>gh</code>.</td></tr>
+          <tr><td>9–11</td><td>Bandit 13–15. Write two small Bash scripts.</td></tr>
+          <tr><td>12–14</td><td>Fake team workflow: two branches, a merge conflict, a PR, <code>git log --oneline --graph</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The longer path: from terminal to production</h3>
+    <p>If you are aiming at DevOps, cloud or SRE, the phases below are the order that worked in the research. Phases 1–5 are chapters 2–6 of this part; the later phases are pointers so you can see where the terminal skills lead.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Phase</th><th>Time</th><th>Goal</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>0 · Lab setup</td><td>Day 0–2</td><td>Ubuntu, Git, GitHub, editor, a lab repo</td><td>This chapter</td></tr>
+          <tr><td>1 · Linux fundamentals</td><td>2 weeks</td><td>Filesystem, users, permissions, processes, services, disk and memory</td><td><a href="#linux-cli-essentials">Chapter 2</a></td></tr>
+          <tr><td>2 · Networking and troubleshooting</td><td>2 weeks</td><td>DNS, ports, <code>curl</code>, <code>ss</code>, SSH, "website not opening"</td><td><a href="#linux-networking-ssh">Chapter 3</a></td></tr>
+          <tr><td>3 · Bash automation</td><td>1–2 weeks</td><td>Scripts with variables, conditions, loops, exit codes</td><td><a href="#bash-scripting">Chapter 4</a></td></tr>
+          <tr><td>4 · Git CLI mastery</td><td>2 weeks</td><td>Branching, conflicts, recovery, PRs</td><td><a href="#git-cli">Chapter 5</a></td></tr>
+          <tr><td>5 · Linux + Git project</td><td>2 weeks</td><td>Deploy an app to a Linux server end to end</td><td><a href="#terminal-labs-projects">Chapter 6</a></td></tr>
+          <tr><td>6 · Docker</td><td>2 weeks</td><td>Images, containers, Dockerfile, volumes, networks</td><td>Beyond this book</td></tr>
+          <tr><td>7 · AWS</td><td>4 weeks</td><td>EC2, VPC, security groups, S3, IAM; Terraform for the lot</td><td>See <a href="#case-scaling-aws">Scaling on AWS</a></td></tr>
+          <tr><td>8 · Kubernetes</td><td>6 weeks</td><td>Pods to RBAC; <code>kubectl get/describe/logs/exec/apply</code></td><td>Beyond this book</td></tr>
+          <tr><td>9 · CI/CD and GitOps</td><td>4 weeks</td><td>GitHub Actions or Jenkins, ArgoCD, rollback</td><td>Beyond this book</td></tr>
+          <tr><td>10 · Interview prep</td><td>Ongoing</td><td>CPU high, disk full, CrashLoopBackOff, IAM and network faults</td><td><a href="#terminal-labs-projects">Chapter 6</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><b>If you already know some cloud tooling</b> — skip the beginner tutorials. Spend the first ~6 weeks on Linux, networking, Git and Bash, then move quickly into production troubleshooting. That is where senior-level interviews separate candidates.</div>
+
+    <h3>What to ignore for now</h3>
+    <ul>
+      <li>Full sysadmin certifications and paid "Linux guru" courses (unless you specifically want the certificate).</li>
+      <li>Kernel internals.</li>
+      <li><code>git rebase -i</code> and other history rewriting. Learn it once you can merge cleanly.</li>
+      <li>Fancy prompt themes and twenty modern CLI tools (<code>fzf</code>, <code>bat</code>…). Useful later, not required.</li>
+    </ul>
+
+    <h3>The proof interviewers can evaluate</h3>
+    <ul>
+      <li>A GitHub profile with real commit history.</li>
+      <li>Linux troubleshooting write-ups (what broke, how you found it, how you fixed it).</li>
+      <li>One deployment project with a README that explains the architecture.</li>
+      <li>A CI/CD pipeline you can demo.</li>
+    </ul>
+    `
+  },
+  {
+    id: "linux-cli-essentials",
+    part: "VI · Linux, CLI & Git",
+    title: "Linux CLI essentials",
+    dek: "Files, text processing, permissions, processes and logs: the commands you will use every day on a server.",
+    videos: [{"id":"BNL3qBN9pP0","tier":"s","title":"Linux Crash Course: Navigating the Linux Filesystem","channel":"Learn Linux TV","duration":"30:28","why":"How the directory tree is laid out and how to move around it confidently."},{"id":"4e669hSjaX8","tier":"s","title":"Linux Crash Course - Understanding File & Directory Permissions","channel":"Learn Linux TV","duration":"35:48","why":"Reading rwx output and using chmod and chown properly."},{"id":"Tc_jntovCM0","tier":"c","title":"Linux Crash Course - The grep Command","channel":"Learn Linux TV","duration":"14:57","why":"Searching text and logs with grep, the workhorse of incident work."},{"id":"skTiK_6DdqU","tier":"c","title":"Linux Crash Course - The find command","channel":"Learn Linux TV","duration":"25:56","why":"Finding files by name, size and age."},{"id":"zMKacHGuIHI","tier":"c","title":"Linux Crash Course - Data Streams (stdin, stdout & stderr)","channel":"Learn Linux TV","duration":"17:13","why":"The model behind pipes and redirection."},{"id":"wYwGNgsfN3I","tier":"c","title":"Linux Crash Course - The ps Command","channel":"Learn Linux TV","duration":"15:19","why":"Listing and reading processes."},{"id":"5JVBpXiYMKo","tier":"c","title":"Linux Crash Course - systemd: Using the systemctl command","channel":"Learn Linux TV","duration":"26:32","why":"Starting, stopping, enabling and inspecting services."},{"id":"0dG3vUYt7Uk","tier":"c","title":"journalctl Basics: How to Easily Check Your Linux Logs","channel":"Learn Linux TV","duration":"19:34","why":"Reading and filtering the systemd journal."},{"id":"ccBGsPedE9Q","tier":"c","title":"Lecture 2: Command-line Environment","channel":"Missing Semester","duration":"1:06:20","why":"MIT's 2026 lecture on shells, environment variables and working effectively at the command line."},{"id":"07JOqKOBRnU","tier":"d","title":"Linux Crash Course - sudo","channel":"Learn Linux TV","duration":"26:11","why":"How privilege escalation works and how to configure it safely."},{"id":"Kzpm-rGAXos","tier":"d","title":"Systemd Explained: How to Manage Linux Services Easily","channel":"Learn Linux TV","duration":"47:41","why":"A longer look at units, targets and how services are managed."},{"id":"XpFsMB6FoOs","tier":"d","title":"How Does Linux Boot Process Work?","channel":"ByteByteGo","duration":"4:44","why":"A short animated overview of what happens between power-on and a login prompt."}],
+    articles: [{"kind":"Course","source":"Linux Journey","title":"Linux Journey","url":"https://linuxjourney.com/","desc":"Short, command-line-focused lessons. Start with Command Line, Text-Fu, Permissions and Processes.","tier":"s"},{"kind":"Book (online)","source":"William Shotts","title":"The Linux Command Line","url":"https://linuxcommand.org/tlcl.php","desc":"A free book that is among the best treatments of CLI fundamentals. Read it as reference.","tier":"s"},{"kind":"Reference","source":"tldr-pages","title":"tldr: simplified man pages","url":"https://tldr.sh/","desc":"Community examples for common commands. Use \"tldr tar\" instead of wading through a man page.","tier":"c"},{"kind":"Tool","source":"explainshell","title":"explainshell","url":"https://explainshell.com/","desc":"Paste a scary command and see each part explained from the man pages.","tier":"c"},{"kind":"Zine","source":"Julia Evans","title":"Bite Size Command Line","url":"https://wizardzines.com/zines/bite-size-command-line/","desc":"A friendly illustrated guide to the command line and the commands people actually use.","tier":"c"},{"kind":"Course","source":"Linux Foundation","title":"Introduction to Linux (LFS101)","url":"https://training.linuxfoundation.org/training/introduction-to-linux/","desc":"The Linux Foundation's free introductory course, useful if you want a structured curriculum.","tier":"d"},{"kind":"Reference","source":"man7.org","title":"hier(7): filesystem hierarchy","url":"https://man7.org/linux/man-pages/man7/hier.7.html","desc":"The manual page describing what each top-level directory is for.","tier":"d"},{"kind":"Article","source":"Julia Evans","title":"A list of new(ish) command line tools","url":"https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/","desc":"Modern alternatives worth knowing once the basics feel comfortable.","tier":"d"}],
+    html: `
+    <div class="case-banner">
+      <span class="case-tag">Hands-on</span>
+      <div class="case-banner-meta">Focus: Filesystem · Pipes · grep/awk/sed · Permissions · Processes and systemd · Disk and memory</div>
+    </div>
+
+    <div class="tech-pills">
+      <span class="tech-pill">grep</span>
+      <span class="tech-pill">awk</span>
+      <span class="tech-pill">chmod</span>
+      <span class="tech-pill">systemctl</span>
+      <span class="tech-pill">journalctl</span>
+      <span class="tech-pill">df / du</span>
+    </div>
+
+    <p>You do not need every Linux command. You need the ones that answer production questions: <em>where is the file, what does the log say, who owns this, what is eating the CPU, why is the disk full</em>. Learn each command by attaching it to one of those questions.</p>
+
+    <h3>1. Know where things live</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Path</th><th>What you will find</th></tr></thead>
+        <tbody>
+          <tr><td><code>/etc</code></td><td>Configuration (<code>/etc/nginx</code>, <code>/etc/ssh/sshd_config</code>)</td></tr>
+          <tr><td><code>/var/log</code></td><td>Logs (plus the systemd journal, read with <code>journalctl</code>)</td></tr>
+          <tr><td><code>/home</code></td><td>User home directories</td></tr>
+          <tr><td><code>/tmp</code></td><td>Scratch space, cleared on reboot</td></tr>
+          <tr><td><code>/opt</code></td><td>Third-party software and your deployed apps</td></tr>
+          <tr><td><code>/usr/bin</code>, <code>/usr/local/bin</code></td><td>Installed programs</td></tr>
+          <tr><td><code>/proc</code></td><td>Live kernel and process information exposed as files</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2. Navigate and find</h3>
+<pre><code>pwd                       # where am I?
+ls -la                    # long listing, including hidden files
+cd /var/log               # go there;  cd -  goes back;  cd  goes home
+tree -L 2                 # directory tree, two levels deep
+
+find /etc -name "*.conf"                 # config files by name
+find /var/log -type f -mtime -1          # files modified in the last day
+find . -size +100M                       # files bigger than 100 MB
+less /var/log/syslog                     # page through (q to quit, / to search)
+tail -f /var/log/nginx/error.log         # follow a log live</code></pre>
+
+    <h3>3. Pipes and redirection</h3>
+    <p>The whole Unix toolbox works because every program reads text from standard input and writes text to standard output. Pipes chain them together.</p>
+<pre><code>cmd &gt; out.txt          # stdout to a file (overwrite)
+cmd &gt;&gt; out.txt         # append
+cmd 2&gt; err.txt         # stderr to a file
+cmd &gt; all.txt 2&gt;&amp;1    # both to one file
+cmd1 | cmd2            # stdout of cmd1 becomes stdin of cmd2
+cmd &gt; /dev/null 2&gt;&amp;1  # throw everything away</code></pre>
+
+    <h3>4. Text processing: the highest-value skill</h3>
+    <p>Most incident work is "find the interesting lines in a large log". Five tools cover almost all of it.</p>
+<pre><code>grep ERROR app.log                       # lines containing ERROR
+grep -rn "timeout" /etc/nginx            # recursive, with line numbers
+grep -v healthcheck app.log              # everything except healthcheck lines
+grep -C 3 "OOM" syslog                   # 3 lines of context around each match
+
+awk '{print $5}' app.log                 # print the 5th whitespace-separated field
+cut -d, -f1,3 data.csv                   # columns 1 and 3 of a CSV
+sed 's/foo/bar/g' file                   # replace text (add -i to edit in place)
+wc -l app.log                            # count lines
+xargs                                    # turn stdin into command arguments
+
+# Real question: which IPs hit the web server most?
+awk '{print $1}' access.log | sort | uniq -c | sort -nr | head -10</code></pre>
+    <div class="callout"><b>Read commands before you run them</b> — paste anything scary into <a href="https://explainshell.com/" target="_blank" rel="noopener">explainshell.com</a>, and use <code>tldr tar</code> instead of a 40-page man page.</div>
+
+    <h3>5. Users and permissions</h3>
+    <p>Permissions are three triplets: owner, group, others. Each triplet is <code>r</code> (4), <code>w</code> (2), <code>x</code> (1).</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Mode</th><th>Reads as</th><th>Typical use</th></tr></thead>
+        <tbody>
+          <tr><td><code>755</code></td><td><code>rwxr-xr-x</code></td><td>Scripts and directories everyone may read and enter</td></tr>
+          <tr><td><code>644</code></td><td><code>rw-r--r--</code></td><td>Ordinary files</td></tr>
+          <tr><td><code>600</code></td><td><code>rw-------</code></td><td>Private files. SSH refuses private keys that are more open</td></tr>
+          <tr><td><code>777</code></td><td><code>rwxrwxrwx</code></td><td>Almost never the right answer</td></tr>
+        </tbody>
+      </table>
+    </div>
+<pre><code>ls -l script.sh                   # -rwxr-xr-x 1 ubuntu ubuntu ... script.sh
+chmod 755 script.sh               # numeric mode
+chmod u+x script.sh               # symbolic: give the owner execute
+chown ubuntu:www-data site/       # change owner and group
+sudo useradd -m -s /bin/bash deploy
+sudo usermod -aG docker deploy    # add a user to a group
+sudo -l                           # what may I run as root?</code></pre>
+    <p><strong>"Permission denied" checklist:</strong> does the file's mode allow it, do <em>all parent directories</em> have <code>x</code> for you, is the process running as the user you think, and (on some distros) is SELinux or AppArmor blocking it?</p>
+
+    <h3>6. Processes and services</h3>
+<pre><code>ps aux --sort=-%cpu | head       # top CPU consumers
+ps aux --sort=-%mem | head       # top memory consumers
+top                              # live view (htop is friendlier); q to quit
+kill 1234                        # ask politely (SIGTERM)
+kill -9 1234                     # force (SIGKILL); last resort, no cleanup
+
+systemctl status nginx           # is it running? last log lines
+sudo systemctl restart nginx
+sudo systemctl enable --now nginx   # start now and at boot
+systemctl list-units --failed       # what is broken?
+
+journalctl -u nginx --since "1 hour ago"
+journalctl -u nginx -f              # follow
+journalctl -p err -b                # errors since last boot</code></pre>
+
+    <h3>7. Disk and memory</h3>
+<pre><code>df -h                            # free space per filesystem
+df -i                            # inode usage (can be full while space is free)
+du -sh * | sort -h               # which directories are biggest here?
+du -ah /var | sort -rh | head -20
+free -h                          # memory and swap
+vmstat 1 5                       # CPU, memory, swap, I/O every second, 5 times
+sudo lsof +L1                    # deleted files still held open by a process</code></pre>
+
+    <h3>8. Packages and editors</h3>
+<pre><code># Debian/Ubuntu
+sudo apt update &amp;&amp; sudo apt install nginx
+# RHEL/Fedora family
+sudo dnf install nginx</code></pre>
+    <p>You will meet <code>vim</code> on servers whether you want to or not. Survival kit: <code>i</code> to insert, <code>Esc</code> to stop, <code>:wq</code> save and quit, <code>:q!</code> quit without saving, <code>/word</code> search. <code>nano</code> is fine for everyday edits.</p>
+
+    <h3>Three drills to run on your lab server</h3>
+    <div class="callout"><b>Drill 1 · Nginx is down</b> — <code>systemctl status nginx</code>, then <code>journalctl -u nginx</code>, then <code>sudo nginx -t</code> to test the config. Break it first by putting a typo in <code>/etc/nginx/nginx.conf</code>, then find it from the log.</div>
+    <div class="callout"><b>Drill 2 · The disk is full</b> — <code>df -h</code> to find the filesystem, <code>du -sh /* 2&gt;/dev/null | sort -h</code> to find the hog, then drill down. If <code>df</code> says full but <code>du</code> disagrees, suspect a deleted-but-open file (<code>lsof +L1</code>) or exhausted inodes (<code>df -i</code>).</div>
+    <div class="callout"><b>Drill 3 · CPU is high</b> — <code>top</code>, then <code>ps aux --sort=-%cpu | head</code>. Who owns the process, what started it (<code>systemctl status</code>, <code>ps -ef --forest</code>), is it stuck in a loop or actually busy?</div>
+    `
+  },
+  {
+    id: "linux-networking-ssh",
+    part: "VI · Linux, CLI & Git",
+    title: "Networking, SSH & troubleshooting",
+    dek: "The debugging path from DNS to port to process, and the SSH habits every cloud environment expects.",
+    videos: [{"id":"kjFz7Lp8Qjk","tier":"s","title":"Linux Crash Course - Connecting to Linux Servers via SSH","channel":"Learn Linux TV","duration":"15:54","why":"Logging in to remote servers with SSH."},{"id":"M9Kex1ID7GY","tier":"s","title":"Networking Fundamentals for DevOps Engineers | DevOps Networking","channel":"Cloud Champ","duration":"18:10","why":"The networking concepts a DevOps engineer needs before touching cloud networks."},{"id":"wHfIFZlDxtU","tier":"c","title":"How to Use the ip Command in Linux: A Beginner’s Guide","channel":"Learn Linux TV","duration":"16:44","why":"Inspecting addresses, routes and interfaces with ip."},{"id":"DOVsoWJAxuM","tier":"c","title":"Linux Crash Course - The ping Command","channel":"Learn Linux TV","duration":"15:17","why":"Testing reachability, and what ping can and cannot tell you."},{"id":"Aa7tKMmeFZI","tier":"c","title":"Transferring files with the scp Command (Linux Crash Course Series)","channel":"Learn Linux TV","duration":"20:03","why":"Copying files to and from servers over SSH."},{"id":"NiQTs9DbtW4","tier":"c","title":"What is DNS? (and how it makes the Internet work)","channel":"NetworkChuck","duration":"24:22","why":"A friendly walkthrough of how names become addresses, a common first suspect when a site is down."},{"id":"ZdVpKx6Wmc8","tier":"c","title":"Linux Performance Analysis in 60 seconds","channel":"Brendan Gregg","duration":"1:13","why":"A very short pointer to the ten-command checklist in the article below."},{"id":"rwVLa9me7e4","tier":"c","title":"Linux Performance Troubleshooting Demos","channel":"grobelDev","duration":"10:51","why":"Demonstrations of diagnosing performance problems on a Linux machine."},{"id":"YS5Zh7KExvE","tier":"d","title":"SSH for Beginners: The Ultimate Getting Started Guide","channel":"Learn Linux TV","duration":"1:28:00","why":"A long, thorough treatment of SSH: keys, config files, tunnels and hardening."},{"id":"FJW8nGV4jxY","tier":"d","title":"Linux Performance Tools, Brendan Gregg, part 1 of 2","channel":"Brendan Gregg","duration":"54:29","why":"A conference talk tour of the tools for observing CPU, memory, disk and network."},{"id":"IPvYjXCsTg8","tier":"d","title":"Computer Networking Full Course - OSI Model Deep Dive with Real Life Examples","channel":"Kunal Kushwaha","duration":"4:06:56","why":"A long course on networking from the OSI model up. Watch selectively."}],
+    articles: [{"kind":"Article","source":"Netflix TechBlog","title":"Linux Performance Analysis in 60,000 Milliseconds","url":"https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55","desc":"Ten commands, in order, that show load, saturation and errors on a slow Linux server in about a minute.","tier":"s"},{"kind":"Interactive","source":"SadServers","title":"SadServers","url":"https://sadservers.com/","desc":"Real broken Linux servers you fix over SSH. The closest practice to a troubleshooting interview.","tier":"s"},{"kind":"Zine","source":"Julia Evans","title":"Networking! ACK!","url":"https://wizardzines.com/zines/networking/","desc":"An illustrated guide to how networking works, from TCP to DNS to the tools that inspect them.","tier":"c"},{"kind":"Interactive","source":"Killercoda","title":"Killercoda","url":"https://killercoda.com/","desc":"Free, browser-based Linux and Kubernetes scenarios with a terminal ready to go.","tier":"c"},{"kind":"Reference","source":"Brendan Gregg","title":"Linux Performance","url":"https://www.brendangregg.com/linuxperf.html","desc":"The reference hub for Linux performance: diagrams of which tool observes which subsystem, plus talks and tutorials.","tier":"d"},{"kind":"Interactive","source":"iximiuz Labs","title":"iximiuz Labs","url":"https://labs.iximiuz.com/","desc":"Hands-on labs on Linux, containers, networking and Kubernetes internals.","tier":"d"}],
+    html: `
+    <div class="case-banner">
+      <span class="case-tag">Troubleshooting</span>
+      <div class="case-banner-meta">Focus: DNS to port to process · curl, ss, dig, tcpdump · SSH keys and tunnels · The first 60 seconds on a slow box</div>
+    </div>
+
+    <div class="tech-pills">
+      <span class="tech-pill">curl</span>
+      <span class="tech-pill">ss</span>
+      <span class="tech-pill">dig</span>
+      <span class="tech-pill">tcpdump</span>
+      <span class="tech-pill">ssh</span>
+      <span class="tech-pill">rsync</span>
+    </div>
+
+    <p>"The site is down" is not a diagnosis. Production engineers turn it into a short series of yes/no questions and work down the stack until one answer is "no". This chapter is that series, plus the SSH habits that almost every cloud environment assumes. The concepts behind it (DNS, TCP, TLS, load balancing) are covered in Part II, starting with <a href="#dns">DNS</a>.</p>
+
+    <h3>The debugging path</h3>
+<pre><code>DNS resolves?  →  Host reachable?  →  Firewall open?  →  Port listening?  →  App healthy?</code></pre>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Question</th><th>Command</th><th>What a bad answer means</th></tr></thead>
+        <tbody>
+          <tr><td>Does the name resolve?</td><td><code>dig +short example.com</code><br><code>nslookup example.com</code></td><td>Empty answer: DNS record missing, wrong resolver, or expired domain</td></tr>
+          <tr><td>Can I reach the host?</td><td><code>ping -c 3 host</code><br><code>traceroute host</code> or <code>mtr host</code></td><td>Timeouts: routing problem or ICMP blocked (ping failing alone proves little)</td></tr>
+          <tr><td>Is the firewall in the way?</td><td><code>sudo ufw status</code><br><code>sudo iptables -L -n</code><br>cloud security groups / NACLs</td><td>Port not allowed. On AWS, check the security group before touching the box</td></tr>
+          <tr><td>Is anything listening?</td><td><code>sudo ss -tulpn</code><br><code>sudo ss -tlnp | grep :8080</code></td><td>Nothing on the port: the service is down, or bound to <code>127.0.0.1</code> only</td></tr>
+          <tr><td>Does the app answer?</td><td><code>curl -v localhost:8080</code><br><code>curl -I https://example.com</code></td><td>Connection refused vs timeout vs 5xx each point somewhere different</td></tr>
+          <tr><td>Is the certificate OK?</td><td><code>openssl s_client -connect example.com:443 -servername example.com</code></td><td>Expired, wrong name, or missing intermediate</td></tr>
+          <tr><td>What is on the wire?</td><td><code>sudo tcpdump -i any -nn port 8080</code></td><td>No packets arriving means the problem is upstream of this host</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Worked example: "the app is not reachable"</h3>
+<pre><code># 1. From your laptop: does the name resolve to the IP you expect?
+dig +short app.example.com
+
+# 2. SSH in, then ask the box about itself first
+sudo ss -tlnp | grep 8080         # is the app listening, and on which address?
+curl -sv localhost:8080/health    # does it answer locally?
+systemctl status myapp            # is the service even running?
+journalctl -u myapp -n 50         # what did it say when it died?
+
+# 3. Works locally but not remotely?  Now suspect the network path:
+sudo ufw status
+# ...and the cloud security group / load balancer target health.</code></pre>
+    <p>The order matters: checking <em>locally on the server</em> first splits the problem in half. If <code>curl localhost</code> works, the application is fine and you are hunting a network or firewall issue; if it fails, ignore the network entirely.</p>
+
+    <h3>SSH: the way into every server</h3>
+<pre><code># One-time: make a key pair (ed25519 is the modern default)
+ssh-keygen -t ed25519 -C "you@laptop"
+
+# Private keys must not be group/world readable, or ssh will refuse them
+chmod 600 ~/.ssh/id_ed25519
+
+ssh ubuntu@203.0.113.10
+ssh -i ~/keys/lab.pem ubuntu@203.0.113.10        # a specific key (AWS gives you a .pem)
+
+scp report.txt ubuntu@203.0.113.10:/tmp/         # copy a file
+rsync -avz ./site/ ubuntu@203.0.113.10:/var/www/site/   # copy only what changed
+
+# Reach a service that is not exposed publicly, through the server:
+ssh -L 8080:localhost:80 ubuntu@203.0.113.10     # then open http://localhost:8080</code></pre>
+    <p>Stop retyping options by putting them in <code>~/.ssh/config</code>:</p>
+<pre><code>Host lab
+    HostName 203.0.113.10
+    User ubuntu
+    IdentityFile ~/keys/lab.pem
+    ServerAliveInterval 30
+
+# now simply:   ssh lab     scp file lab:/tmp/</code></pre>
+    <div class="callout"><b>Basic hardening</b> — in <code>/etc/ssh/sshd_config</code> set <code>PasswordAuthentication no</code> and <code>PermitRootLogin no</code>, so only keys work and nobody logs in as root. <strong>Keep your current session open</strong> and test a second login before you restart the SSH service, or a typo will lock you out. (The service is <code>ssh</code> on Ubuntu and <code>sshd</code> on RHEL-family systems.)</div>
+
+    <h3>The first 60 seconds on a slow server</h3>
+    <p>Brendan Gregg's team at Netflix published a checklist of ten commands that shows resource saturation, errors and load in about a minute. Learn to read their output and you can triage most "the box is slow" reports before opening a single dashboard:</p>
+<pre><code>uptime                 # load averages: rising, steady or falling?
+dmesg | tail           # kernel errors: OOM kills, disk or NIC faults
+vmstat 1               # run queue, memory, swap, CPU split
+mpstat -P ALL 1        # is one CPU pinned while the rest idle?
+pidstat 1              # which process is using the CPU
+iostat -xz 1           # disk latency and utilisation
+free -m                # memory, and how much is page cache
+sar -n DEV 1           # network throughput per interface
+sar -n TCP,ETCP 1      # TCP connections and retransmits
+top                    # the overall picture, to check it all fits together</code></pre>
+    <p><code>mpstat</code>, <code>pidstat</code>, <code>iostat</code> and <code>sar</code> come from the <code>sysstat</code> package (<code>sudo apt install sysstat</code>).</p>
+
+    <h3>Practice scenarios</h3>
+    <ul>
+      <li><strong>Website not opening:</strong> walk the path above and name the layer that failed.</li>
+      <li><strong>Port already in use:</strong> <code>sudo ss -tlnp | grep :3000</code> to find the process holding it.</li>
+      <li><strong>Works with <code>curl localhost</code>, not from outside:</strong> bind address, firewall or security group.</li>
+      <li><strong>Intermittent timeouts:</strong> check <code>sar -n TCP,ETCP 1</code> for retransmits, then <code>tcpdump</code> if it looks like packet loss.</li>
+      <li><strong>DNS works on your laptop, not on the server:</strong> <code>cat /etc/resolv.conf</code> and <code>dig @8.8.8.8 example.com</code> to compare resolvers.</li>
+    </ul>
+    `
+  },
+  {
+    id: "bash-scripting",
+    part: "VI · Linux, CLI & Git",
+    title: "Bash scripting for automation",
+    dek: "Variables, conditions, loops, functions and exit codes: enough to automate the boring parts and read other people's scripts.",
+    videos: [{"id":"tK9Oc6AEnR4","tier":"s","title":"Bash Scripting Tutorial for Beginners","channel":"freeCodeCamp.org","duration":"47:57","why":"A compact introduction to writing your first scripts."},{"id":"2733cRPudvI","tier":"s","title":"How To Write Bash Scripts In Linux - Complete Guide (Part 1 - Introduction)","channel":"Learn Linux TV","duration":"11:10","why":"The start of a structured series that builds up from a hello-world script."},{"id":"uQE_4Q-HZZw","tier":"c","title":"How To Write Bash Scripts In Linux - Complete Guide (Part 3 - Variables)","channel":"Learn Linux TV","duration":"24:46","why":"Variables, quoting and expansion."},{"id":"HvzI7c3eK5k","tier":"c","title":"How To Write Bash Scripts In Linux - Complete Guide (Part 9 - For Loops)","channel":"Learn Linux TV","duration":"12:33","why":"Looping over lists, files and command output."},{"id":"PNhq_4d-5ek","tier":"c","title":"Bash Scripting Tutorial for Beginners","channel":"TechWorld with Nana","duration":"1:05:33","why":"A longer DevOps-flavoured tutorial that writes scripts to solve practical tasks."},{"id":"kgII-YWo3Zw","tier":"c","title":"Lecture 2: Shell Tools and Scripting (2020)","channel":"Missing Semester","duration":"48:56","why":"MIT's lecture on shell scripting and the everyday tools around it (the 2020 edition)."},{"id":"QnM1nVzrkx8","tier":"d","title":"Lecture 3: Development Environment and Tools","channel":"Missing Semester","duration":"53:49","why":"MIT's 2026 lecture on editors, tooling and setting up a productive development environment."}],
+    articles: [{"kind":"Guide","source":"Bash Academy","title":"The Bash Guide","url":"https://guide.bash.academy/","desc":"A free guide from variables to functions and scripts.","tier":"s"},{"kind":"Tool","source":"ShellCheck","title":"ShellCheck","url":"https://www.shellcheck.net/","desc":"A linter that finds quoting, portability and logic mistakes in shell scripts. Run it on everything you write.","tier":"s"},{"kind":"Guide","source":"Greg's Wiki","title":"BashGuide","url":"https://mywiki.wooledge.org/BashGuide","desc":"A careful, correctness-minded guide from the #bash community.","tier":"c"},{"kind":"Reference","source":"Greg's Wiki","title":"Bash Pitfalls","url":"https://mywiki.wooledge.org/BashPitfalls","desc":"A catalogue of common mistakes and their fixes. Painful and useful.","tier":"c"},{"kind":"Guide","source":"Ryan's Tutorials","title":"Bash Scripting Tutorial","url":"https://ryanstutorials.net/bash-scripting-tutorial/","desc":"A gentle step-by-step tutorial with exercises.","tier":"c"},{"kind":"Interactive","source":"Exercism","title":"Bash track","url":"https://exercism.org/tracks/bash","desc":"Free coding exercises in Bash with optional mentoring.","tier":"c"},{"kind":"Guide","source":"Google","title":"Shell Style Guide","url":"https://google.github.io/styleguide/shellguide.html","desc":"When to use shell, and conventions for readable, maintainable scripts.","tier":"d"},{"kind":"Article","source":"redsymbol.net","title":"Unofficial Bash Strict Mode","url":"http://redsymbol.net/articles/unofficial-bash-strict-mode/","desc":"The case for set -euo pipefail, and where it surprises you.","tier":"d"},{"kind":"Reference","source":"GNU","title":"Bash Reference Manual","url":"https://www.gnu.org/software/bash/manual/bash.html","desc":"The authoritative reference for every Bash feature.","tier":"d"}],
+    html: `
+    <div class="case-banner">
+      <span class="case-tag">Automation</span>
+      <div class="case-banner-meta">Focus: Variables · Conditions · Loops · Functions · Exit codes · cron · Three small projects</div>
+    </div>
+
+    <div class="tech-pills">
+      <span class="tech-pill">bash</span>
+      <span class="tech-pill">set -euo pipefail</span>
+      <span class="tech-pill">cron</span>
+      <span class="tech-pill">shellcheck</span>
+      <span class="tech-pill">exit codes</span>
+    </div>
+
+    <p>A Bash script is a saved sequence of the commands you already type. The goal is not clever one-liners; it is <strong>small scripts that other people can read, that fail loudly, and that report success or failure through an exit code</strong> so that cron, CI pipelines and monitoring can act on it.</p>
+
+    <h3>The building blocks</h3>
+<pre><code>#!/usr/bin/env bash
+set -euo pipefail          # stop on errors, unset variables, and failed pipes
+
+NAME="server"              # no spaces around =
+echo "Checking $NAME"      # double quotes expand variables; single quotes do not
+today=$(date +%F)          # command substitution
+echo "Args: $# ; first: \${1:-none}"   # \${1:-none} = default if not given
+
+if [[ -f /etc/nginx/nginx.conf ]]; then
+  echo "nginx config exists"
+elif [[ -d /etc/apache2 ]]; then
+  echo "apache found"
+else
+  echo "no web server config" &gt;&amp;2
+  exit 1
+fi
+
+for f in /var/log/*.log; do            # loop over files
+  echo "$f has $(wc -l &lt; "$f") lines"
+done
+
+while read -r line; do                  # loop over lines of a file
+  echo "got: $line"
+done &lt; hosts.txt
+
+greet() { echo "hello, $1"; }           # function
+greet "world"</code></pre>
+
+    <h3>Exit codes are the interface</h3>
+    <p>Every command returns a number: <code>0</code> means success, anything else means failure. That single convention is how shells, cron, Makefiles and CI decide whether to continue.</p>
+<pre><code>grep -q ERROR app.log; echo $?      # 0 if found, 1 if not
+mkdir /data &amp;&amp; cd /data             # run the second only if the first succeeds
+cp a b || echo "copy failed" &gt;&amp;2     # run the second only if the first fails
+exit 0                              # tell the caller everything went well</code></pre>
+
+    <h3>Rules that prevent most bugs</h3>
+    <ul>
+      <li><strong>Always quote variables:</strong> <code>"$file"</code>, not <code>$file</code>. Unquoted values break on spaces and glob characters.</li>
+      <li><strong>Use <code>[[ ... ]]</code></strong> for tests in Bash, and <code>-eq -gt -lt</code> for numbers (<code>==</code> compares strings).</li>
+      <li><strong>Start with <code>set -euo pipefail</code></strong>, understand what it does, and know its rough edges (a failing command inside an <code>if</code> condition does not trigger <code>-e</code>).</li>
+      <li><strong>Run <code>shellcheck</code></strong> on every script. It catches quoting and portability mistakes automatically.</li>
+      <li><strong>Know when to stop.</strong> Past about 100 lines, or once you need real data structures, JSON or HTTP, switch to Python.</li>
+    </ul>
+
+    <h3>Project 1: disk usage alert</h3>
+<pre><code>#!/usr/bin/env bash
+# check_disk.sh - exit 1 (and log) if any filesystem is over the threshold
+set -euo pipefail
+
+THRESHOLD="\${1:-80}"
+status=0
+
+while read -r usage mount; do
+  usage="\${usage%\\%}"                      # strip the trailing %
+  [[ "$usage" =~ ^[0-9]+$ ]] || continue   # skip pseudo-filesystems that print "-"
+  if (( usage &gt; THRESHOLD )); then
+    echo "$(date -Is) WARNING: $mount is at \${usage}% (limit \${THRESHOLD}%)" &gt;&amp;2
+    status=1
+  fi
+done &lt; &lt;(df --output=pcent,target | tail -n +2)   # GNU df (Linux)
+
+exit "$status"</code></pre>
+    <p>Schedule it with cron and keep a log. <code>crontab -e</code>, then:</p>
+<pre><code># every 5 minutes; append stdout and stderr to a log
+*/5 * * * * /opt/scripts/check_disk.sh 80 &gt;&gt; /var/log/check_disk.log 2&gt;&amp;1</code></pre>
+    <p>Real alerting would replace <code>echo</code> with a call to Slack, email or your monitoring system; the exit code is what lets any of those wrap the script.</p>
+
+    <h3>Project 2: backup with retention</h3>
+<pre><code>#!/usr/bin/env bash
+# backup.sh SRC_DIR BACKUP_DIR - timestamped tarball, keep the last 7 days
+set -euo pipefail
+
+src="\${1:?usage: backup.sh SRC_DIR BACKUP_DIR}"
+dest="\${2:?usage: backup.sh SRC_DIR BACKUP_DIR}"
+
+mkdir -p "$dest"
+archive="$dest/$(basename "$src")-$(date +%Y%m%d-%H%M%S).tar.gz"
+
+tar -czf "$archive" -C "$(dirname "$src")" "$(basename "$src")"
+echo "$(date -Is) created $archive ($(du -h "$archive" | cut -f1))"
+
+find "$dest" -name '*.tar.gz' -mtime +7 -delete      # retention
+</code></pre>
+    <p>Make it executable with <code>chmod +x backup.sh</code>. For a database, swap the <code>tar</code> line for a dump (<code>pg_dump</code> or <code>mysqldump</code>) piped through <code>gzip</code>, and always <em>test a restore</em>: an untested backup is a hope.</p>
+
+    <h3>Project 3: log analyser</h3>
+    <p>Write <code>log_report.sh</code> that takes a web-server access log and prints: total requests, the top 10 client IPs, the count per HTTP status code, and the 10 slowest URLs if your log format includes timing. You have every tool you need from the previous chapter: <code>awk</code>, <code>sort</code>, <code>uniq -c</code>, <code>head</code>. Accept the file as <code>$1</code>, exit non-zero with a usage message if it is missing, and pass it through <code>shellcheck</code>.</p>
+
+    <div class="callout"><b>Commit your scripts</b> — put all three in your <code>devops-learning-lab</code> repo with a short README each (what it does, how to run it, sample output). It is the first item of proof for your portfolio.</div>
+    `
+  },
+  {
+    id: "git-cli",
+    part: "VI · Linux, CLI & Git",
+    title: "Git CLI: from commit to pull request",
+    dek: "The mental model, the daily workflow, branching, conflicts, and how to recover from mistakes.",
+    videos: [{"id":"9K8lB61dl3Y","tier":"s","title":"Lecture 5: Version Control and Git","channel":"Missing Semester","duration":"1:09:33","why":"MIT's 2026 Git lecture: the data model first, then the commands. Explains why Git behaves the way it does."},{"id":"e9lnsKot_SQ","tier":"s","title":"How Git Works: Explained in 4 Minutes","channel":"ByteByteGo","duration":"4:18","why":"A quick animated overview of the working tree, staging area and repositories."},{"id":"mAFoROnOfHs","tier":"s","title":"Git & GitHub Crash Course for Beginners [2026]","channel":"freeCodeCamp.org and logicBase Labs","duration":"1:21:20","why":"A current beginner course covering Git and GitHub together."},{"id":"apGV9Kg7ics","tier":"c","title":"Complete Git and GitHub Tutorial","channel":"Kunal Kushwaha","duration":"1:12:40","why":"A widely watched walkthrough of Git and GitHub, recommended in the DevOps path research."},{"id":"0chZFIZLR_0","tier":"c","title":"Git MERGE vs REBASE: Everything You Need to Know","channel":"ByteByteGo","duration":"4:34","why":"What each does to history and when to prefer which."},{"id":"f1wnYdLEpgI","tier":"c","title":"Learn Git Rebase in 6 minutes // explained with live animations!","channel":"The Modern Coder","duration":"6:43","why":"Rebase shown as animation, which makes replaying commits easy to picture."},{"id":"DloR0BOGNU0","tier":"c","title":"Never fear merge conflicts again - git merge/pull tutorial","channel":"Philomatics","duration":"5:12","why":"How conflicts arise and how to resolve them calmly."},{"id":"RIYrfkZjWmA","tier":"c","title":"Git & GitHub Tutorial for Beginners #7 - Undoing Things","channel":"Net Ninja","duration":"10:30","why":"Restoring, amending and undoing changes."},{"id":"iIaM7j3tMuk","tier":"c","title":"Git Revert vs Git Reset","channel":"Boot dev","duration":"1:47","why":"The difference in under two minutes."},{"id":"GQQqf-C2ha4","tier":"c","title":"3 Git Workflows Every Developer Should Know (And When to Use Each)","channel":"TechWorld with Nana","duration":"31:32","why":"How teams organise branches and pull requests in practice."},{"id":"nCKdihvneS0","tier":"c","title":"How to create a pull request in 4 min | GitHub for Beginners","channel":"GitHub","duration":"3:44","why":"Opening a pull request, from GitHub itself."},{"id":"Uszj_k0DGsg","tier":"d","title":"Git for Professionals Tutorial - Tools & Concepts for Mastering Version Control with Git","channel":"freeCodeCamp.org","duration":"40:42","why":"Beyond the basics: the tools professionals lean on day to day."},{"id":"ZDR433b0HJY","tier":"d","title":"Introduction to Git with Scott Chacon of GitHub","channel":"InfoQ","duration":"1:22:12","why":"A talk from the author of Pro Git on how Git thinks."},{"id":"2sjqTHE0zok","tier":"d","title":"Lecture 6: Version Control (git) (2020)","channel":"Missing Semester","duration":"1:25:00","why":"The 2020 edition of the MIT Git lecture, still popular for its depth on the internals."}],
+    articles: [{"kind":"Book (online)","source":"Scott Chacon & Ben Straub","title":"Pro Git","url":"https://git-scm.com/book/en/v2","desc":"The official free Git book. Read Getting Started, Git Basics, Git Branching and the GitHub chapter.","tier":"s"},{"kind":"Interactive","source":"Learn Git Branching","title":"Learn Git Branching","url":"https://learngitbranching.js.org/","desc":"Visual, interactive levels for branches, merge, rebase and remotes. Do the main sequence and the remote tab.","tier":"s"},{"kind":"Guide","source":"Atlassian","title":"Git tutorials","url":"https://www.atlassian.com/git/tutorials","desc":"Practical tutorials on everyday Git, workflows and history.","tier":"c"},{"kind":"Guide","source":"GitHub","title":"Git guides","url":"https://github.com/git-guides","desc":"Short, task-based guides to the commands you use most.","tier":"c"},{"kind":"Guide","source":"Dangit, Git!?!","title":"Dangit, Git!?!","url":"https://dangitgit.com/","desc":"Plain-English fixes for the common \"I messed up\" moments.","tier":"c"},{"kind":"Docs","source":"GitHub CLI","title":"GitHub CLI manual","url":"https://cli.github.com/manual/","desc":"Create and review pull requests, issues and repos from the terminal with gh.","tier":"c"},{"kind":"Interactive","source":"GitHub","title":"GitHub Skills","url":"https://skills.github.com/","desc":"Short, hands-on courses that run inside a GitHub repo.","tier":"c"},{"kind":"Interactive","source":"Git Exercises","title":"Git Exercises","url":"https://gitexercises.fracz.com/","desc":"Practice problems that you solve in a real local repository.","tier":"c"},{"kind":"Docs","source":"GitHub Docs","title":"GitHub flow","url":"https://docs.github.com/en/get-started/using-github/github-flow","desc":"The lightweight branch, PR and merge workflow many teams use.","tier":"c"},{"kind":"Article","source":"cbea.ms","title":"How to Write a Git Commit Message","url":"https://cbea.ms/git-commit/","desc":"The seven rules of a good commit message, and why they matter.","tier":"c"},{"kind":"Book chapter","source":"Pro Git","title":"Undoing Things","url":"https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things","desc":"Amend, unstage and restore, from the official book.","tier":"c"},{"kind":"Interactive","source":"Oh My Git!","title":"Oh My Git!","url":"https://ohmygit.org/","desc":"An open-source card game that teaches Git by making the repository visible.","tier":"d"},{"kind":"Guide","source":"think-like-a-git.net","title":"Think Like (a) Git","url":"https://think-like-a-git.net/","desc":"A guide to the mental model that makes Git commands predictable.","tier":"d"},{"kind":"Book chapter","source":"Pro Git","title":"Reset Demystified","url":"https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified","desc":"What reset really does to the three trees.","tier":"d"},{"kind":"Guide","source":"Atlassian","title":"Git reflog","url":"https://www.atlassian.com/git/tutorials/rewriting-history/git-reflog","desc":"How the reflog lets you recover commits that seem lost.","tier":"d"},{"kind":"Reference","source":"Conventional Commits","title":"Conventional Commits 1.0.0","url":"https://www.conventionalcommits.org/en/v1.0.0/","desc":"A convention for commit messages that tooling can parse.","tier":"d"}],
+    html: `
+    <div class="case-banner">
+      <span class="case-tag">Version control</span>
+      <div class="case-banner-meta">Focus: The mental model · Daily flow · Branch and merge · Conflicts · Undo and recovery · Pull requests from the terminal</div>
+    </div>
+
+    <div class="tech-pills">
+      <span class="tech-pill">git switch</span>
+      <span class="tech-pill">git merge</span>
+      <span class="tech-pill">git revert</span>
+      <span class="tech-pill">git reflog</span>
+      <span class="tech-pill">gh pr</span>
+    </div>
+
+    <p>Learn Git as a DevOps engineer, not just a note-taker: it is the source of truth that CI/CD, deployments and GitOps all read from. The GUI is fine later. Learn the CLI first, because the CLI is what you have on a server, in a pipeline, and at 3 a.m.</p>
+
+    <h3>The mental model (learn this before the commands)</h3>
+<pre><code>working tree  ──git add──▶  staging area  ──git commit──▶  local repo  ──git push──▶  remote (GitHub)
+ (your files)               (the next commit)               (history)        ◀──git fetch / pull──</code></pre>
+    <ul>
+      <li>A <strong>commit</strong> is a snapshot of the project plus a pointer to its parent(s). History is a graph of these.</li>
+      <li>A <strong>branch</strong> is just a movable label pointing at a commit. Creating one is nearly free.</li>
+      <li><strong>HEAD</strong> is "where you are now", normally the tip of the current branch.</li>
+      <li>A <strong>remote</strong> (<code>origin</code>) is another copy of the repo. <code>fetch</code> downloads its state; <code>push</code> uploads yours.</li>
+    </ul>
+    <p>If commands ever stop making sense, go back to these four ideas. The interactive site <em>Learn Git Branching</em> (linked below) makes them visible in an afternoon.</p>
+
+    <h3>The daily workflow, end to end</h3>
+<pre><code>git clone git@github.com:you/project.git
+cd project
+git switch -c feature/login-fix          # new branch for this piece of work
+
+# ...edit files...
+git status                               # what changed?
+git diff                                 # exactly what changed?
+git add -p                               # stage selectively, hunk by hunk
+git commit -m "Fix login redirect after OAuth callback"
+
+git push -u origin feature/login-fix     # first push sets the upstream
+gh pr create --fill                      # open the pull request from the terminal</code></pre>
+    <p>Then review on GitHub, merge, and tidy up:</p>
+<pre><code>git switch main
+git pull
+git branch -d feature/login-fix</code></pre>
+
+    <h3>Look before you leap</h3>
+<pre><code>git status -sb                            # short status with branch info
+git log --oneline --graph --decorate --all
+git log -p -- path/to/file               # history of one file, with diffs
+git diff --staged                        # what is about to be committed
+git show a1b2c3d                         # one commit in full
+git blame path/to/file                   # who last touched each line
+git remote -v                            # where does "origin" point?</code></pre>
+
+    <h3>Branch, merge and resolve conflicts</h3>
+<pre><code>main:            A───B───C
+                          \\
+feature-login:             D───E
+
+git switch main
+git merge feature-login        # fast-forward if main has not moved, else a merge commit</code></pre>
+    <p>A <strong>merge conflict</strong> happens when both branches changed the same lines. Git stops and marks the file:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+timeout = 30
+=======
+timeout = 60
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-login</code></pre>
+    <ol>
+      <li><code>git status</code> lists the files marked "both modified".</li>
+      <li>Open each one, decide what the final text should be, and delete the three marker lines.</li>
+      <li><code>git add path/to/file</code> to mark it resolved.</li>
+      <li><code>git merge --continue</code> (or <code>git commit</code>) to finish. If you panic: <code>git merge --abort</code> puts everything back.</li>
+    </ol>
+    <p><strong>Merge vs rebase:</strong> merge preserves history exactly as it happened; <code>git rebase main</code> replays your commits on top of the latest main for a straight line. The safe rule: <em>never rebase commits that other people have already pulled</em>. Until you are comfortable, merge.</p>
+
+    <h3>Remotes: fetch, pull, push</h3>
+<pre><code>git fetch                     # download new commits, change nothing locally
+git pull                      # fetch + merge into the current branch
+git pull --rebase             # fetch + replay your local commits on top (tidier history)
+git push                      # upload your commits
+git push --force-with-lease   # only if you must rewrite YOUR OWN branch; never on shared main</code></pre>
+
+    <h3>Undo and recovery: the part senior interviews ask about</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Command</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Unstage a file</td><td><code>git restore --staged file</code></td><td>Keeps your edits</td></tr>
+          <tr><td>Throw away uncommitted edits to a file</td><td><code>git restore file</code></td><td>Destructive: those edits are gone</td></tr>
+          <tr><td>Fix the last commit (message or a forgotten file)</td><td><code>git commit --amend</code></td><td>Only if you have not pushed it</td></tr>
+          <tr><td>Undo a commit that is already pushed or shared</td><td><code>git revert a1b2c3d</code></td><td>Adds a new commit that reverses it. Safe for shared history</td></tr>
+          <tr><td>Move the branch back locally</td><td><code>git reset --soft HEAD~1</code><br><code>git reset --mixed HEAD~1</code><br><code>git reset --hard HEAD~1</code></td><td>soft keeps changes staged, mixed keeps them unstaged, <strong>hard discards them</strong></td></tr>
+          <tr><td>Park half-finished work</td><td><code>git stash push -m "wip"</code><br><code>git stash pop</code></td><td>Switch branches without committing</td></tr>
+          <tr><td>"I lost my commits!"</td><td><code>git reflog</code><br><code>git switch -c rescue a1b2c3d</code></td><td>The reflog records where HEAD has been. Commits are rarely truly gone</td></tr>
+          <tr><td>Grab one commit from another branch</td><td><code>git cherry-pick a1b2c3d</code></td><td>Useful for hotfixes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><b>Revert vs reset in one sentence</b> — <code>revert</code> adds a new commit that undoes an old one (safe to push); <code>reset</code> moves the branch pointer and rewrites history (only for commits nobody else has).</div>
+
+    <h3>Tags, releases and commit hygiene</h3>
+<pre><code>git tag -a v1.2.0 -m "Release 1.2.0"
+git push origin v1.2.0            # tags are not pushed by default</code></pre>
+    <ul>
+      <li><strong>Small, focused commits</strong> with messages that say <em>why</em> (imperative mood: "Fix login redirect", not "fixed stuff").</li>
+      <li>Keep build output, <code>node_modules</code> and local config in <code>.gitignore</code>.</li>
+      <li><strong>Never commit secrets.</strong> If one slips in, <em>rotate it immediately</em>; scrubbing history is secondary because it may already be copied.</li>
+    </ul>
+
+    <h3>How teams use it</h3>
+    <p>Most teams use <strong>GitHub Flow</strong> (short-lived branch, PR, review, merge to main, deploy) or <strong>trunk-based development</strong> (tiny changes merged to main many times a day behind feature flags). Branch protection, required reviews and CI checks on pull requests are the norm. For DevOps this matters twice: your pipeline is triggered by pushes and tags, and in GitOps setups such as ArgoCD the Git repo <em>is</em> the desired state of production.</p>
+
+    <h3>Defer these until merging feels easy</h3>
+    <p><code>git rebase -i</code> (history editing), submodules, and the plumbing commands. Understanding Git's object model is rewarding, but it is not the job bar.</p>
+    `
+  },
+  {
+    id: "terminal-labs-projects",
+    part: "VI · Linux, CLI & Git",
+    title: "Practice: labs, projects & interview drills",
+    dek: "Where the skills stick: wargames, broken servers, a portfolio repo, and the questions you will actually be asked.",
+    videos: [{"id":"RZ4p-saaQkc","tier":"c","title":"Vim Tutorial for Beginners","channel":"freeCodeCamp.org","duration":"1:14:29","why":"Enough Vim to edit configuration on any server without fear."},{"id":"UxbiDtEXuxg","tier":"c","title":"Learn tmux (Part 1) Boost your Linux Productivity with this 5-part Course!","channel":"Learn Linux TV","duration":"9:46","why":"Terminal multiplexing so long-running work survives a dropped SSH session."},{"id":"N1vgvhiyq0E","tier":"c","title":"systemd on Linux 1: Intro and Unit Files","channel":"tutoriaLinux","duration":"13:48","why":"Writing a unit file to run your own application as a service."},{"id":"nQdyiK7-VlQ","tier":"c","title":"Easily Deploy Full Stack Node.js Apps on AWS EC2 | Step-by-Step Tutorial","channel":"Sam Meech-Ward","duration":"29:00","why":"A worked deployment of a Node.js app to an EC2 server, similar to portfolio project B."},{"id":"y7S2oSjJ8PA","tier":"c","title":"GitHub Actions Tutorial - Deploy Node.js Application with CI CD and GitHub Actions","channel":"Piyush Garg","duration":"33:25","why":"Automating a deployment from a GitHub Actions workflow."},{"id":"l0QGLMwR-lY","tier":"c","title":"Top 10 Linux Job Interview Questions","channel":"tutoriaLinux","duration":"16:04","why":"A quick rehearsal of common Linux interview questions."}],
+    articles: [{"kind":"Interactive","source":"OverTheWire","title":"Bandit wargame","url":"https://overthewire.org/wargames/bandit/","desc":"SSH into a real box and solve levels using ls, find, grep, permissions and pipes. Do levels 0 to 15 without write-ups.","tier":"s"},{"kind":"Interactive","source":"cmdchallenge","title":"Command Line Challenge","url":"https://cmdchallenge.com/","desc":"One-line shell puzzles that build fluency with pipes and text processing.","tier":"c"},{"kind":"Interactive","source":"OpenVim","title":"OpenVim","url":"https://openvim.com/","desc":"An interactive Vim tutorial in the browser.","tier":"c"},{"kind":"Docs","source":"AWS","title":"AWS Free Tier","url":"https://aws.amazon.com/free/","desc":"What you can run for free, so you can practise on a real cloud server. Set a billing alert first.","tier":"c"},{"kind":"Docs","source":"AWS","title":"Get started with Amazon EC2","url":"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html","desc":"Launch a Linux instance and connect to it.","tier":"c"},{"kind":"Docs","source":"nginx.org","title":"Nginx beginner's guide","url":"https://nginx.org/en/docs/beginners_guide.html","desc":"Starting nginx, serving static content and proxying to an application.","tier":"c"},{"kind":"Guide","source":"DigitalOcean","title":"How To Use Systemctl to Manage Systemd Services and Units","url":"https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units","desc":"A step-by-step guide to managing services on a systemd host.","tier":"c"},{"kind":"Docs","source":"tmux","title":"tmux wiki","url":"https://github.com/tmux/tmux/wiki","desc":"Official documentation for the terminal multiplexer.","tier":"d"}],
+    html: `
+    <div class="case-banner">
+      <span class="case-tag">Proof of skill</span>
+      <div class="case-banner-meta">Focus: Wargames and broken-server labs · Two portfolio projects · Break-it drills · Interview questions · A "job-ready" checklist</div>
+    </div>
+
+    <div class="tech-pills">
+      <span class="tech-pill">OverTheWire Bandit</span>
+      <span class="tech-pill">SadServers</span>
+      <span class="tech-pill">Nginx</span>
+      <span class="tech-pill">systemd</span>
+      <span class="tech-pill">GitHub Actions</span>
+    </div>
+
+    <p>Nobody hires you for finishing a playlist. They hire you because you can be dropped onto an unfamiliar machine and get somewhere. So this chapter is deliberately not about new commands: it is where the previous five chapters get pressure-tested.</p>
+
+    <h3>Labs that build muscle memory</h3>
+    <ul>
+      <li><strong>OverTheWire Bandit</strong> (do levels 0–15 at minimum, <em>without</em> reading write-ups). You SSH into a real Linux box and solve each level with <code>ls</code>, <code>find</code>, <code>grep</code>, permissions and pipes. Level 0 is:
+<pre><code>ssh bandit0@bandit.labs.overthewire.org -p 2220     # password for level 0 is: bandit0</code></pre></li>
+      <li><strong>SadServers</strong>: real broken Linux servers you must fix over SSH. It is the closest thing to the "this box is out of disk / this service won't start, walk me through it" interview question.</li>
+      <li><strong>Linux Upskill Challenge</strong>: a month of daily lessons on a real server.</li>
+      <li><strong>cmdchallenge.com</strong>: one-line shell puzzles, good for pipes and text processing.</li>
+      <li><strong>Learn Git Branching</strong> and <strong>Oh My Git!</strong>: Git as a visual puzzle; then <strong>Git Exercises</strong> to practise in a real repo.</li>
+    </ul>
+
+    <h3>Portfolio project A: <code>cli-lab</code> (1–2 days)</h3>
+    <p>A tiny repo that proves you can use Linux and Git as a team does. It is worth more on a résumé than ten certificates.</p>
+<pre><code>mkdir ~/cli-lab &amp;&amp; cd ~/cli-lab
+git init
+echo "# cli-lab" &gt; README.md
+git add README.md
+git commit -m "Initial commit"
+
+# create the repo on GitHub and push in one step
+gh repo create cli-lab --public --source=. --remote=origin --push
+
+git switch -c feature/backup-script
+# write backup.sh: copies files, logs what it did, exits with a proper status code
+chmod +x backup.sh
+git add backup.sh &amp;&amp; git commit -m "Add backup script with logging and exit codes"
+git push -u origin feature/backup-script
+gh pr create --fill</code></pre>
+    <p>Merge the PR yourself, pull <code>main</code>, delete the branch. Then repeat with a deliberate merge conflict between two branches.</p>
+
+    <h3>Portfolio project B: deploy an application on a Linux server</h3>
+<pre><code>Laptop ─▶ GitHub repo ─▶ CI pipeline ─▶ Ubuntu server (EC2) ─▶ Nginx ─▶ Application</code></pre>
+    <p>Everything from this part lands in one project: Git (clone, branch, merge, tag), Linux (SSH, logs, services, permissions, networking) and DevOps (CI/CD, deployment, troubleshooting).</p>
+    <ol>
+      <li><strong>Launch an Ubuntu server</strong> (AWS free-tier EC2 or any VPS). Open only ports 22 and 80/443 in its security group; log in with an SSH key.</li>
+      <li><strong>Install and check Nginx:</strong> <code>sudo apt update &amp;&amp; sudo apt install nginx</code>, then <code>systemctl status nginx</code> and <code>curl localhost</code>.</li>
+      <li><strong>Deploy the app from Git:</strong> a small Node, Python or static app cloned under <code>/opt/myapp</code>, owned by a non-root <code>deploy</code> user.</li>
+      <li><strong>Run it as a service</strong> with a systemd unit so it starts on boot and restarts on failure:
+<pre><code>[Unit]
+Description=My app
+After=network.target
+
+[Service]
+User=deploy
+WorkingDirectory=/opt/myapp
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+        Save it as <code>/etc/systemd/system/myapp.service</code>, then <code>sudo systemctl daemon-reload &amp;&amp; sudo systemctl enable --now myapp</code>.</li>
+      <li><strong>Put Nginx in front</strong> as a reverse proxy to the app's port (see <a href="#reverse-proxy">Reverse proxy</a>), then verify with <code>ss -tlnp</code> and <code>curl</code>.</li>
+      <li><strong>Automate the deploy:</strong> a GitHub Actions workflow that, on push to <code>main</code>, SSHes to the server (key stored as an encrypted repository secret), pulls the latest code and restarts the service.</li>
+      <li><strong>Break it and fix it:</strong> stop the service, fill the disk, make a permissions mistake, block the port. For each, write down the symptom, how you found it and the fix in <code>TROUBLESHOOTING.md</code>.</li>
+    </ol>
+
+    <h3>Break-it drills</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Break this</th><th>Look here</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Typo in an Nginx config</td><td><code>sudo nginx -t</code>, <code>journalctl -u nginx</code></td><td>Correct the file, reload</td></tr>
+          <tr><td>Service crashes on start</td><td><code>systemctl status</code>, <code>journalctl -u myapp -n 50</code></td><td>Fix the cause the log names</td></tr>
+          <tr><td>Fill the disk (<code>fallocate -l 5G /tmp/big</code>)</td><td><code>df -h</code>, <code>du -sh /* | sort -h</code></td><td>Remove or move the hog</td></tr>
+          <tr><td><code>chmod 000</code> a needed file</td><td><code>ls -l</code>, the app's error</td><td>Restore the right mode and owner</td></tr>
+          <tr><td>Start a second process on the same port</td><td><code>sudo ss -tlnp</code></td><td>Stop the squatter or change the port</td></tr>
+          <tr><td>Point DNS at the wrong IP</td><td><code>dig +short</code></td><td>Correct the record, wait for TTL</td></tr>
+          <tr><td>Create a merge conflict</td><td><code>git status</code></td><td>Edit markers, <code>add</code>, <code>merge --continue</code></td></tr>
+          <tr><td>Reset away commits by mistake</td><td><code>git reflog</code></td><td><code>git switch -c rescue &lt;sha&gt;</code></td></tr>
+          <tr><td>Commit a fake API key</td><td><code>git log -p</code></td><td>Rotate the key first, then clean history</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Questions you are likely to be asked</h3>
+    <p><strong>Linux</strong> (practical, not certification trivia):</p>
+    <ul>
+      <li>A server is slow. What do you run in the first minute, and what does each tool tell you?</li>
+      <li><code>df</code> says the disk is 100% full but <code>du</code> only finds half of it. Why? <span style="color:var(--ink-soft)">(Deleted files still open by a process; exhausted inodes; a mount hiding files.)</span></li>
+      <li>How do you find which process is listening on port 80?</li>
+      <li>What is the difference between <code>kill</code> and <code>kill -9</code>? When is the second a bad idea?</li>
+      <li>What does <code>chmod 755</code> mean, and why must an SSH private key be <code>600</code>?</li>
+      <li>A service is "failed" after a reboot. Walk through how you find out why.</li>
+      <li>Hard link vs symbolic link? What is a zombie process?</li>
+    </ul>
+    <p><strong>Git:</strong></p>
+    <ul>
+      <li>Merge vs rebase: when do you use each, and what is the rule about shared branches?</li>
+      <li><code>git revert</code> vs <code>git reset</code>. Which do you use on a pushed commit?</li>
+      <li>You deleted a branch or reset too far. How do you get the commits back? <span style="color:var(--ink-soft)">(<code>git reflog</code>.)</span></li>
+      <li><code>git fetch</code> vs <code>git pull</code>. What is a detached HEAD?</li>
+      <li>Someone pushed a secret to <code>main</code>. What are the first three things you do?</li>
+      <li>Your PR has a conflict. Talk me through resolving it.</li>
+    </ul>
+
+    <h3>Terminal comfort: editor and multiplexer</h3>
+    <p>Two small investments that pay off on every server: enough <code>vim</code> to edit a config without fear, and <code>tmux</code> so long-running work survives a dropped SSH connection. The videos below get you there in an evening each.</p>
+
+    <h3>You are job-ready on this slice when you can…</h3>
+    <ul>
+      <li>SSH into a machine and find out why a file is not readable.</li>
+      <li>Explain <code>git status</code> without guessing, and say what each of the three areas holds.</li>
+      <li>Resolve a merge conflict and land a pull request from the terminal.</li>
+      <li>Diagnose a failed service using <code>systemctl</code> and <code>journalctl</code>.</li>
+      <li>Find what is filling a disk and what is using the CPU.</li>
+      <li>Write a Bash script with arguments, a loop and a meaningful exit code.</li>
+      <li>Deploy an application to a Linux server and show the pipeline that did it.</li>
+    </ul>
+
+    <div class="callout"><b>Where to go next</b> — containers (Docker), one cloud in depth (AWS), Kubernetes troubleshooting, and CI/CD with GitOps. Those raise the ceiling; this part is the floor they stand on. For more handy web tools see the <a href="toolbox.html">Internet Hidden Toolbox</a>, and for an AI-focused path see the <a href="ai-engineer-roadmap.html">AI Engineer Roadmap</a>.</div>
+    `
   }
 ];
 
@@ -1950,7 +2693,7 @@ const PLAY_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l
 const PART_COLOR = {
   'Front matter':'var(--s1)', 'I · Foundations':'var(--s2)', 'II · The network path':'var(--s3)',
   'III · Services & data':'var(--s4)', 'IV · Moving parts':'var(--s5)', 'Appendix':'var(--ink-muted)',
-  'V · Classic Case Studies':'var(--s6)'
+  'V · Classic Case Studies':'var(--s6)', 'VI · Linux, CLI & Git':'var(--s7)'
 };
 
 function renderVideos(list) {
