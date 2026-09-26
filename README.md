@@ -29,7 +29,7 @@ This **Interactive Reading Edition** transforms the primer into a unified, high-
 * 🌓 **Dark & Light Mode:** Tailored typography (Source Serif 4, IBM Plex Sans, IBM Plex Mono) with smooth contrast.
 * 🧰 **Internet Hidden Toolbox (`toolbox.html`):** An interactive, searchable directory of 51 high-yield web tools, academic research engines (Unpaywall, Elicit, Consensus, Connected Papers), developer terminal tools (Phind, Regex101, ExplainShell, Carbon), privacy shields (VirusTotal, Privnote, Temp-Mail), and cognitive focus audio (Radio Garden, Music For Programming) &mdash; complete with practical use cases, pro tips, instant search, and one-click browser bookmark export.
 
-* 🧭 **AI Engineer Roadmap (`ai-engineer-roadmap.html`):** A free, link-verified 6-stage path to a production-grade AI / LLM engineer role — foundations, LLM internals, advanced RAG, agents, fine-tuning & serving, and LLMOps/evals/security. 44 in-page playable videos, ~90 courses, articles, repos and docs sorted into *Start here / Core / Deep dive* tiers, per-stage checkpoints, 3 portfolio-project briefs, a 16-week plan, and a communities section (Discord, Slack, forums, newsletters). Search, type filters, dark/light mode, and tick-off progress saved in your browser.
+* 🧭 **AI / ML Engineer Roadmap (`ai-engineer-roadmap.html`):** A free, link-verified path from **Phase 0 to job-ready** in 12 phases: setup and maths, data (NumPy/pandas/SQL), classical ML shipped as an API, evaluation and Kaggle, deep learning with PyTorch, transformers, advanced RAG, agents, fine-tuning and serving, MLOps, LLMOps/evals/security, and system design plus the job hunt. **A project in every phase** (with acceptance criteria), 106 in-page videos, ~275 courses/articles/repos sorted into *Start here / Core / Deep dive* tiers, six flagship résumé projects, 30 interview questions with hints, what real postings ask for, job boards, and 12-week, 24-week and full-path (~16 months at 7 h/week) plans. Search, type filters, dark/light mode and tick-off progress saved in your browser.
 
 ---
 
@@ -50,7 +50,7 @@ This interactive study edition was curated and built by **HkSolDev** (`@MrDevGho
 | :--- | :--- |
 | `index.html` | **Library home**: one search across every chapter, video, article, course and tool, plus "continue where you left off". Contains a generated search index. |
 | `systemdesignprimerbook.html` | The System Design Primer reading edition (30 chapters, 129 videos, 142 articles). |
-| `ai-engineer-roadmap.html` | AI Engineer Roadmap. Data lives in the `STAGES` array near the top of its `<script>`. |
+| `ai-engineer-roadmap.html` | AI / ML Engineer Roadmap (12 phases). Data lives in the `STAGES` array (phases 0–3, 9 and 11 plus per-phase projects are defined just after `COMMUNITY`) near the top of its `<script>`. |
 | `toolbox.html` | Internet Hidden Toolbox (85 tools). Data lives in the `TOOLS` array. |
 | `library.css` | Shared design tokens + polish for every page. `book.css` and `toolbox.css` hold page-specific styling. |
 | `scripts/build-index.js` | Regenerates the home-page search index from the three content pages. |

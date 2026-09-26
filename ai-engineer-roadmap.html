@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="description" content="A free, link-verified 6-stage roadmap to becoming a production-grade AI / LLM engineer: foundations, transformer internals, advanced RAG, agents, fine-tuning & serving, and LLMOps. With playable videos, progress tracking, portfolio projects and a 16-week plan.">
+<meta name="description" content="A free, link-verified roadmap from zero to a job-ready AI / ML engineer: 12 phases from setup and maths through classical ML, PyTorch, transformers, RAG, agents, fine-tuning, MLOps and interviews — with a project in every phase and in-page videos.">
 <meta property="og:title" content="The AI Engineer Roadmap · Free, Verified Learning Path">
-<meta property="og:description" content="Six stages from Python and PyTorch to RAG, agents, fine-tuning, serving and evals — every link checked, videos playable in-page, progress saved in your browser.">
+<meta property="og:description" content="Twelve phases from Phase 0 to the job hunt, a project in every phase, every link checked, videos playable in-page, progress saved in your browser.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@HKsoldev">
@@ -259,6 +259,33 @@
   .verify ul{padding-left:20px;margin-top:6px}
   footer.foot{margin-top:50px;padding-top:22px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-muted);display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 
+
+  /* ---------- Phase project, plans, interviews, market (2026-09-26) ---------- */
+  .pproj{margin-top:26px;padding:18px 20px;border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--c) 32%,var(--rule));background:var(--paper-card);box-shadow:var(--shadow-sm)}
+  .pproj .plabel{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--c);font-weight:600}
+  .pproj h4{font-family:var(--font-serif);font-size:21px;line-height:1.25;margin:4px 0 6px}
+  .pproj p{font-size:14.5px;color:var(--ink-soft);margin-top:6px}
+  .pproj h5{font-size:11px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin:14px 0 6px}
+  .pproj ul{padding-left:20px;font-size:14px;color:var(--ink-soft)}
+  .pproj li{margin:3px 0}
+  .pproj code,.qgroup code,.cgroup code{font-family:var(--font-mono);font-size:.88em;background:var(--code-bg);padding:.1em .35em;border-radius:4px}
+  .sched-title{font-family:var(--font-serif);font-size:20px;margin:28px 0 0}
+  .sched4 .srow{grid-template-columns:104px 92px 1.2fr 1fr}
+  .sched4 .srow .ph{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted)}
+  .qgroup{background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-md);margin:10px 0;padding:0 18px}
+  .qgroup summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:15px}
+  .qgroup ol{padding-left:22px;margin:0 0 12px}
+  .qgroup li{margin:9px 0;font-size:14.5px}
+  .qgroup li small{display:block;color:var(--ink-muted);font-size:13px;margin-top:2px}
+  .mk{display:grid;gap:10px}
+  .mk a{display:block;padding:12px 16px;background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius-md);color:var(--ink)}
+  .mk a:hover{border-color:var(--spine)}
+  .mk b{font-size:14.5px}
+  .mk small{display:block;color:var(--ink-soft);font-size:13.5px;margin-top:3px;line-height:1.5}
+  .plist{padding-left:18px;font-size:14px;color:var(--ink-soft)}
+  .plist li{margin:6px 0}
+  @media (max-width:720px){.sched4 .srow{grid-template-columns:1fr;gap:4px}.sched4 .srow.head{display:none}}
+
   /* ---------- Responsive ---------- */
   @media (max-width:980px){
     .app{grid-template-columns:1fr}
@@ -351,15 +378,15 @@
    V(id, title, channel, duration, why, tier, embeddable=true)
    R(type, title, source, url, why, tier, meta)   type: course | read | repo | docs
    tier: s = start here · c = core · d = deep dive
-   Every URL and video ID below was checked on 2026-09-20.
+   Every URL and video ID below was checked on 2026-09-20 (original stages) or 2026-09-26 (new phases).
    ===================================================================== */
 const V = (id, title, by, dur, why, t = "c", embed = true) => ({ kind: "video", id, title, by, dur, why, t, embed, key: "yt:" + id, url: "https://www.youtube.com/watch?v=" + id });
 const R = (type, title, src, url, why, t = "c", meta = "") => ({ kind: type, title, src, url, why, t, meta, key: url });
 
 const STAGES = [
 {
-  n: 1, id: "stage-1", title: "Foundations", weeks: "Weeks 1–3",
-  dek: "Python concurrency, PyTorch and just enough maths to stop treating a neural network as a black box.",
+  n: 4, id: "phase-4", legacy: "stage-1", track: "Deep learning & LLMs", dur: 8, title: "Deep learning & PyTorch",
+  dek: "Backpropagation from first principles, PyTorch training loops, and the async Python your LLM services will need.",
   why: "LLM products are <b>I/O-bound services wrapped around a neural network</b>. Interviewers check two things early: can you write concurrent Python that streams, and are “gradient”, “tensor” and “loss” more than buzzwords to you?",
   master: ["async / await, the event loop, asyncio.gather & timeouts", "FastAPI + Pydantic request/response models", "Vectors, matrices, dot products, softmax", "Gradient descent & backpropagation", "PyTorch tensors, autograd, a training loop", "Train / val / test splits, over- & under-fitting"],
   videos: [
@@ -382,7 +409,7 @@ const STAGES = [
   checkpoint: "Rebuild micrograd without looking, then ship an async FastAPI endpoint that fans out 5 concurrent HTTP calls with <code>asyncio.gather</code>, a timeout, and streamed results."
 },
 {
-  n: 2, id: "stage-2", title: "LLM internals", weeks: "Weeks 2–4",
+  n: 5, id: "phase-5", legacy: "stage-2", track: "Deep learning & LLMs", dur: 6, title: "NLP, transformers & LLM internals",
   dek: "Transformers, tokenisation and attention — the mental model you need to explain why an LLM fails, not just that it did.",
   why: "Hallucinations, truncated context, weird token costs and non-English quirks all trace back to <b>tokenisation, attention and how the model was trained</b>. Being able to say why is what separates a senior answer from an API-caller's.",
   master: ["Tokenisation (BPE) & why token count ≠ word count", "Embeddings & similarity", "Self-attention, multi-head attention, positional encoding", "Context windows & the KV cache", "Pre-training → SFT → RLHF / DPO, at a high level", "Sampling: temperature, top-p, top-k"],
@@ -411,7 +438,7 @@ const STAGES = [
   checkpoint: "Train a tiny GPT on a text corpus you care about and explain every tensor shape on a whiteboard — from token IDs to logits."
 },
 {
-  n: 3, id: "stage-3", title: "Advanced RAG", weeks: "Weeks 4–7",
+  n: 6, id: "phase-6", legacy: "stage-3", track: "Deep learning & LLMs", dur: 5, title: "Advanced RAG",
   dek: "Retrieval that survives contact with messy corporate documents — hybrid search, reranking, contextual chunks and honest evaluation.",
   why: "“Split a PDF into 500-character chunks and query a vector DB” is a demo, not a system. Companies pay for engineers who can <b>measure retrieval quality, cut hallucinations and handle unstructured data</b>. Expect a RAG design question in almost every AI interview.",
   master: ["Ingestion: layout-aware parsing, tables, chunking strategies", "Hybrid search: dense + BM25 with reciprocal rank fusion", "Cross-encoder reranking (two-stage retrieval)", "Contextual retrieval: prepend document context to chunks", "Query rewriting, HyDE, Self-RAG / Corrective RAG", "Retrieval metrics: Recall@k, MRR, faithfulness"],
@@ -443,7 +470,7 @@ const STAGES = [
   checkpoint: "Index ~50 pages of real PDFs with hybrid search + a reranker. Hand-label 30 questions and report <b>Recall@5 with vs. without</b> the reranker."
 },
 {
-  n: 4, id: "stage-4", title: "Agents & workflows", weeks: "Weeks 8–10",
+  n: 7, id: "phase-7", legacy: "stage-4", track: "Deep learning & LLMs", dur: 4, title: "Agents & workflows",
   dek: "Tool calling, state machines, memory and MCP — and knowing when a plain workflow beats an agent.",
   why: "Agents are where production LLM systems fail loudest. Hiring managers want people who can <b>bound the loop, checkpoint state, add human approval and trace every step</b> — and who start with the simplest thing that works.",
   master: ["Tool calling & structured outputs (Pydantic, JSON schema)", "Workflows vs. agents — pick the simplest that works", "State machines: nodes, conditional edges, checkpointing", "Human-in-the-loop approvals", "Short- vs. long-term memory", "Model Context Protocol (MCP) servers & clients", "Declarative prompt optimisation (DSPy)"],
@@ -480,7 +507,7 @@ const STAGES = [
   checkpoint: "Ship a multi-step agent with 3+ tools, <b>persisted state, a human-approval gate and a step-by-step trace</b>. Then write down which parts could have been a plain workflow."
 },
 {
-  n: 5, id: "stage-5", title: "Open weights, fine-tuning & serving", weeks: "Weeks 11–13",
+  n: 8, id: "phase-8", legacy: "stage-5", track: "Deep learning & LLMs", dur: 6, title: "Open weights, fine-tuning & serving",
   dek: "Run Llama, Qwen or Mistral yourself: LoRA / QLoRA, preference tuning, quantisation and high-throughput inference.",
   why: "Cost, privacy and latency push teams towards open models. Senior roles expect you to <b>know when to fine-tune vs. prompt vs. RAG</b> — and to serve a model with continuous batching and a KV cache instead of a naïve loop.",
   master: ["Fine-tune vs. prompt vs. RAG — the decision tree", "LoRA / QLoRA: rank, alpha, target modules", "SFT and preference optimisation (DPO)", "Quantisation: 4/8-bit, AWQ, GPTQ, GGUF", "Serving: continuous batching, PagedAttention, KV cache", "Local runtimes: Ollama & llama.cpp"],
@@ -517,7 +544,7 @@ const STAGES = [
   checkpoint: "QLoRA-fine-tune a 7–8B model on one narrow task, serve <b>base vs. fine-tuned</b> behind vLLM, and report tokens/sec plus quality on a held-out set."
 },
 {
-  n: 6, id: "stage-6", title: "LLMOps, evals & security", weeks: "Weeks 14–16",
+  n: 10, id: "phase-10", legacy: "stage-6", track: "Production", dur: 5, title: "LLMOps, evals & security",
   dek: "Evaluation, tracing, cost and latency engineering, guardrails — the difference between a demo and a system you can change safely.",
   why: "When an interviewer asks <b>“How do you know this model update didn't break anything?”</b> the answer lives here. Evaluation is the most consistently under-taught skill in AI engineering — and the one hiring managers keep asking about.",
   master: ["Golden datasets, error analysis & LLM-as-a-judge", "RAG metrics: faithfulness, answer relevance, context precision", "Tracing & observability: latency, tokens, cost per request", "Semantic & prompt caching, streaming (SSE), fallbacks", "Prompt injection & OWASP LLM Top 10", "Guardrails, PII handling, rate limits"],
@@ -563,7 +590,23 @@ const STAGES = [
 
 const PROJECTS = [
   {
-    no: "Project 1 · after Stage 3–4", title: "Enterprise agentic RAG with continuous evals",
+    no: "Project 1 · after Phase 2", title: "Deployed prediction API (classical ML)",
+    what: "A churn, default-risk or price model on real tabular data, evaluated on a time-aware split and served by FastAPI in Docker at a public URL.",
+    stack: ["scikit-learn", "LightGBM", "FastAPI", "Docker", "GitHub Actions"],
+    proves: "You can frame a problem, evaluate honestly and ship a service — not a notebook.",
+    measure: ["PR-AUC / F1 against a dummy baseline, as CV mean ± std", "A leakage audit: what would not be known at prediction time?", "p95 latency of the /predict endpoint"],
+    bullet: "Shipped a <em>[LightGBM]</em> <em>[churn]</em> model as a Dockerised FastAPI service (p95 <em>[X]</em> ms); raised PR-AUC from <em>[A]</em> (baseline) to <em>[B]</em> on a time-based split."
+  },
+  {
+    no: "Project 2 · after Phase 3", title: "Kaggle competition with a documented validation strategy",
+    what: "One tabular competition with a written CV scheme, 25+ logged experiments and a final ensemble.",
+    stack: ["LightGBM", "XGBoost", "CatBoost", "Optuna", "MLflow"],
+    proves: "You understand evaluation, leakage and the gap between CV and a leaderboard.",
+    measure: ["CV score vs public leaderboard, plotted per experiment", "What each feature or model change moved", "Final rank against the number of teams"],
+    bullet: "Finished in the top <em>[X]</em>% of <em>[N]</em> teams in <em>[competition]</em> using a documented grouped-CV strategy and a stacked ensemble; logged <em>[N]</em> experiments."
+  },
+  {
+    no: "Project 3 · after Phases 6–7", title: "Enterprise agentic RAG with continuous evals",
     what: "Indexes messy corporate documents (PDFs with tables and diagrams) and answers with citations.",
     stack: ["FastAPI", "LangGraph", "Qdrant / pgvector", "BGE-reranker", "Ragas", "Langfuse"],
     proves: "You can ship retrieval you can measure — and stop it from regressing.",
@@ -571,7 +614,15 @@ const PROJECTS = [
     bullet: "Built hybrid (dense + BM25) retrieval with cross-encoder reranking, improving Recall@5 from <em>[X]</em> to <em>[Y]</em> on <em>[N]</em> labelled questions; added a Ragas regression gate in CI (faithfulness ≥ <em>[Z]</em>)."
   },
   {
-    no: "Project 2 · after Stage 5–6", title: "Self-hosted inference gateway with semantic cache",
+    no: "Project 4 · after Phase 8", title: "Domain fine-tune with preference alignment",
+    what: "Fine-tune a small open model for one narrow task (e.g. text-to-SQL, triage notes) and align it with DPO.",
+    stack: ["Unsloth / TRL", "QLoRA", "DPO", "Weights & Biases"],
+    proves: "You can decide when fine-tuning pays off — and prove it against a baseline.",
+    measure: ["Task accuracy vs. the base model and a hosted frontier model", "Cost per 1k requests", "Failure categories from error analysis"],
+    bullet: "QLoRA-tuned <em>[model]</em> on <em>[N]</em> curated examples (LLM-judge-filtered), reaching <em>[X]%</em> on <em>[benchmark]</em> vs. <em>[Y]%</em> for the base model at <em>[Z]%</em> of the inference cost."
+  },
+  {
+    no: "Project 5 · after Phase 8", title: "Self-hosted inference gateway with semantic cache",
     what: "An API gateway serving an open model with caching, routing and fallback to a hosted API.",
     stack: ["vLLM", "Docker", "Redis", "LiteLLM", "Prometheus", "Grafana"],
     proves: "You understand serving, cost and reliability — not just prompts.",
@@ -579,21 +630,13 @@ const PROJECTS = [
     bullet: "Deployed <em>[model]</em> on vLLM (continuous batching) reaching <em>[X]×</em> the throughput of a baseline pipeline; semantic cache reduced repeat-query cost by <em>[Y]%</em> at p50 <em>[Z]</em> ms."
   },
   {
-    no: "Project 3 · after Stage 5", title: "Domain fine-tune with preference alignment",
-    what: "Fine-tune a small open model for one narrow task (e.g. text-to-SQL, triage notes) and align it with DPO.",
-    stack: ["Unsloth / TRL", "QLoRA", "DPO", "Weights & Biases"],
-    proves: "You can decide when fine-tuning pays off — and prove it against a baseline.",
-    measure: ["Task accuracy vs. the base model and a hosted frontier model", "Cost per 1k requests", "Failure categories from error analysis"],
-    bullet: "QLoRA-tuned <em>[model]</em> on <em>[N]</em> curated examples (LLM-judge-filtered), reaching <em>[X]%</em> on <em>[benchmark]</em> vs. <em>[Y]%</em> for the base model at <em>[Z]%</em> of the inference cost."
+    no: "Project 6 · Phases 9–10 capstone", title: "Production ML / LLM platform with gated releases",
+    what: "Your best system wrapped in CI/CD, a model registry, eval gates, Kubernetes deployment, drift monitoring and a tested rollback.",
+    stack: ["GitHub Actions", "Docker", "Kubernetes", "Terraform", "MLflow", "Evidently / Langfuse", "Grafana"],
+    proves: "You can run models the way a platform team does — versioned, gated, observable and reversible.",
+    measure: ["A bad model blocked by CI, with the failing metric shown", "Time to roll back a release", "p50/p95 latency, error rate and cost per request on a dashboard"],
+    bullet: "Built an ML release pipeline (MLflow registry, GitHub Actions eval gates, Kubernetes deploy, Evidently drift alerts) that blocked <em>[N]</em> regressions and rolled back a bad release in <em>[X]</em> minutes."
   }
-];
-
-const SCHEDULE = [
-  ["Weeks 1–3", "1", "Python async · Karpathy Zero-to-Hero · Transformers", "Micrograd and a tiny GPT built from scratch"],
-  ["Weeks 4–7", "3", "Advanced RAG · Nir Diamant notebooks · vector DBs", "Project 1: hybrid RAG with reranking and evals"],
-  ["Weeks 8–10", "4", "Agents · LangGraph · MCP · DSPy", "Multi-agent system with human-in-the-loop approvals"],
-  ["Weeks 11–13", "5", "LoRA fine-tuning · vLLM serving · quantisation", "Projects 2 & 3: vLLM gateway + Unsloth fine-tune"],
-  ["Weeks 14–16", "6", "LLMOps · security · system-design mock interviews", "Dockerised projects, Langfuse traces, demo videos on GitHub"]
 ];
 
 const COMMUNITY = [
@@ -646,6 +689,468 @@ const COMMUNITY = [
   ]}
 ];
 
+/* ---- Phases 0-3, 9 and 11, phase projects, interview bank, market data (added 2026-09-26) ---- */
+const P0 = {
+  n: 0, id: "phase-0", track: "Foundations", dur: 4, title: "Setup, maths intuition & how to study",
+  dek: "A reproducible dev environment, just enough linear algebra, calculus and probability, and a study system that survives real life.",
+  why: "Nobody can see how you study, but they <b>can</b> see whether your repo installs in one command and whether “gradient” and “Bayes” are more than words. This phase is deliberately short: intuition now, rigour later when a project demands it.",
+  master: ["uv / venv, pyproject.toml, ruff, pytest, pre-commit", "Git branches and PRs; shell, SSH and tmux", "Vectors, matrices, matrix multiply as a transformation", "Derivatives, the chain rule and the gradient", "Mean, variance, distributions, Bayes’ rule", "A weekly rhythm: 2 h learn · 4 h build · 1 h write it up"],
+  videos: [
+    V("fNk_zzaMoSs", "Vectors | Chapter 1, Essence of linear algebra", "3Blue1Brown", "9:51", "Start here: what a vector really is, before any formulas.", "s"),
+    V("k7RM-ot2NWY", "Linear combinations, span, and basis vectors", "3Blue1Brown", "9:59", "The idea underneath every embedding and every layer.", "s"),
+    V("kYB8IZa5AuE", "Linear transformations and matrices", "3Blue1Brown", "10:58", "A matrix is a transformation of space, not a grid of numbers.", "s"),
+    V("XkY2DOUCWMU", "Matrix multiplication as composition", "3Blue1Brown", "10:03", "Why stacking layers is multiplying matrices.", "c"),
+    V("WUvTyaaNkzM", "The essence of calculus", "3Blue1Brown", "17:04", "The big picture of derivatives and integrals in one sitting.", "s"),
+    V("9vKqVkMQHKk", "The paradox of the derivative", "3Blue1Brown", "16:50", "What a derivative means — the intuition gradient descent relies on.", "c"),
+    V("SzZ6GpcfoQY", "Calculating the Mean, Variance and Standard Deviation", "StatQuest with Josh Starmer", "14:22", "The statistics you’ll use in every metric and every plot.", "s"),
+    V("rzFX5NWojp0", "The Normal Distribution, Clearly Explained", "StatQuest with Josh Starmer", "5:12", "Five minutes on the distribution behind most of ML.", "c"),
+    V("HZGCoVF3YvM", "Bayes theorem, the geometry of changing beliefs", "3Blue1Brown", "15:11", "Bayes’ rule as updating beliefs — needed for calibration and classifiers.", "c"),
+    V("MSgoeuMqUmU", "Lecture 1: Course Overview + Introduction to the Shell", "Missing Semester (MIT)", "1:14:44", "Terminal fluency you will use daily for the rest of this roadmap.", "c"),
+    V("PFDu9oVAE-g", "Eigenvectors and eigenvalues", "3Blue1Brown", "17:15", "Comes back in PCA and in reading papers. Watch when a project needs it.", "d"),
+    V("uQhTuRlWMxw", "Inverse matrices, column space and null space", "3Blue1Brown", "12:08", "Deeper linear algebra for when regression maths feels shaky.", "d")
+  ],
+  items: [
+    R("course", "The Missing Semester of Your CS Education (2026)", "MIT CSAIL", "https://missing.csail.mit.edu/2026/", "Shell, Git, debugging, packaging — the tooling nobody teaches. The 2026 edition adds agentic coding.", "s"),
+    R("read", "Linux, CLI &amp; Git for the job (Part VI)", "This library · System Design book", "systemdesignprimerbook.html#terminal-job-bar", "Six hands-on chapters on the terminal, Bash and Git — do them alongside this phase.", "s", "In this library"),
+    R("course", "3Blue1Brown · Essence of linear algebra", "3Blue1Brown", "https://www.3blue1brown.com/topics/linear-algebra", "The full series with written companions.", "c"),
+    R("course", "3Blue1Brown · Essence of calculus", "3Blue1Brown", "https://www.3blue1brown.com/topics/calculus", "Skip limits and integrals on the first pass; the chain rule matters most.", "c"),
+    R("docs", "uv — Python packaging and environments", "Astral", "https://docs.astral.sh/uv/", "The fast modern way to manage projects, lockfiles and virtual environments.", "c"),
+    R("docs", "pytest documentation", "pytest", "https://docs.pytest.org/en/stable/", "Write tests from day one — CI depends on them.", "c"),
+    R("docs", "Ruff", "Astral", "https://docs.astral.sh/ruff/", "Linting and formatting in one fast tool.", "d"),
+    R("read", "Mathematics for Machine Learning", "Deisenroth, Faisal, Ong", "https://mml-book.github.io/", "Free PDF. Read chapters 2–6 alongside the videos; skip proofs on the first pass.", "c", "Free PDF"),
+  ],
+  project: {
+    name: "ml-starter — a reproducible ML repo template",
+    build: "A GitHub template you will reuse for every later project: <code>src/</code> layout, <code>pyproject.toml</code>, ruff, pytest, pre-commit, a Makefile, a Dockerfile and a GitHub Actions workflow that lints and tests. Add a <code>maths/</code> folder with five NumPy-only notebooks: matrix multiply, a 2-D rotation, numerical vs analytic derivative, gradient descent in 1-D and 2-D, and Bayes’ rule on a medical-test example.",
+    stack: ["Python 3.12+", "uv", "NumPy", "Matplotlib", "pytest", "GitHub Actions", "Docker"],
+    done: ["<code>make test</code> passes locally and in CI", "A new project can be created from the template in under five minutes", "Every maths notebook has a plot and a two-sentence explanation in your own words"],
+    stretch: "Add a devcontainer and a <code>make gpu-check</code> target that runs on Colab or Kaggle.",
+    show: "The template repo, a README explaining your conventions, and a green CI badge."
+  },
+  traps: ["Spending three months “finishing maths first”. You only need intuition now — revisit maths when a project needs it.", "Hopping between five Python courses instead of building the template.", "Keeping notebooks out of version control, then losing work."],
+  checkpoint: "Create a new repo from your template, add a failing test, watch CI go red, then fix it. Then explain in plain words why gradient descent steps <em>against</em> the gradient, and what P(disease | positive) is for a 1% prevalence, 99% sensitivity and 5% false-positive rate (about 17%)."
+};
+
+const P1 = {
+  n: 1, id: "phase-1", track: "Foundations", dur: 5, title: "Data: NumPy, pandas, SQL & EDA",
+  dek: "Load, clean, join, aggregate and visualise real, messy data — quickly and correctly.",
+  why: "Most of the job is data, not models. <b>SQL and pandas appear in almost every ML and AI interview</b>, and “I found leakage in my dataset” is a far better story than “I trained a model”.",
+  master: ["NumPy arrays, broadcasting and vectorisation", "pandas: indexing, groupby, merge, pivot, datetimes, missing data", "SQL: JOINs, GROUP BY, window functions, CTEs", "Plots that answer a question, with the conclusion written under them", "Data validation: schema, ranges, duplicates, leakage red flags"],
+  videos: [
+    V("2uvysYbKdjM", "Complete Python Pandas Data Science Tutorial! (2025 Updated Edition)", "Keith Galli", "1:34:11", "A single sitting that covers loading, cleaning, groupby and plotting.", "s"),
+    V("rIcB4zMYMas", "SQL Window Functions | Clearly Explained", "Maven Analytics", "7:52", "PARTITION BY, ORDER BY, ROW_NUMBER and RANK in under eight minutes.", "s"),
+    V("n9jz7G68pVg", "What is Data Leakage In Machine Learning?", "Krish Naik", "10:49", "The mistake that makes models look brilliant and fail in production.", "c")
+  ],
+  items: [
+    R("course", "Pandas", "Kaggle Learn", "https://www.kaggle.com/learn/pandas", "Short, browser-based exercises with real datasets.", "s", "Free"),
+    R("course", "Intro to SQL", "Kaggle Learn", "https://www.kaggle.com/learn/intro-to-sql", "Run real queries with no setup.", "s", "Free"),
+    R("course", "Select Star SQL", "Zi Chong Kao", "https://selectstarsql.com/", "An interactive SQL book built around a real dataset.", "s", "Free"),
+    R("course", "Data Visualization", "Kaggle Learn", "https://www.kaggle.com/learn/data-visualization", "Charts for EDA in a couple of hours.", "c", "Free"),
+    R("course", "Data Cleaning", "Kaggle Learn", "https://www.kaggle.com/learn/data-cleaning", "Missing values, parsing, inconsistent data.", "c", "Free"),
+    R("course", "SQL Tutorial", "Mode", "https://mode.com/sql-tutorial/", "The best free walk-through of window functions and CTEs.", "c"),
+    R("read", "Python for Data Analysis, 3rd ed.", "Wes McKinney", "https://wesmckinney.com/book/", "Free online, by the creator of pandas; updated for pandas 2.", "c", "Free online"),
+    R("read", "Python Data Science Handbook", "Jake VanderPlas", "https://jakevdp.github.io/PythonDataScienceHandbook/", "Older, but the NumPy and Matplotlib chapters are still the clearest.", "c", "Free online · 2016"),
+    R("docs", "NumPy: the absolute basics for beginners", "NumPy", "https://numpy.org/doc/stable/user/absolute_beginners.html", "Shapes, indexing and broadcasting from the official docs.", "c"),
+    R("docs", "10 minutes to pandas", "pandas", "https://pandas.pydata.org/docs/user_guide/10min.html", "The official quick tour to keep open in a tab.", "c"),
+    R("docs", "DuckDB documentation", "DuckDB", "https://duckdb.org/docs/", "Analytical SQL on local files — no server needed.", "d"),
+    R("docs", "Pandera", "Pandera", "https://pandera.readthedocs.io/", "Declare and test DataFrame schemas.", "d"),
+    R("course", "Advanced SQL", "Kaggle Learn", "https://www.kaggle.com/learn/advanced-sql", "Joins, analytic functions and nested data.", "d", "Free")
+  ],
+  project: {
+    name: "city-pulse — a data pipeline and EDA report",
+    build: "Pick a real public dataset that updates (an Indian open-data portal, a city dataset or a public API). Write a pipeline that downloads the raw data, validates and cleans it, loads it into DuckDB or PostgreSQL, and answers <b>eight business questions in SQL</b> — at least two with window functions. Publish an EDA report with 6–10 charts and written conclusions.",
+    stack: ["Python", "pandas or Polars", "DuckDB / PostgreSQL", "Matplotlib / Seaborn", "pytest"],
+    done: ["One command (<code>make pipeline</code>) rebuilds everything from raw data", "Tests check row counts, nulls and value ranges", "All eight questions are answered with a number and a chart", "At least five data-quality problems are documented"],
+    stretch: "Schedule a refresh with GitHub Actions cron and commit dated snapshots; add Pandera checks.",
+    show: "A README with the eight questions and headline answers, a data dictionary and a pipeline diagram."
+  },
+  traps: ["Using <code>df.apply</code> everywhere — it is slow and hides bugs.", "Skipping SQL because “pandas can join”. Production data lives in databases.", "Charts with no conclusion written beneath them."],
+  checkpoint: "Rewrite a Python loop over a DataFrame as a vectorised expression, then write SQL for “each customer’s second most recent order”. Explain how a left join silently duplicates rows, and give one leakage example from your own dataset."
+};
+
+const P2 = {
+  n: 2, id: "phase-2", track: "Foundations", dur: 8, title: "Classical ML, shipped as an API",
+  dek: "Frame a business problem as ML, train and compare classical models properly, and ship the best one behind a real API.",
+  why: "Classical ML is still what most “Machine Learning Engineer” interviews test — <b>metrics, leakage, boosting, and why a simple baseline matters</b>. It also teaches the judgement that stops LLM projects from becoming demos.",
+  master: ["Problem framing: target, metric, baseline", "Linear and logistic regression, trees, random forests, gradient boosting", "Train / validation / test splits, cross-validation, sklearn Pipelines", "Bias vs variance, regularisation, overfitting", "Precision, recall, PR-AUC, ROC-AUC, calibration", "Model persistence, FastAPI, Docker and a public deploy"],
+  videos: [
+    V("EuBBz3bI-aA", "Machine Learning Fundamentals: Bias and Variance", "StatQuest with Josh Starmer", "6:36", "Overfitting and underfitting in one clear picture.", "s"),
+    V("fSytzGwwBVw", "Machine Learning Fundamentals: Cross Validation", "StatQuest with Josh Starmer", "6:04", "Why one train/test split isn’t enough.", "s"),
+    V("yIYKR4sgzI8", "StatQuest: Logistic Regression", "StatQuest with Josh Starmer", "8:47", "The model you should beat first.", "s"),
+    V("_L39rN6gz7Y", "Decision and Classification Trees, Clearly Explained", "StatQuest with Josh Starmer", "18:08", "How a tree chooses its splits.", "s"),
+    V("Kdsp6soqA7o", "Machine Learning Fundamentals: The Confusion Matrix", "StatQuest with Josh Starmer", "7:12", "The table every classification metric is built from.", "c"),
+    V("4jRBRDbJemM", "ROC and AUC, Clearly Explained", "StatQuest with Josh Starmer", "16:17", "What the curve shows, and when PR curves are better.", "c"),
+    V("J4Wdy0Wc_xQ", "StatQuest: Random Forests Part 1", "StatQuest with Josh Starmer", "9:54", "Bagging and out-of-bag error, explained visually.", "c"),
+    V("3CC4N4z3GJc", "Gradient Boost Part 1: Regression Main Ideas", "StatQuest with Josh Starmer", "15:52", "The idea behind XGBoost and LightGBM.", "c"),
+    V("Crm_5n4mvmg", "ML Zoomcamp 1.1 – Introduction to Machine Learning", "DataTalksClub", "9:37", "First lecture of the free course that anchors this phase.", "c"),
+    V("h5wLuVDr0oc", "Deploy ML models with FastAPI, Docker, and Heroku", "AssemblyAI", "18:45", "Wrap a model in an API and containerise it. (Use any free host in place of Heroku.)", "c"),
+    V("luJ64trcCwc", "Build & Deploy ML Churn model with FastAPI, MLFlow, Docker, & AWS", "Anas Riad", "1:23:46", "A full churn-model walkthrough that mirrors this phase’s project.", "d")
+  ],
+  items: [
+    R("course", "Machine Learning Crash Course", "Google", "https://developers.google.com/machine-learning/crash-course", "Free, interactive and rebuilt in 2024 with modules on LLMs and production.", "s"),
+    R("course", "Intro to Machine Learning", "Kaggle Learn", "https://www.kaggle.com/learn/intro-to-machine-learning", "Your first model in the browser.", "s", "Free"),
+    R("course", "Machine Learning Zoomcamp", "DataTalks.Club", "https://github.com/DataTalksClub/machine-learning-zoomcamp", "Free, project-graded: regression, classification, evaluation, trees, then deployment with FastAPI, Docker and Kubernetes. Self-paced any time.", "s", "Free"),
+    R("course", "scikit-learn MOOC", "Inria (the scikit-learn team)", "https://inria.github.io/scikit-learn-mooc/", "Taught by the library’s maintainers; strong on pipelines and validation.", "c", "Free"),
+    R("course", "StatQuest · Machine Learning playlist", "StatQuest with Josh Starmer", "https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF", "Each algorithm in 10–20 minutes — watch the topic you are working on that week.", "c", "Playlist"),
+    R("docs", "scikit-learn user guide", "scikit-learn", "https://scikit-learn.org/stable/user_guide.html", "Keep it open. Pipelines, metrics and model selection.", "c"),
+    R("docs", "FastAPI tutorial", "FastAPI", "https://fastapi.tiangolo.com/tutorial/", "The API framework nearly every AI posting mentions.", "c"),
+    R("repo", "ageron/handson-ml3", "GitHub", "https://github.com/ageron/handson-ml3", "Free notebooks from <i>Hands-On Machine Learning</i> (the book is paid).", "c", "★ 14k"),
+    R("read", "An Introduction to Statistical Learning (Python edition)", "James et al.", "https://www.statlearning.com/", "Free PDF. Chapters 2–8 and 12: the statistics bridge, then the theory behind each model.", "c", "Free PDF"),
+    R("docs", "Docker Spaces", "Hugging Face", "https://huggingface.co/docs/hub/spaces-sdks-docker", "A free way to give your API a public URL.", "d"),
+    R("course", "CS229 Machine Learning (Autumn 2018)", "Stanford · Andrew Ng", "https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU", "Older recordings, but the maths hasn’t changed. Use for derivations, not as a first course.", "d", "Pre-2023"),
+    R("course", "Machine Learning Specialization", "DeepLearning.AI · Coursera", "https://www.coursera.org/specializations/machine-learning-introduction", "Gentle and well produced, but paid. Free alternative: StatQuest + Google MLCC + the scikit-learn MOOC.", "d", "Paid")
+  ],
+  project: {
+    name: "churn-radar — a deployed prediction API",
+    build: "A churn, default-risk or price model on a real tabular dataset. Compare a dummy baseline, logistic regression, random forest and LightGBM with cross-validation and a <b>time- or group-aware split</b>. Wrap the winner in a FastAPI service with validation and a <code>/health</code> endpoint, put it in Docker and deploy it publicly.",
+    stack: ["pandas", "scikit-learn", "LightGBM", "FastAPI", "Pydantic", "Docker", "GitHub Actions"],
+    done: ["A public URL returns predictions", "The README has a metrics table (baseline vs models) with CV mean ± std", "All preprocessing lives inside one sklearn Pipeline — nothing manual at inference time", "CI builds the Docker image and runs the tests"],
+    stretch: "SHAP explanations per prediction, a <code>/batch</code> endpoint, and a Locust load test reporting p95 latency.",
+    show: "Architecture diagram, the metrics table, a curl example, and a “what I’d do next” section."
+  },
+  traps: ["Tuning hyperparameters before you have a baseline.", "Leakage through preprocessing done outside the pipeline.", "Deploying a notebook. Ship a package, a service and a test."],
+  checkpoint: "Explain why accuracy is a poor metric at 3% churn and what you would report instead. Show your learning curves, describe how random forests and gradient boosting differ, and say what your API does when an unseen category appears in production."
+};
+
+const P3 = {
+  n: 3, id: "phase-3", track: "Foundations", dur: 6, title: "Evaluation, feature engineering & Kaggle",
+  dek: "Build a validation strategy you can trust, engineer features that measurably move the metric, and practise under competitive pressure.",
+  why: "<b>Evaluation is the recurring differentiator</b> — in classical ML interviews and later in every LLM eval discussion. A competition forces you to face leakage, noisy leaderboards and the gap between CV and reality.",
+  master: ["Metrics: ROC-AUC, PR-AUC, log loss, F1, RMSE / MAE, calibration", "CV schemes: stratified, grouped, time-series; adversarial validation", "Feature engineering: aggregates, date features, careful target encoding", "Hyperparameter search (Optuna), ensembling, stacking", "Error analysis by slice; logging every experiment"],
+  videos: [
+    V("4BOtr1PZ2D8", "Kaggle Competitions: A Beginner's Guide to Winning", "Rob Mulla", "18:38", "How to approach your first competition without wasting weeks.", "s"),
+    V("BV03sQ0srcU", "Kaggle Data Science Competition Course – Solve Three Challenges Step-by-Step", "freeCodeCamp.org", "1:35:11", "Three complete competition walkthroughs.", "c"),
+    V("ft77eXtn30Q", "Feature Engineering Secret From A Kaggle Grandmaster", "Mario Filho", "22:22", "A Grandmaster’s practical approach to features.", "c")
+  ],
+  items: [
+    R("course", "Intermediate Machine Learning", "Kaggle Learn", "https://www.kaggle.com/learn/intermediate-machine-learning", "Pipelines, missing values, categoricals and leakage.", "s", "Free"),
+    R("course", "Feature Engineering", "Kaggle Learn", "https://www.kaggle.com/learn/feature-engineering", "Mutual information, creating features, target encoding.", "s", "Free"),
+    R("read", "The Kaggle Grandmasters Playbook: 7 Battle-Tested Modeling Techniques for Tabular Data", "NVIDIA Technical Blog", "https://developer.nvidia.com/blog/the-kaggle-grandmasters-playbook-7-battle-tested-modeling-techniques-for-tabular-data/", "Current techniques from Kaggle Grandmasters: EDA, baselines, hill climbing, stacking.", "s"),
+    R("read", "Approaching (Almost) Any Machine Learning Problem", "Abhishek Thakur", "https://github.com/abhishekkrthakur/approachingalmost", "Older, but the best practical treatment of CV strategy and categorical features.", "c", "Free PDF · pre-2023"),
+    R("docs", "Cross-validation: evaluating estimator performance", "scikit-learn", "https://scikit-learn.org/stable/modules/cross_validation.html", "Choose a split that answers the real question.", "c"),
+    R("docs", "Common pitfalls and recommended practices", "scikit-learn", "https://scikit-learn.org/stable/common_pitfalls.html", "Data leakage and preprocessing mistakes, with examples.", "c"),
+    R("docs", "Optuna", "Optuna", "https://optuna.readthedocs.io/", "Hyperparameter search that is easy to log and reproduce.", "c"),
+    R("course", "Kaggle Competitions", "Kaggle", "https://www.kaggle.com/competitions", "Join a Playground or featured tabular competition; read the “1st place solution” threads afterwards.", "c"),
+    R("read", "Rules of Machine Learning", "Martin Zinkevich · Google", "https://developers.google.com/machine-learning/guides/rules-of-ml", "43 rules on metrics, features and launches — the engineering view of evaluation.", "d")
+  ],
+  project: {
+    name: "cv-first — a Kaggle competition with a written validation strategy",
+    build: "Join an active Kaggle Playground or featured tabular competition. <b>Before modelling</b>, write <code>VALIDATION.md</code> explaining your CV scheme and why it mirrors the test set. Log every experiment (CV score, public leaderboard, notes) and finish with an ensemble.",
+    stack: ["LightGBM", "XGBoost", "CatBoost", "Optuna", "MLflow or a CSV log"],
+    done: ["At least 25 logged experiments", "Your CV score tracks the public leaderboard", "A final write-up of what worked and what didn’t"],
+    stretch: "A top-20% finish, a public notebook that earns upvotes, and adversarial validation.",
+    show: "Experiment table, a CV-vs-leaderboard plot, the write-up, and your Kaggle profile link."
+  },
+  traps: ["Chasing the public leaderboard — it is a small, noisy sample.", "Copying public notebooks without understanding them; interviewers will ask.", "Treating Kaggle as the whole job. It teaches evaluation, not deployment."],
+  checkpoint: "Your CV says 0.91 but the leaderboard says 0.84. List four likely causes, then show which one applied to you. Explain when target encoding is dangerous and how out-of-fold predictions make stacking safe."
+};
+
+const P9 = {
+  n: 9, id: "phase-9", track: "Production", dur: 7, title: "MLOps & deployment",
+  dek: "Run ML like software: reproducible pipelines, a model registry, CI/CD with metric gates, deployment, drift monitoring and retraining.",
+  why: "Postings for AI and MLOps roles keep listing <b>Docker, Kubernetes, CI/CD, MLflow, Terraform, monitoring</b>. If you already know DevOps this phase is your unfair advantage; if you don’t, it is the difference between a demo and a system.",
+  master: ["Experiment tracking and a model registry (MLflow)", "Orchestration: Prefect, Airflow or plain GitHub Actions", "CI/CD for ML: tests for code, data and models; metric gates", "Containers, Kubernetes basics and one cloud", "Monitoring: data drift, prediction drift, latency, cost", "Infrastructure as code and secrets management"],
+  videos: [
+    V("biqYkVf-a7Y", "MLOps Explained - What It Is, Why You Need It and How It Works", "TechWorld with Nana", "26:23", "The whole lifecycle in one video, before the tools.", "s"),
+    V("s0uaFZSzwfI", "MLOps Zoomcamp 1.1 - Introduction", "DataTalksClub", "3:34", "What the free course covers and how it’s organised.", "s"),
+    V("XwTH8BDGzYk", "MLOps Zoomcamp 1.5 - MLOps maturity model", "DataTalksClub", "14:24", "Levels 0–2: how teams grow from scripts to automated pipelines.", "c"),
+    V("MiA7LQin9c8", "MLOps Zoomcamp 2.1 - Experiment tracking intro", "DataTalksClub", "14:32", "Why you need tracking before you need anything else.", "c"),
+    V("cESCQE9J3ZE", "MLOps Zoomcamp 2.2 - Getting started with MLflow", "DataTalksClub", "11:44", "Install MLflow and log your first run.", "c"),
+    V("iaJz-T7VWec", "MLOps Zoomcamp 2.3 - Experiment tracking with MLflow", "DataTalksClub", "24:05", "Parameters, metrics and artifacts across many runs.", "c"),
+    V("OVUPIX88q88", "MLOps Zoomcamp 2.4 - Model management", "DataTalksClub", "16:22", "The registry and how models move to production.", "c"),
+    V("R8_veQiYBjI", "GitHub Actions Tutorial - Basic Concepts and CI/CD Pipeline with Docker", "TechWorld with Nana", "32:30", "The CI/CD skeleton you will attach ML checks to.", "c"),
+    V("teP9KWkP6SM", "MLOps Zoomcamp 1.4 - Course overview", "DataTalksClub", "13:59", "The modules and project this phase follows.", "d"),
+    V("cgc3dSEAel0", "Evidently AI Tutorial - Open Source ML Models Monitoring and Observability", "Krish Naik", "30:13", "A hands-on drift-monitoring walkthrough.", "d"),
+    V("ciqWMIf7Pz0", "MLOPS Github Action With CICD Pipeline One Shot Tutorial", "Krish Naik", "1:08:33", "An end-to-end CI/CD pipeline for an ML service.", "d")
+  ],
+  items: [
+    R("course", "MLOps Zoomcamp", "DataTalks.Club", "https://github.com/DataTalksClub/mlops-zoomcamp", "Free: tracking, orchestration, deployment, monitoring and a final project. Self-paced — no live 2026 cohort.", "s", "Free"),
+    R("course", "Made With ML · MLOps course", "Goku Mohandas", "https://madewithml.com/", "Design, testing, reproducibility, CI/CD and monitoring with code. Leans on Ray — the ideas transfer.", "s", "Free"),
+    R("read", "MLOps: Continuous delivery and automation pipelines in ML", "Google Cloud", "https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning", "The MLOps level 0 / 1 / 2 model interviewers still reference.", "c"),
+    R("docs", "MLflow documentation", "MLflow", "https://mlflow.org/docs/latest/index.html", "Tracking, registry, and now LLM tracing and evaluation.", "c"),
+    R("docs", "DVC documentation", "Iterative", "https://dvc.org/doc", "Version data and pipelines alongside your Git history.", "c"),
+    R("course", "ML observability course", "Evidently AI", "https://www.evidentlyai.com/ml-observability-course", "Free lessons on monitoring, drift and quality.", "c", "Free"),
+    R("docs", "GitHub Actions documentation", "GitHub", "https://docs.github.com/en/actions", "Workflows, secrets, environments and deployment protection.", "c"),
+    R("docs", "Evidently documentation", "Evidently AI", "https://docs.evidentlyai.com/", "Drift reports and test suites in code.", "d"),
+    R("docs", "Prefect documentation", "Prefect", "https://docs.prefect.io/", "Python-native orchestration for scheduled training and indexing.", "d"),
+    R("docs", "Terraform tutorials", "HashiCorp", "https://developer.hashicorp.com/terraform/tutorials", "Infrastructure as code for the cloud side of the capstone.", "d"),
+    R("docs", "k3s", "Rancher", "https://k3s.io/", "A lightweight Kubernetes that runs on one small VM.", "d"),
+    R("docs", "kind (Kubernetes in Docker)", "Kubernetes SIG", "https://kind.sigs.k8s.io/", "A local cluster for testing manifests and rollouts.", "d"),
+    R("course", "Full Stack Deep Learning 2022", "FSDL", "https://fullstackdeeplearning.com/course/2022/", "Free lectures on data, deployment and teams. Tooling is dated; the ideas are not.", "d", "Pre-2023")
+  ],
+  project: {
+    name: "prod-ready — CI/CD, registry, deployment and drift monitoring",
+    build: "Take your Phase 2 API <b>or</b> your Phase 6–8 LLM app and make it production-grade: a scheduled training or indexing pipeline; MLflow tracking and a model registry with staging and production aliases; CI that runs unit tests, data validation and the eval suite and <b>blocks promotion on regression</b>; CD to Kubernetes (k3s or kind locally); Evidently or Langfuse monitoring; and an alert that triggers retraining.",
+    stack: ["GitHub Actions", "Docker", "Kubernetes (k3s / kind)", "Terraform", "MLflow", "Prefect", "Evidently", "Prometheus + Grafana"],
+    done: ["A push with a worse model is blocked by CI", "A good model deploys automatically", "You can show a drift report from simulated shifted traffic", "A dashboard shows p50/p95 latency and error rate (plus cost per request for LLMs)", "<code>terraform destroy</code> cleans everything up"],
+    stretch: "Canary or shadow deployment, a feature store, and an autoscaling load test.",
+    show: "Architecture diagram, screenshots of CI blocking a bad model, the drift report and dashboard, a runbook, and a three-minute walkthrough video."
+  },
+  traps: ["Tool collecting: ten tools and no working pipeline. One tool per job is enough.", "Monitoring only infrastructure metrics and not model quality.", "Leaving cloud resources running — set budgets and alerts on day one."],
+  checkpoint: "Draw your system from <code>git push</code> to a new model serving traffic. Then answer: how do you detect degradation when labels arrive 30 days late, what is training-serving skew, and how do you roll back a bad model in under five minutes?"
+};
+
+const P11 = {
+  n: 11, id: "phase-11", track: "Get hired", dur: 6, title: "System design, interviews & the job hunt",
+  dek: "Pass the DSA, ML-coding, system-design and project-deep-dive rounds — then turn your portfolio into interviews for remote and international roles.",
+  why: "2026 guides describe ML interviews as: recruiter screen, <b>DSA at SWE level</b>, applied ML coding in NumPy/pandas, ML system design, a deep dive into your own projects, then behavioural. Hugging Face’s own posting says it evaluates <b>merged open-source PRs</b>, not certificates.",
+  master: ["DSA at medium level: hashing, two pointers, trees, graphs, heaps, basic DP", "ML coding in NumPy: k-means, logistic regression, attention, metrics", "ML system design: clarify → metrics → data → features → model → serving → monitoring", "LLM system design: RAG at scale, agents, evals, cost and latency", "Telling project stories with numbers (STAR)"],
+  videos: [
+    V("qKXUPI06tZo", "AI Engineer Roadmap: Built From 40,000 Real Job Ads", "Data with Baraa", "19:13", "What real postings repeat — use it to check your résumé vocabulary.", "s"),
+    V("s-MaQ6S9_DA", "ML Engineer Interviews Explained (in 5 Minutes)", "Aced (formerly Exponent)", "4:59", "The rounds you will face, in five minutes.", "s"),
+    V("XN2ymraj27g", "How I Prepared for ML System Design Interviews at Meta", "MLEpath", "10:54", "A practical preparation plan from someone who passed them.", "c"),
+    V("vyZMYlGBSBM", "Spotify ML Question - Design a Recommendation System (Full mock interview)", "Aced (formerly Exponent)", "33:46", "Watch a full ML system-design round, then do it yourself out loud.", "c"),
+    V("7_E4wnZGJKo", "Instagram ML Question - Design a Ranking Model (Full Mock Interview)", "Aced (formerly Exponent)", "48:20", "A ranking-model design with feedback from a senior ML engineer.", "c"),
+    V("9U48NlbOzCU", "Full ML Design Mock by ex-Meta Staff Engineer (with feedback)", "MLEpath", "33:12", "A third mock with the interviewer’s critique.", "d")
+  ],
+  items: [
+    R("read", "Machine Learning Interview Prep (2026 guide)", "Exponent", "https://www.tryexponent.com/blog/machine-learning-interview-guide", "The current round structure and what each tests.", "s"),
+    R("read", "ML System Design Interview (2026 guide)", "Exponent", "https://www.tryexponent.com/blog/machine-learning-system-design-interview-guide", "A design framework with worked examples.", "s"),
+    R("repo", "alirezadir/Machine-Learning-Interviews", "GitHub", "https://github.com/alirezadir/Machine-Learning-Interviews", "DSA, ML coding, ML breadth including GenAI and agentic AI, system design, behavioural.", "s", "★ 9.7k"),
+    R("read", "System Design Primer — the whole book", "This library", "systemdesignprimerbook.html#approach", "Caching, queues, databases and five case studies. ML design builds on all of it.", "s", "In this library"),
+    R("read", "ML and LLM system design: 800 case studies", "Evidently AI", "https://www.evidentlyai.com/ml-system-design", "Real designs from 150+ companies to practise against.", "c"),
+    R("repo", "eugeneyan/applied-ml", "GitHub", "https://github.com/eugeneyan/applied-ml", "Papers and write-ups on ML in production, sorted by company and topic.", "c", "★ 30k"),
+    R("repo", "eugeneyan/ml-design-docs", "GitHub", "https://github.com/eugeneyan/ml-design-docs", "A template for the design docs you’ll write in the project.", "c"),
+    R("read", "Introduction to Machine Learning Interviews", "Chip Huyen", "https://huyenchip.com/ml-interviews-book/", "Free book on the process and fundamentals. Written in 2021 — skip the company-specific parts.", "c", "Free · pre-2023"),
+    R("course", "NeetCode practice lists", "NeetCode", "https://neetcode.io/practice", "Structured DSA prep. Check current pricing before you commit.", "c")
+  ],
+  project: {
+    name: "design-docs — two system designs, a portfolio release and an interview log",
+    build: "Write two full design docs — for example “RAG assistant over 10M documents at 200 ms p95” and “real-time fraud detection at UPI scale”: requirements, metrics, data, model, serving, monitoring, cost and failure modes. Record every mock interview. Package your best three projects with READMEs, demos and one blog post each.",
+    stack: ["Markdown", "Excalidraw or Mermaid", "GitHub", "A blog"],
+    done: ["Both design docs are published", "Six or more mock interviews are logged and 75+ DSA problems solved", "You can present each portfolio project in five minutes, with numbers", "You have a résumé variant for AI Engineer roles and one for ML / MLOps roles"],
+    stretch: "A merged pull request to an ML library — Hugging Face, scikit-learn, vLLM, MLflow or Evidently.",
+    show: "Design docs, blog posts, a pinned GitHub profile README and a three-minute capstone video."
+  },
+  traps: ["Applying before you have one deployed, measured project.", "Ignoring DSA because “AI engineers don’t need it”. Many companies still screen with it.", "A portfolio of tutorial clones: Titanic, MNIST, “chat with your PDF” with no evals."],
+  checkpoint: "Design a recommendation system out loud in 45 minutes, implement multi-head attention in NumPy in 30, solve two LeetCode mediums in 45, and present a portfolio project in five minutes — then answer “what would you do with 10× the traffic?”"
+};
+
+/* Additions to the six existing stages (which are now phases 4-8 and 10) */
+const EXTRA = {
+  "phase-4": {
+    videos: [
+      V("IHZwWFHWa-w", "Gradient descent, how neural networks learn", "3Blue1Brown", "20:33", "The optimisation loop behind every model you will train.", "s"),
+      V("tHL5STNJKag", "Build Your First Pytorch Model In Minutes!", "Rob Mulla", "31:32", "A gentle first PyTorch model with code.", "s"),
+      V("Ilg3gGewQ5U", "Backpropagation, intuitively", "3Blue1Brown", "12:47", "What the gradient flowing backwards actually means.", "c"),
+      V("CqOfi41LfDw", "The Essential Main Ideas of Neural Networks", "StatQuest with Josh Starmer", "18:54", "A slower, step-by-step take on the same ideas.", "c"),
+      V("TCH_1BHY58I", "Building makemore Part 2: MLP", "Andrej Karpathy", "1:15:39", "Embeddings and an MLP language model.", "c"),
+      V("P6sfmUTpUmc", "Building makemore Part 3: Activations & Gradients, BatchNorm", "Andrej Karpathy", "1:55:57", "How to see whether a network is training healthily.", "c"),
+      V("tIeHLnjs5U8", "Backpropagation calculus", "3Blue1Brown", "10:17", "The chain-rule derivation. Watch once; don’t memorise.", "d"),
+      V("q8SA3rM6ckI", "Building makemore Part 4: Becoming a Backprop Ninja", "Andrej Karpathy", "1:55:24", "Backprop by hand through a whole network. Painful and worth it.", "d"),
+      V("t3YJ5hKiMQ0", "Building makemore Part 5: Building a WaveNet", "Andrej Karpathy", "56:21", "A deeper convolutional architecture from scratch.", "d")
+    ],
+    items: [
+      R("docs", "Learn the Basics", "PyTorch", "https://docs.pytorch.org/tutorials/beginner/basics/intro.html", "The official path: tensors, datasets, autograd, optimisation, saving models.", "s"),
+      R("read", "Deep Learning with Python, 3rd ed.", "François Chollet, Matthew Watson", "https://deeplearningwithpython.io/", "Free to read online, with Keras, PyTorch and JAX examples.", "c", "Free online"),
+      R("read", "Dive into Deep Learning", "Zhang, Lipton, Li, Smola", "https://d2l.ai/", "Free interactive book with runnable PyTorch notebooks.", "c", "Free online"),
+      R("course", "MIT 6.S191 · Introduction to Deep Learning (2026)", "MIT", "https://introtodeeplearning.com/", "Refreshed yearly; lectures and labs, including an LLM fine-tune lab.", "c"),
+      R("read", "Understanding Deep Learning", "Simon J. D. Prince", "https://udlbook.github.io/udlbook/", "The best modern theory book for self-learners.", "d", "Free PDF · 2023"),
+      R("read", "Deep Learning: Foundations and Concepts", "Christopher & Hugh Bishop", "https://www.bishopbook.com/", "A rigorous, up-to-date reference.", "d", "Free online · 2024"),
+      R("course", "CS231n · Convolutional Neural Networks for Visual Recognition", "Stanford", "https://cs231n.stanford.edu/", "Rigorous course notes on CNNs and training tricks.", "d", "Pre-2023")
+    ],
+    project: {
+      name: "from-scratch-to-torch — a deep-learning study",
+      build: "<b>Part A:</b> your own micrograd with tests that compare gradients with PyTorch. <b>Part B:</b> a real task — image classification with transfer learning on a domain dataset you collect, <i>or</i> a deep tabular model compared honestly with your Phase 2–3 gradient boosting. Track every run.",
+      stack: ["PyTorch", "torchvision or timm", "MLflow or W&B", "Colab / Kaggle GPU"],
+      done: ["micrograd gradients match PyTorch to 1e-6 in tests", "Part B has 10+ tracked runs, a confusion matrix and an error-analysis grid of wrong predictions", "A fair baseline comparison — including when deep learning did <i>not</i> win"],
+      stretch: "Mixed precision and a speed benchmark; export to ONNX and serve it like your Phase 2 API.",
+      show: "Loss curves, confusion matrix, a wrong-prediction gallery, and what you learned about debugging training."
+    },
+    traps: ["Watching all of Zero to Hero without typing the code.", "Never overfitting a single batch first — the fastest bug detector there is.", "Assuming deep learning beats gradient boosting on tables. It often does not."]
+  },
+  "phase-5": {
+    videos: [
+      V("LPZh9BOjkQs", "Large Language Models explained briefly", "3Blue1Brown", "7:58", "A short primer before the deeper videos.", "s"),
+      V("zxQyTK8quyY", "Transformer Neural Networks, ChatGPT's foundation, Clearly Explained", "StatQuest with Josh Starmer", "36:15", "A slower, step-by-step second pass on the architecture.", "c"),
+      V("DzpHeXVSC5I", "Stanford CS224N (Spring 2024) · Lecture 1 – Intro and Word Vectors", "Stanford Online", "1:20:17", "University-grade NLP. Opens on YouTube (embedding disabled by the uploader).", "d", false),
+      V("nBor4jfWetQ", "Stanford CS224N (Spring 2024) · Lecture 2 – Word Vectors and Language Models", "Stanford Online", "1:19:12", "Sample this course; you don’t need all of it. Opens on YouTube.", "d", false),
+      V("JuoVZkPBiKk", "Stanford CS336 (Spring 2026) · Lecture 1 – Overview, Tokenization", "Stanford Online", "1:19:22", "Entry point to a graduate course — take it after Zero to Hero. Opens on YouTube.", "d", false),
+      V("kuYAsz7zspQ", "Stanford CS336 (Spring 2026) · Lecture 2 – PyTorch (einops)", "Stanford Online", "1:17:25", "Resource accounting and tensor fluency. Opens on YouTube.", "d", false)
+    ],
+    items: [
+      R("course", "Stanford CS224N · NLP with Deep Learning", "Stanford", "https://web.stanford.edu/class/cs224n/", "Course page with lectures, slides and assignments.", "c"),
+      R("read", "Speech and Language Processing, 3rd ed. (draft)", "Jurafsky & Martin", "https://web.stanford.edu/~jurafsky/slp3/", "The NLP textbook, free, with a chapter on LLMs.", "d", "Free draft"),
+      R("read", "The Annotated Transformer", "Harvard NLP", "https://nlp.seas.harvard.edu/annotated-transformer/", "The paper implemented line by line.", "d", "Pre-2023")
+    ],
+    project: {
+      name: "tiny-gpt — a small language model and a fine-tuned classifier",
+      build: "<b>Part A:</b> train a small GPT (nanoGPT-style, ~10M parameters) on a corpus you care about, with your own BPE tokenizer compared to a Hugging Face one. <b>Part B:</b> fine-tune a small encoder for a classification task and compare it with a TF-IDF + logistic-regression baseline, with an error analysis of 30 misclassified examples.",
+      stack: ["PyTorch", "Hugging Face Transformers / Datasets / Tokenizers", "Colab or Kaggle GPU"],
+      done: ["Coherent samples and a reported validation loss", "You can explain every line of the attention block", "F1 for baseline vs fine-tuned, plus the error analysis"],
+      stretch: "Add RoPE and compare; push the model with a model card to the Hugging Face Hub.",
+      show: "Sample generations, loss curves, a tokenizer comparison table and the model card."
+    },
+    traps: ["Jumping to LLM APIs without understanding tokens and context windows — you will misprice and misdesign systems.", "Starting CS336 before finishing Zero to Hero: it is a graduate course with heavy assignments.", "Fine-tuning without a simple baseline to compare against."]
+  },
+  "phase-6": {
+    project: {
+      name: "docs-copilot — evaluated hybrid RAG",
+      build: "A question-answering assistant over a real, messy document set (regulatory circulars, a government-scheme corpus, an open-source project’s docs). Dense + BM25 retrieval with a cross-encoder reranker, citations, and a <b>100-question hand-labelled eval set</b> you can rerun after every change.",
+      stack: ["FastAPI", "Qdrant or pgvector", "BM25", "BGE reranker", "Ragas", "Langfuse"],
+      done: ["Recall@5 and MRR reported with and without hybrid search and reranking", "Faithfulness and answer relevance on the labelled set", "p95 latency and cost per 100 queries in the README", "An error-analysis table of the top five failure modes and what you changed"],
+      stretch: "Contextual retrieval with a measured ablation; a semantic cache with its hit rate.",
+      show: "A live demo, the eval table, the failure-mode analysis and an architecture diagram."
+    },
+    traps: ["Framework-first development: reaching for a heavy framework before you understand a plain API-call loop.", "No labelled eval set — so every change is a guess.", "Measuring only the final answer and never retrieval on its own."]
+  },
+  "phase-7": {
+    items: [
+      R("course", "5-Day AI Agents Intensive", "Kaggle × Google", "https://www.kaggle.com/learn-guide/5-day-agents", "Free, structured, notebook-driven agent course; the latest run was in June 2026.", "c", "Free")
+    ],
+    project: {
+      name: "docs-copilot v2 — an agent with tools and human approval",
+      build: "Extend the Phase 6 app with a <b>bounded agent</b>: two or three tools (search an issue tracker, run a calculation, draft a ticket) exposed through an MCP server, a LangGraph or plain-loop orchestrator, a step budget, and a human-approval gate before any write action.",
+      stack: ["LangGraph or a plain tool loop", "MCP Python SDK", "Pydantic", "FastAPI", "Langfuse"],
+      done: ["Traces show every tool call with arguments and results", "The agent stops at its step budget and asks for approval before writes", "A 20-task test suite with pass/fail criteria runs in CI", "A prompt-injection test through a retrieved document"],
+      stretch: "Compare a fixed workflow (graph) against a free agent on the same task suite.",
+      show: "Trace screenshots, the task-suite results and a short “when not to use an agent” note."
+    },
+    traps: ["Calling any chain of API calls an “agent”. Start with a workflow and add autonomy only where it pays.", "Giving tools write access because the chat demo worked.", "Unbounded loops: no step or cost budget."]
+  },
+  "phase-8": {
+    items: [
+      R("read", "The Smol Training Playbook", "Hugging Face", "https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook", "An honest, detailed look at how a real team trains small models.", "d"),
+      R("repo", "karpathy/nanochat", "GitHub", "https://github.com/karpathy/nanochat", "The whole LLM lifecycle — tokenizer to chat UI — in one small readable repo.", "d", "★ 58k")
+    ],
+    project: {
+      name: "domain-tuned — LoRA versus your RAG baseline",
+      build: "Pick one narrow task where prompting struggled (structured extraction, ticket triage, a fixed style). Build 1,000–5,000 examples, QLoRA-tune a 1B–8B open model, optionally align it with DPO, then serve it with vLLM and evaluate on <b>the same harness as Phase 6</b>.",
+      stack: ["TRL / PEFT or Unsloth", "vLLM", "Hugging Face Hub", "Your Phase 6 eval harness"],
+      done: ["A results table: base model vs tuned vs your API model on quality, latency and cost per 1,000 requests", "Model and dataset cards on the Hugging Face Hub", "The Phase 6 app can switch backends by config"],
+      stretch: "DPO from Phase 6 failure cases; a concurrency benchmark; a semantic-cache gateway with fallback to a hosted API.",
+      show: "The comparison table, training curves and an honest “was it worth it?” section."
+    },
+    traps: ["Fine-tuning to inject facts that belong in RAG.", "Evaluating on data that leaked from the training set.", "Starting with a big model. Get the loop right on a small one first."]
+  },
+  "phase-10": {
+    videos: [
+      V("e2i6JbU2R-s", "Error Analysis: The Highest ROI Technique In AI Engineering", "Hamel Husain", "12:08", "Why looking at failures beats any generic metric.", "s")
+    ],
+    items: [
+      R("read", "AI Evals: Everything You Need to Know", "Hamel Husain & Shreya Shankar", "https://hamel.dev/blog/posts/evals-faq/", "A practical FAQ: error analysis first, binary judgements over 1–5 scales.", "s")
+    ],
+    project: {
+      name: "eval-gate — regression tests, tracing and red-teaming for your capstone",
+      build: "Add the last layer to your capstone: a golden set with pass/fail criteria taken from error analysis, an LLM judge validated against <b>your own labels</b>, Langfuse traces with cost and latency, a prompt-injection and PII red-team suite, and a CI job that <b>fails the build on a faithfulness regression</b>.",
+      stack: ["Ragas or promptfoo", "Langfuse", "LiteLLM", "GitHub Actions"],
+      done: ["Judge-versus-human agreement is reported", "CI fails when a metric drops below its threshold", "Every request is traced with tokens, cost and latency", "A red-team report with at least ten attacks and your mitigations"],
+      stretch: "Semantic caching with measured savings; input and output guardrails.",
+      show: "The eval dashboard, the red-team report and a short post: “How I evaluated my RAG app”."
+    },
+    traps: ["Generic metrics or 1–5 scores instead of looking at real failures.", "Trusting an LLM judge you never compared with human labels.", "No cost or latency numbers in the README — hiring managers ask."]
+  }
+};
+
+/* Interview bank, job market, schedules */
+const INTERVIEW = [
+  { h: "ML fundamentals", q: [
+    ["Bias vs variance: how do you tell which one you have?", "Compare training and validation error; use learning curves."],
+    ["Why can accuracy mislead on a rare-event problem?", "Base rates and the confusion matrix; prefer PR-AUC plus an operating-point metric."],
+    ["Choose a decision threshold when a missed fraud costs 10× a false alarm.", "Cost matrix, the precision–recall curve and calibration."],
+    ["What is data leakage? Give two subtle examples.", "Future information in features; preprocessing fitted on the full data; the same user on both sides of a split."],
+    ["How does gradient boosting differ from a random forest?", "Sequential residual fitting vs parallel bagging; which reduces bias, which variance."],
+    ["L1 vs L2 regularisation?", "Sparsity vs shrinkage; the geometry of the constraint region."],
+    ["Explain cross-validation for time-series data.", "Forward-chaining splits, no shuffling, a gap to prevent leakage."],
+    ["What does probability calibration measure, and when does a product need it?", "Predicted probability vs observed frequency; reliability curves."],
+    ["Your training loss falls but validation loss rises. What next?", "Overfitting diagnosis: split integrity, regularisation, more data, early stopping."],
+    ["When would you not use deep learning?", "Small tabular data, strict latency or interpretability needs — gradient boosting often wins."]
+  ]},
+  { h: "Coding & data", q: [
+    ["Implement k-means in NumPy.", "Vectorised distance matrix, argmin, recompute centroids, stop on no change."],
+    ["Implement logistic regression with gradient descent.", "Sigmoid; gradient is Xᵀ(p − y)/n; check against scikit-learn."],
+    ["Implement scaled dot-product attention with a causal mask.", "QKᵀ/√d, mask the upper triangle with −∞ before softmax."],
+    ["Write SQL for each customer’s latest order.", "ROW_NUMBER() OVER (PARTITION BY customer ORDER BY ts DESC)."],
+    ["Debug a join that doubles your training rows.", "Check key uniqueness and cardinality on both sides."],
+    ["Find the top-k most frequent elements.", "Hash map plus a heap: O(n log k)."]
+  ]},
+  { h: "ML & LLM system design", q: [
+    ["Design a recommendation system for a video app.", "Candidate generation, ranking, re-ranking for diversity, offline and online metrics, cold start."],
+    ["Design real-time fraud detection for payments.", "Latency budget, streaming features, label delay, class imbalance, a human-review queue."],
+    ["Design search ranking for an e-commerce site.", "Query understanding, hybrid retrieval, learning-to-rank, NDCG, A/B tests."],
+    ["Design a RAG system over 10M documents with a 200 ms p95.", "Chunking, ANN index, hybrid retrieval, reranker budget, caching, streaming, permissions."],
+    ["Your online metric dropped 10% overnight. Investigate.", "Pipeline health first, then feature drift, serving skew, upstream changes — the model last."],
+    ["How would you A/B test a new ranking model?", "Unit of randomisation, guardrail metrics, sample size, novelty effects."]
+  ]},
+  { h: "LLMs & production", q: [
+    ["RAG, fine-tuning or long context — how do you choose?", "Knowledge vs behaviour, freshness, cost per request, latency, data volume."],
+    ["How do you evaluate an LLM feature before launch?", "Error analysis on real traces, binary criteria, a judge validated against human labels, a regression suite in CI."],
+    ["Explain LoRA and QLoRA.", "Low-rank adapters on frozen weights; a 4-bit base model with adapters in higher precision."],
+    ["What is prompt injection, and how do you defend an agent with tools?", "Untrusted content in context; least-privilege tools, approval for risky actions, isolation."],
+    ["How do you cut LLM cost 5× without losing quality?", "Routing to smaller models, caching, shorter prompts, batching, tuning a small model — all measured on your eval."],
+    ["What is the KV cache and why does it matter for serving?", "Stored keys and values avoid recomputation; memory grows with context and batch size; PagedAttention."],
+    ["Draw your model release process from git push to production.", "Tests, data checks, eval gates, registry, staged rollout, monitoring, rollback."],
+    ["How do you detect degradation when labels arrive weeks late?", "Data and prediction drift, proxy metrics, delayed-label backfills, sampled human review."]
+  ]}
+];
+
+const MARKET = [
+  { co: "GitLab", role: "AI Engineer · Remote, Bangalore", asks: "Python or TypeScript, REST/GraphQL, prompt engineering, model selection, agentic architecture, hands-on with Anthropic, OpenAI and open models, guardrails.", url: "https://job-boards.greenhouse.io/gitlab/jobs/8556658002" },
+  { co: "Remote People", role: "AI Engineer · Europe remote", asks: "3+ years software, production LLM or RAG, async Python and FastAPI, AWS, hands-on use of AI coding tools. Nice to have: MLOps, vector DBs, PyTorch.", url: "https://job-boards.eu.greenhouse.io/remotepeople/jobs/4843110101" },
+  { co: "Splitero", role: "Applied AI Engineer · Remote", asks: "LLM APIs, prompt engineering, RAG, agentic workflow design, Python, TypeScript, PostgreSQL, vector databases.", url: "https://job-boards.greenhouse.io/splitero/jobs/5162723008" },
+  { co: "Babel Street", role: "Generative & Agentic AI Engineer · Hybrid US", asks: "LLMs and small models, RAG, embeddings, agents, PyTorch or TensorFlow, ML fundamentals, vector and graph databases.", url: "https://job-boards.greenhouse.io/babelstreet/jobs/7531339" },
+  { co: "Hugging Face", role: "Open-Source ML Engineer · US remote", asks: "PyTorch, Transformers/Datasets/Accelerate — and a public record of merged open-source pull requests.", url: "https://apply.workable.com/huggingface/jobs/view/19A136F8E2" }
+];
+
+const JOBS = [
+  ["Hacker News · Who is hiring?", "https://news.ycombinator.com/submitted?id=whoishiring", "Monthly thread — search for REMOTE and ML. “Who wants to be hired?” lets you post your own profile."],
+  ["Wellfound", "https://wellfound.com/role/r/machine-learning-engineer", "Startup jobs with a Remote filter."],
+  ["Y Combinator · Work at a Startup", "https://www.workatastartup.com/", "YC companies; many are remote. Opens in a browser."],
+  ["Himalayas", "https://himalayas.app/jobs/machine-learning", "Remote-only board that shows country restrictions per job. Opens in a browser."],
+  ["We Work Remotely", "https://weworkremotely.com/", "Large remote board; filter by region. Opens in a browser."],
+  ["Remote OK · AI & ML", "https://remoteok.com/remote-ai+machine-learning-jobs", "Remote jobs with salary ranges."],
+  ["Hugging Face careers", "https://apply.workable.com/huggingface/", "Remote and open-source heavy; merged PRs matter."],
+  ["Company boards (Greenhouse, Lever, Workable)", "https://job-boards.greenhouse.io/", "Search Google for <code>site:job-boards.greenhouse.io “AI Engineer” remote</code>."]
+];
+
+const SCHEDULES = [
+  { id: "full", title: "The full path · about 7 hours a week", note: "This is the honest number: roughly 16 months for the complete route. If you already ship software, follow the 12-week sprint first and backfill Phases 3–5 while you apply.", rows: null },
+  { id: "w24", title: "24-week track · about 12 hours a week · ML + AI engineer", note: "For people who can commit real hours. Start applying to AI Engineer roles as soon as the Phase 6–7 project is live.", rows: [
+    ["Weeks 1–2", "Phase 0", "Set-up, maths intuition, Git and the shell", "ml-starter template repo"],
+    ["Weeks 3–5", "Phase 1", "pandas, SQL and EDA (compressed)", "city-pulse pipeline and report"],
+    ["Weeks 6–9", "Phase 2", "Classical ML and FastAPI (join ML Zoomcamp)", "churn-radar deployed"],
+    ["Weeks 10–11", "Phase 3", "Enter a Kaggle Playground; keep it running", "Competition write-up"],
+    ["Weeks 12–14", "Phase 4", "micrograd and one transfer-learning task", "from-scratch-to-torch"],
+    ["Weeks 15–16", "Phase 5", "Let’s build GPT · HF LLM Course ch. 1–4", "tiny-gpt and classifier"],
+    ["Weeks 17–19", "Phases 6–7", "Hybrid RAG, evals and two MCP tools", "docs-copilot with an eval harness"],
+    ["Weeks 20–21", "Phase 8", "One QLoRA fine-tune against your RAG baseline", "domain-tuned results table"],
+    ["Weeks 22–23", "Phases 9–10", "CI eval gates, deployment, drift monitoring", "prod-ready capstone"],
+    ["Week 24", "Phase 11", "Résumé, one design doc, first applications", "design-docs; 20 applications"]
+  ]},
+  { id: "w12", title: "12-week sprint · about 15 hours a week · AI Engineer roles", note: "Only for working developers. It targets AI / Applied-AI Engineer postings, not research or ML-engineer-at-scale roles. Expect to backfill fundamentals.", rows: [
+    ["Week 1", "Phase 0", "Template repo, Missing Semester shell and Git lectures, 3Blue1Brown linear algebra ch. 1–4", "ml-starter"],
+    ["Week 2", "Phase 2", "Google ML Crash Course; StatQuest on logistic regression, trees and boosting", "Notes and a small sklearn notebook"],
+    ["Week 3", "Phase 2", "One tabular model behind FastAPI in Docker", "A deployed /predict endpoint"],
+    ["Week 4", "Phase 5", "3Blue1Brown transformers and attention; Karpathy’s Deep Dive into LLMs", "A one-page explainer post"],
+    ["Week 5", "Phase 6", "LLM Zoomcamp modules 1–2; retrieval on plain API calls", "A RAG prototype"],
+    ["Week 6", "Phases 6–7", "Hybrid search, reranking, structured output, tool calling, MCP", "docs-copilot v1 with two tools"],
+    ["Week 7", "Phase 10", "Hamel Husain on error analysis; build a 100-question eval set", "A failure-mode table"],
+    ["Week 8", "Phase 10", "LLM judge, a CI eval gate and Langfuse traces", "docs-copilot v2 with an eval dashboard"],
+    ["Week 9", "Phase 9", "MLflow, a GitHub Actions deploy and monitoring", "The app in production"],
+    ["Week 10", "Phase 8", "QLoRA on one narrow sub-task", "A comparison table"],
+    ["Week 11", "Phase 11", "One design doc; 20 DSA problems", "design-doc"],
+    ["Week 12", "Phase 11", "Portfolio polish, blog post, résumé, 3 mock interviews", "20 applications sent"]
+  ]}
+];
+
+COMMUNITY[0].l.push(["MLOps Community", "https://mlops.community/", "Slack, meetups and a podcast for people running ML in production"]);
+COMMUNITY[1].l.unshift(["Kaggle Discussions", "https://www.kaggle.com/competitions", "Winning-solution write-ups live in each competition’s Discussion tab"]);
+
+STAGES.forEach(s => {
+  const x = EXTRA[s.id]; if (!x) return;
+  if (x.videos) s.videos.push(...x.videos);
+  if (x.items) s.items.push(...x.items);
+  if (x.project) s.project = x.project;
+  if (x.traps) s.traps = x.traps;
+});
+STAGES.unshift(P0, P1, P2, P3);
+STAGES.splice(STAGES.findIndex(s => s.id === "phase-10"), 0, P9);
+STAGES.push(P11);
+let wkCursor = 1;
+STAGES.forEach(s => { s.weeks = "Weeks " + wkCursor + "–" + (wkCursor + s.dur - 1); wkCursor += s.dur; });
+const TOTAL_WEEKS = wkCursor - 1;
+SCHEDULES[0].rows = STAGES.map(s => [s.weeks, "Phase " + s.n, s.title, (s.project ? s.project.name.split(" — ")[0] : "")]);
+
 /* =====================================================================
    HELPERS & STATE
    ===================================================================== */
@@ -660,7 +1165,8 @@ const save = () => { try { localStorage.setItem(STORE, JSON.stringify([...done])
 const ICON = { course: "🎓", read: "📄", repo: "💻", docs: "📚" };
 const TIER = { s: ["s", "Start here"], c: ["c", "Core"], d: ["d", "Deep dive"] };
 const TYPE_LABEL = { video: "Videos", course: "Courses", read: "Articles", repo: "Repos", docs: "Docs" };
-const cpKey = s => "checkpoint:" + s.id;
+const cpKey = s => "checkpoint:" + (s.legacy || s.id);
+const col = n => `var(--s${(n % 7) + 1})`;
 
 function doneBox(key) {
   return `<label class="done" title="Mark as done"><input type="checkbox" data-key="${esc(key)}" ${done.has(key) ? "checked" : ""}><span>Done</span></label>`;
@@ -703,10 +1209,10 @@ function renderStage(s) {
   const courses = items.filter(i => i.kind === "course");
   const reads = items.filter(i => i.kind === "read");
   const code = items.filter(i => i.kind === "repo" || i.kind === "docs");
-  return `<section class="stage" id="${s.id}" data-n="${s.n}">
+  return `<section class="stage" id="${s.id}" data-n="${s.n}" style="--c:${col(s.n)}">
     <div class="stage-head">
       <div class="stage-num">${s.n}</div>
-      <div><div class="stage-eyebrow">Stage ${s.n} · ${s.weeks}</div><h3>${esc(s.title)}</h3><p class="dek">${s.dek}</p></div>
+      <div><div class="stage-eyebrow">Phase ${s.n} · ${s.weeks}</div><h3>${esc(s.title)}</h3><p class="dek">${s.dek}</p></div>
     </div>
     <div class="why"><b>Why it matters in interviews.</b> ${s.why}</div>
     <div class="sub">What to master</div>
@@ -715,13 +1221,29 @@ function renderStage(s) {
     ${group("🎓 Courses & guided paths", courses)}
     ${group("📄 Read", reads)}
     ${group("💻 Repos & docs", code)}
-    <div class="empty-note">No resources in this stage match your filter.</div>
+    <div class="empty-note">No resources in this phase match your filter.</div>
+    ${renderPhaseProject(s)}
     <div class="checkpoint" data-checkpoint="${cpKey(s)}">
       <div class="cp-ico" aria-hidden="true">🏁</div>
-      <div><h4>Stage ${s.n} checkpoint</h4><p>${s.checkpoint}</p></div>
+      <div><h4>Phase ${s.n} checkpoint</h4><p>${s.checkpoint}</p></div>
       ${doneBox(cpKey(s))}
     </div>
   </section>`;
+}
+function renderPhaseProject(s) {
+  const p = s.project; if (!p) return "";
+  const traps = (s.traps || []).length ? `<h5>Common traps</h5><ul>${s.traps.map(t => `<li>${t}</li>`).join("")}</ul>` : "";
+  return `<div class="pproj">
+    <div class="plabel">⚒ Phase ${s.n} project</div>
+    <h4>${p.name}</h4>
+    <p>${p.build}</p>
+    <div class="stack">${p.stack.map(t => `<span>${esc(t)}</span>`).join("")}</div>
+    <h5>Done when…</h5>
+    <ul>${p.done.map(d => `<li>${d}</li>`).join("")}</ul>
+    <p><b>Stretch:</b> ${p.stretch}</p>
+    <p><b>Show on GitHub:</b> ${p.show}</p>
+    ${traps}
+  </div>`;
 }
 function renderProjects() {
   return `<div class="projects">${PROJECTS.map(p => `<article class="proj">
@@ -735,8 +1257,18 @@ function renderProjects() {
     <div class="bullet">${p.bullet}</div>
   </article>`).join("")}</div>`;
 }
-function renderSchedule() {
-  return `<div class="sched"><div class="srow head"><span>When</span><span>Focus</span><span>Milestone</span></div>${SCHEDULE.map(r => `<div class="srow stage" data-n="${r[1]}" style="padding-top:14px"><span class="wk">${r[0]}</span><span class="fo">${r[2]}</span><span class="ml">${r[3]}</span></div>`).join("")}</div>`;
+function renderSchedules() {
+  return SCHEDULES.map(sc => `<h3 class="sched-title">${sc.title}</h3><p class="section-sub" style="margin:4px 0 12px">${sc.note}</p>
+    <div class="sched sched4"><div class="srow head"><span>When</span><span>Phase</span><span>Focus</span><span>Milestone</span></div>${sc.rows.map(r => `<div class="srow"><span class="wk">${r[0]}</span><span class="ph">${r[1]}</span><span class="fo">${r[2]}</span><span class="ml">${r[3]}</span></div>`).join("")}</div>`).join("");
+}
+function renderMarket() {
+  return `<div class="mk">${MARKET.map(m => `<a href="${m.url}" target="_blank" rel="noopener"><b>${esc(m.co)} · ${esc(m.role)} ↗</b><small>${esc(m.asks)}</small></a>`).join("")}</div>`;
+}
+function renderJobs() {
+  return `<div class="cgrid"><div class="cgroup"><h4>Where to look</h4>${JOBS.map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])} ↗<small>${l[2]}</small></a>`).join("")}</div></div>`;
+}
+function renderInterview() {
+  return INTERVIEW.map((g, i) => `<details class="qgroup" ${i === 0 ? "open" : ""}><summary>${g.h} · ${g.q.length} questions</summary><ol>${g.q.map(q => `<li>${esc(q[0])}<small>Hint: ${esc(q[1])}</small></li>`).join("")}</ol></details>`).join("");
 }
 function renderCommunity() {
   return `<div class="cgrid">${COMMUNITY.map(g => `<div class="cgroup"><h4>${g.h}</h4>${g.l.map(l => `<a href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])} ↗<small>${esc(l[2])}</small></a>`).join("")}</div>`).join("")}</div>`;
@@ -750,36 +1282,39 @@ const total = allRes.length + STAGES.length;
 $("#page").innerHTML = `
   <section class="hero" id="overview">
     <span class="eyebrow">🧭 Free · Link-verified · 2026 edition</span>
-    <h2>From Python to a <em>production-grade</em> AI engineer.</h2>
-    <p class="dek">Six stages, one path: foundations, transformer internals, advanced RAG, agents, fine-tuning &amp; serving, and LLMOps. Every video plays in the page, every link was checked, and your progress is saved in this browser.</p>
+    <h2>From zero to a <em>job-ready</em> AI / ML engineer.</h2>
+    <p class="dek">Twelve phases, from Phase 0 to the job hunt: setup and maths, data, classical ML, deep learning, transformers, RAG, agents, fine-tuning, MLOps, evals and interviews — with a project in every phase. Every video plays in the page, every link was checked, and your progress is saved in this browser.</p>
     <div class="stats">
-      <div class="stat"><b>6</b><span>stages</span></div>
+      <div class="stat"><b>${STAGES.length}</b><span>phases</span></div>
       <div class="stat"><b>${allRes.length}</b><span>resources</span></div>
       <div class="stat"><b>${nVideos}</b><span>playable videos</span></div>
-      <div class="stat"><b>16</b><span>weeks at ~10–15 h/week</span></div>
+      <div class="stat"><b>${STAGES.length}</b><span>projects, one per phase</span></div>
     </div>
-    <div class="honest"><b>Reality check.</b> This is aimed at ₹20 LPA+ AI / LLM engineer roles, but no roadmap can guarantee an offer. Offers come from projects you can demo, numbers you measured yourself, and interviews you've practised. This page maximises the odds — it doesn't replace the work.</div>
+    <div class="honest"><b>Reality check.</b> This is aimed at ₹20 LPA+ AI / ML engineering roles, but no roadmap can guarantee an offer. At about 7 hours a week the full path takes roughly ${Math.round(TOTAL_WEEKS / 4.33)} months; the 12- and 24-week tracks under <a href="#schedule">Plans</a> trade depth for speed. The postings checked in September 2026 mostly ask for software engineering plus LLM systems (RAG, agents, evals, FastAPI, cloud) — so if you already code for a living, start at Phase 2 and jump to Phase 6 early. Offers come from projects you can demo, numbers you measured yourself, and interviews you have practised.</div>
   </section>
 
   <h2 class="section-title">The path</h2>
-  <p class="section-sub">Each stage builds on the last. Tap one to jump in.</p>
-  <div class="path">${STAGES.map(s => `<a href="#${s.id}" style="--c:var(--s${s.n})" data-jump="${s.id}"><div class="pn">STAGE ${s.n} · ${s.weeks.toUpperCase()}</div><div class="pt">${esc(s.title)}</div><div class="pw" data-frac="${s.id}"></div><div class="bar"><i data-bar="${s.id}"></i></div></a>`).join("")}</div>
+  <p class="section-sub">Each phase builds on the last, and each ends with a project you can put on GitHub. Tap one to jump in.</p>
+  <div class="path">${STAGES.map(s => `<a href="#${s.id}" style="--c:${col(s.n)}" data-jump="${s.id}"><div class="pn">PHASE ${s.n} · ${s.weeks.toUpperCase()}</div><div class="pt">${esc(s.title)}</div><div class="pw" data-frac="${s.id}"></div><div class="bar"><i data-bar="${s.id}"></i></div></a>`).join("")}</div>
 
   <h2 class="section-title">What hiring managers actually test</h2>
-  <p class="section-sub">Calling a chat API is table stakes. These five areas are where the offers are decided.</p>
+  <p class="section-sub">Calling a chat API is table stakes. These eight areas are where offers are decided.</p>
   <div class="tests">
+    <div class="test"><h4>Classical ML &amp; evaluation</h4><p>Leakage, metrics, baselines, boosting — the first things ML-engineer screens probe.</p></div>
     <div class="test"><h4>Advanced RAG</h4><p>Hybrid search, reranking, contextual retrieval, query rewriting — with numbers.</p></div>
     <div class="test"><h4>Evaluation &amp; observability</h4><p>Golden sets, LLM-as-a-judge, tracing, regression tests in CI.</p></div>
     <div class="test"><h4>Agentic workflows</h4><p>Tool routing, state machines, memory, human approval, bounded loops.</p></div>
     <div class="test"><h4>Open models &amp; fine-tuning</h4><p>LoRA / QLoRA, quantisation, serving with vLLM, choosing the right tool.</p></div>
+    <div class="test"><h4>MLOps &amp; CI/CD</h4><p>Registry, eval gates, Kubernetes, drift monitoring, rollback.</p></div>
     <div class="test"><h4>Cost, latency &amp; security</h4><p>Caching, streaming, fallbacks, prompt-injection defence, guardrails.</p></div>
+    <div class="test"><h4>DSA &amp; system design</h4><p>Coding rounds are at software-engineer level; ML system design is now standard.</p></div>
   </div>
 
   <h2 class="section-title">How to use this page</h2>
   <div class="howto">
     <div><b>1 · Follow the tiers</b>“Start here” first, “Core” next, “Deep dive” only when a project needs it.</div>
     <div><b>2 · Tick as you go</b>Progress lives in this browser (localStorage) — it won't sync between devices.</div>
-    <div><b>3 · Build the checkpoint</b>Don't leave a stage until its checkpoint is real, running code.</div>
+    <div><b>3 · Ship the project</b>Don't leave a phase until its project runs and its checkpoint is real.</div>
   </div>
 
   <div class="filterbar" id="filterbar" role="toolbar" aria-label="Filter resources by type">
@@ -797,26 +1332,52 @@ $("#page").innerHTML = `
 
   <section id="projects" class="stage" data-n="4" style="--c:var(--spine)">
     <h2 class="section-title" style="margin-top:0">Portfolio projects</h2>
-    <p class="section-sub">Three builds that give you something concrete to demo. The résumé lines are <b>templates</b> — fill in results you measured yourself, and be ready to explain how.</p>
+    <p class="section-sub">Each phase has its own project. These six are the flagship builds worth putting at the top of your GitHub. The résumé lines are <b>templates</b> — fill in results you measured yourself, and be ready to explain how.</p>
     ${renderProjects()}
   </section>
 
-  <section id="schedule" style="padding-top:20px">
-    <h2 class="section-title">The 16-week plan</h2>
-    <p class="section-sub">Assumes roughly 10–15 focused hours a week. Stages overlap on purpose — slip a week, not a milestone.</p>
-    ${renderSchedule()}
+  <section id="market" style="padding-top:44px">
+    <h2 class="section-title">What real postings ask for</h2>
+    <p class="section-sub">Five postings read in September 2026 — a small sample, not a market survey. Postings expire, so treat these as patterns and search for current ones.</p>
+    ${renderMarket()}
+    <h3 class="sched-title">Where to find remote and international roles</h3>
+    <p class="section-sub" style="margin:4px 0 12px">Many “remote” postings are country-restricted. Filter for Worldwide, APAC or India first, and look for companies with an India entity.</p>
+    ${renderJobs()}
   </section>
 
-  <section id="community" style="padding-top:20px">
+  <section id="interviews" style="padding-top:44px">
+    <h2 class="section-title">30 interview questions</h2>
+    <p class="section-sub">Answer each out loud, then compare with the hint. If a hint surprises you, that phase’s checkpoint isn’t done yet.</p>
+    ${renderInterview()}
+  </section>
+
+  <section id="portfolio" style="padding-top:44px">
+    <h2 class="section-title">Portfolio checklist</h2>
+    <div class="cgrid">
+      <div class="cgroup"><h4>GitHub</h4><ul class="plist"><li>Pin five or six repositories: P2, P3, P6–7, P8 and the capstone.</li><li>Each README: problem, architecture diagram, results table, one-command run, live demo, “what I’d do next”.</li><li>CI badges and tests on every serious repo.</li><li>One merged open-source PR — a docs fix is a start.</li></ul></div>
+      <div class="cgroup"><h4>Demos &amp; writing</h4><ul class="plist"><li>At least two live demos (Hugging Face Spaces, Render, Fly.io or a small VM).</li><li>Models and datasets on the Hugging Face Hub with cards.</li><li>3–5 posts: RAG evaluation lessons, “was fine-tuning worth it?”, CI blocking a bad model, a Kaggle post-mortem.</li><li>A three-minute capstone walkthrough video.</li></ul></div>
+      <div class="cgroup"><h4>Proof &amp; profile</h4><ul class="plist"><li>A Kaggle profile with one write-up and one public notebook.</li><li>A LinkedIn headline that matches the role, e.g. “AI Engineer · RAG, evals, LLMOps”.</li><li>Every résumé bullet has a number you measured yourself.</li><li>No secrets, no scraped personal data, no unlicensed datasets.</li></ul></div>
+    </div>
+  </section>
+
+  <section id="schedule" style="padding-top:44px">
+    <h2 class="section-title">Plans: pick your pace</h2>
+    <p class="section-sub">The phases stay the same; the pace and the depth change. Stages overlap on purpose — slip a week, not a milestone.</p>
+    ${renderSchedules()}
+  </section>
+
+  <section id="community" style="padding-top:44px">
     <h2 class="section-title">Communities &amp; staying current</h2>
     <p class="section-sub">Ask questions where the maintainers hang out, and follow a handful of high-signal sources instead of everything.</p>
     ${renderCommunity()}
-    <div class="verify"><b>How this was verified (2026-09-20).</b> Every link was requested and every YouTube video was confirmed embeddable. Things that changed since older roadmaps:
+    <div class="verify"><b>How this was verified.</b> Links and videos from the original six stages were checked on 2026-09-20; Phases 0–3, 9 and 11 and the additions elsewhere were checked on 2026-09-26. Every link was requested and every YouTube video was confirmed embeddable. Worth knowing:
       <ul>
         <li>Hugging Face’s “NLP Course” is now the <b>LLM Course</b>.</li>
-        <li><code>ragas</code>, <code>anthropic-cookbook</code> and <code>NeMo-Guardrails</code> repos moved (links here point to the new homes).</li>
-        <li>Stanford CME295 lecture 1 can’t be embedded, so it opens on YouTube.</li>
-        <li>Reddit blocks automated checks, so those four links are marked as not machine-verified. GitHub star counts are a snapshot.</li>
+        <li><code>ragas</code>, <code>anthropic-cookbook</code> and <code>NeMo-Guardrails</code> repos moved (links point to the new homes).</li>
+        <li>Stanford’s CME295, CS224N and CS336 lectures can’t be embedded, so they open on YouTube.</li>
+        <li>Reddit, Himalayas, We Work Remotely and Y Combinator’s job board block automated checks; they load fine in a browser. GitHub star counts are a snapshot.</li>
+        <li>Job postings expire and salary figures are <b>not</b> verified here — check Levels.fyi, Glassdoor and AmbitionBox for your target roles.</li>
+        <li>Resources marked “Pre-2023” are kept on purpose: the ideas have aged well even where the tooling has not.</li>
       </ul>
     </div>
   </section>
@@ -829,14 +1390,22 @@ $("#page").innerHTML = `
 
 /* ---------------- Sidebar TOC ---------------- */
 const toc = $("#toc");
+let lastTrack = "";
+const stageLinks = STAGES.map(s => {
+  const head = s.track !== lastTrack ? `<div class="group-label">${esc(s.track)}</div>` : "";
+  lastTrack = s.track;
+  return head + `<a href="#${s.id}" data-id="${s.id}" style="--c:${col(s.n)}"><span class="num">${s.n}</span><span class="name">${esc(s.title)}</span><span class="frac" data-frac="${s.id}"></span></a>`;
+}).join("");
 toc.innerHTML = `
   <div class="group-label">Start</div>
   <a href="#overview" data-id="overview"><span class="num">◎</span><span class="name">Overview</span></a>
-  <div class="group-label">Stages</div>
-  ${STAGES.map(s => `<a href="#${s.id}" data-id="${s.id}" style="--c:var(--s${s.n})"><span class="num">${s.n}</span><span class="name">${esc(s.title)}</span><span class="frac" data-frac="${s.id}"></span></a>`).join("")}
+  ${stageLinks}
   <div class="group-label">Apply it</div>
   <a href="#projects" data-id="projects"><span class="num">⚒</span><span class="name">Portfolio projects</span></a>
-  <a href="#schedule" data-id="schedule"><span class="num">🗓</span><span class="name">16-week plan</span></a>
+  <a href="#market" data-id="market"><span class="num">💼</span><span class="name">Jobs &amp; postings</span></a>
+  <a href="#interviews" data-id="interviews"><span class="num">🎤</span><span class="name">30 interview questions</span></a>
+  <a href="#portfolio" data-id="portfolio"><span class="num">✅</span><span class="name">Portfolio checklist</span></a>
+  <a href="#schedule" data-id="schedule"><span class="num">🗓</span><span class="name">Plans: 12 · 24 · full</span></a>
   <a href="#community" data-id="community"><span class="num">👥</span><span class="name">Communities</span></a>
 `;
 
@@ -893,7 +1462,7 @@ function applyFilters() {
     if (show) shown++;
   });
   $$(".group[data-group]").forEach(g => { g.style.display = $$(".res-item", g).some(e => e.style.display !== "none") ? "" : "none"; });
-  $$(".stage[id^='stage-']").forEach(st => {
+  $$(".stage[id^='phase-']").forEach(st => {
     const any = $$(".res-item", st).some(e => e.style.display !== "none");
     $(".empty-note", st).style.display = any ? "none" : "block";
   });
@@ -941,7 +1510,7 @@ const spy = new IntersectionObserver(entries => {
     const act = $(".toc a.active"); if (act) act.scrollIntoView({ block: "nearest" });
   });
 }, { rootMargin: "-20% 0px -70% 0px" });
-["overview", ...STAGES.map(s => s.id), "projects", "schedule", "community"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+["overview", ...STAGES.map(s => s.id), "projects", "market", "interviews", "portfolio", "schedule", "community"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
 addEventListener("scroll", () => {
   const h = document.documentElement; $("#readBar").style.width = (100 * h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) + "%";
 }, { passive: true });

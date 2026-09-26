@@ -7,7 +7,7 @@
  * It reads the data straight out of the three content pages, so the home-page search
  * always matches what those pages actually contain:
  *   systemdesignprimerbook.html -> CHAPTERS (with videos + articles)
- *   ai-engineer-roadmap.html    -> STAGES, PROJECTS, COMMUNITY
+ *   ai-engineer-roadmap.html    -> STAGES (phases), PROJECTS, COMMUNITY, INTERVIEW
  *   toolbox.html                -> TOOLS, CATEGORIES
  * Run it after editing any of them, then commit index.html.
  *
@@ -29,7 +29,7 @@ const CHAPTERS = new Function('IMG', 'return ' + book.slice(a + 'const CHAPTERS 
 /* ---- AI roadmap ---- */
 const ai = read('ai-engineer-roadmap.html');
 a = ai.indexOf('const V = '); b = ai.indexOf('/* =====', ai.indexOf('const COMMUNITY'));
-const AI = new Function(ai.slice(a, b) + '\nreturn {STAGES, PROJECTS, COMMUNITY};')();
+const AI = new Function(ai.slice(a, b) + '\nreturn {STAGES, PROJECTS, COMMUNITY, INTERVIEW};')();
 
 /* ---- Toolbox ---- */
 const tb = read('toolbox.html');
@@ -51,14 +51,16 @@ const aiOrder = [];
 let aiVideos = 0, aiRes = 0;
 AI.STAGES.forEach(s => {
   const u = 'ai-engineer-roadmap.html#' + s.id;
-  entries.push({ t: `Stage ${s.n} · ${s.title}`, k: 'Stage', w: s.weeks, s: 'AI Roadmap', u, x: s.dek + ' ' + s.master.join(' ') });
+  entries.push({ t: `Phase ${s.n} · ${s.title}`, k: 'Phase', w: s.weeks, s: 'AI Roadmap', u, x: s.dek + ' ' + s.master.join(' ') });
+  if (s.project) entries.push({ t: s.project.name, k: 'Project', w: `Phase ${s.n} project`, s: 'AI Roadmap', u, x: strip(s.project.build) + ' ' + s.project.stack.join(' ') });
   [...s.videos, ...s.items].forEach(r => {
     aiRes++; if (r.kind === 'video') aiVideos++;
     aiOrder.push({ key: r.key, title: r.title, stage: s.id });
-    entries.push({ t: r.title, k: KIND[r.kind], w: `Stage ${s.n} ${s.title} · ${r.by || r.src}`, s: 'AI Roadmap', u, ext: r.url, x: strip(r.why) });
+    entries.push({ t: r.title, k: KIND[r.kind], w: `Phase ${s.n} ${s.title} · ${r.by || r.src}`, s: 'AI Roadmap', u, ext: r.url, x: strip(r.why) });
   });
 });
 AI.PROJECTS.forEach(p => entries.push({ t: p.title, k: 'Project', w: 'AI Roadmap · Portfolio projects', s: 'AI Roadmap', u: 'ai-engineer-roadmap.html#projects', x: p.what + ' ' + p.stack.join(' ') }));
+AI.INTERVIEW.forEach(g => g.q.forEach(q => entries.push({ t: q[0], k: 'Question', w: `AI Roadmap · Interview · ${g.h}`, s: 'AI Roadmap', u: 'ai-engineer-roadmap.html#interviews', x: q[1] })));
 AI.COMMUNITY.forEach(g => g.l.forEach(l => entries.push({ t: l[0], k: 'Community', w: `AI Roadmap · ${g.h}`, s: 'AI Roadmap', u: 'ai-engineer-roadmap.html#community', ext: l[1], x: l[2] })));
 
 TOOLS.forEach(t => entries.push({ t: t.name, k: 'Tool', w: t.category, s: 'Tools', u: 'toolbox.html#' + t.id, ext: t.url, x: t.summary + ' ' + t.tags.join(' ') }));
